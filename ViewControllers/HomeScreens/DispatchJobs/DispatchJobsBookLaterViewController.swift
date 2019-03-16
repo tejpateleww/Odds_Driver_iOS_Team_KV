@@ -490,7 +490,7 @@ class DispatchJobsBookLaterViewController: UIViewController, getVehicleServiceId
         
         print("allElemsContained_Delivery_services : \(allElemsContained_Delivery_services)")
         
-         NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+         NVActivityIndicatorPresenter.sharedInstance.stopAnimating(nil)
     }
     
     // ----------------------------------------------------------------------

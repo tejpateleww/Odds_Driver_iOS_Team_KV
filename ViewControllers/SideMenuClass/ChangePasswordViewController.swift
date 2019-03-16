@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChangePasswordViewController: ParentViewController {
+class ChangePasswordViewController: BaseViewController {
 
     //-------------------------------------------------------------
     // MARK: - Base Methods
@@ -20,8 +20,7 @@ class ChangePasswordViewController: ParentViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        headerView?.btnBack.addTarget(self, action: #selector(self.nevigateToBack), for: .touchUpInside)
-        
+
 //
 //        iconPassword.image = UIImage.init(named: "iconLock")?.withRenderingMode(.alwaysTemplate)
 //        iconPassword.tintColor = UIColor.white
@@ -35,7 +34,7 @@ class ChangePasswordViewController: ParentViewController {
     }
     func setLicalization()
     {
-        self.headerView?.lblTitle.text = "Change Password".localized
+        self.title = "Change Password".localized
         txtNewPassword.placeholder = "New Password".localized
         txtConfirmPass.placeholder = "Confirm Password".localized
         btnSubmit.setTitle("Submit".localized, for: .normal)
@@ -47,12 +46,7 @@ class ChangePasswordViewController: ParentViewController {
     override func viewDidLayoutSubviews()
     {
         super.viewDidLayoutSubviews()
-        headerView?.backgroundColor = UIColor.clear
-        headerView?.imgBottomLine.isHidden = true
-        headerView?.lblTitle.textColor = UIColor.white
 
-        headerView?.lblHeaderTitle.text = "Change Password"
-        
         btnSubmit.layer.cornerRadius = btnSubmit.frame.size.height/2
         btnSubmit.clipsToBounds = true
     }
@@ -115,7 +109,7 @@ class ChangePasswordViewController: ParentViewController {
     {
         for controller in self.navigationController!.viewControllers as Array {
             if controller.isKind(of: TabbarController.self) {
-                self.sideMenuController?.embed(centerViewController: controller)
+//                self.sideMenuController?.embed(centerViewController: controller)
                 break
                 
             }

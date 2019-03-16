@@ -51,7 +51,7 @@ class updateCertificatesViewController: UIViewController, UIImagePickerControlle
     }
     func setLocalizable()
     {
-        lblTitle.text = "Documents".localized
+        self.title = "Documents".localized
         lblDriverLicence.text = "Driver Licence (Front only)".localized
         lblDriverLicenceExpiryDate.text = "Select driver licence expiry date".localized
         lblAccreditationCerti.text = "TIN Certificate".localized

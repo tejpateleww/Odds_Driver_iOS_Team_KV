@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SideMenuSwift
 
 class DriverCertificatesViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate,WWCalendarTimeSelectorProtocol  {
 
@@ -623,7 +623,7 @@ class DriverCertificatesViewController: UIViewController,UIImagePickerController
                     
                     Singletons.sharedInstance.strDriverID = (profileData?.object(forKey: "profile") as! NSDictionary).object(forKey: "Id") as! String
                     
-//                    let next = self.storyboard?.instantiateViewController(withIdentifier: "CustomSideMenuViewController") as! CustomSideMenuViewController
+//                    let next = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuController") as! SideMenuController
 //                    self.navigationController?.pushViewController(next, animated: true)
                     
                     self.navigationController?.isNavigationBarHidden = true
@@ -816,7 +816,7 @@ class DriverCertificatesViewController: UIViewController,UIImagePickerController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       
-        if segue.destination is CustomSideMenuViewController {
+        if segue.destination is SideMenuController {
             
         }
        

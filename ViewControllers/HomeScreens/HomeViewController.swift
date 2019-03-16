@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SideMenuController
+//import SideMenuController
 import GooglePlaces
 import GooglePlacePicker
 import GoogleMaps
@@ -38,7 +38,7 @@ protocol addCardFromHomeVCDelegate {
 }
 // ------------------------------------------------------------
 
-class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarMovementDelegate, SRCountdownTimerDelegate, ReceiveRequestDelegate,GMSMapViewDelegate,CompleterTripInfoDelegate,UITabBarControllerDelegate, delegateRatingIsSubmitSuccessfully,delegateWaitforTip
+class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovementDelegate, SRCountdownTimerDelegate, ReceiveRequestDelegate,GMSMapViewDelegate,CompleterTripInfoDelegate,UITabBarControllerDelegate, delegateRatingIsSubmitSuccessfully,delegateWaitforTip
 {
     
     func delegateResultTip() {
@@ -61,10 +61,10 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
     //label
     @IBOutlet weak var lblPickUpLocation: MarqueeLabel!
     @IBOutlet var lblLocationOnMap: MarqueeLabel!
-    
+    var userDefault = UserDefaults.standard
     @IBOutlet weak var viewOFHome: UIView!
-    @IBOutlet weak var btnMyJob: UIButton!
-    @IBOutlet weak var btnHome: UIButton!
+//    @IBOutlet weak var btnMyJob: UIButton!
+//    @IBOutlet weak var btnHome: UIButton!
     var isSocketConnected = Bool()
     var isAlreadyPopView = Bool()
     //-------------------------------------------------------------
@@ -90,10 +90,10 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
     
     @IBOutlet var btnDirectionFourBTN: UIButton!
     @IBOutlet var btnCancelTrip: UIButton!
-    @IBOutlet var constrainLocationViewBottom: NSLayoutConstraint!
+//    @IBOutlet var constrainLocationViewBottom: NSLayoutConstraint!
     let socket = (UIApplication.shared.delegate as! AppDelegate).SocketManager
     
-    @IBOutlet var viewHomeMyJobsBTN: UIView!
+//    @IBOutlet var viewHomeMyJobsBTN: UIView!
     let baseURLDirections = "https://maps.googleapis.com/maps/api/directions/json?"
     
     var oldCoordinate: CLLocationCoordinate2D!
@@ -153,12 +153,8 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
         
 //       self.title = "Home"
       
-        btnMyJob.layer.cornerRadius = btnHome.frame.size.height - 30
-        btnMyJob.clipsToBounds = true
-        btnHome.layer.cornerRadius = btnHome.frame.size.height - 30
-        btnHome.clipsToBounds = true
-        btnMyJob.borderColor = UIColor.red// UIColor.init(red: 228/255, green: 132/255, blue: 40/255, alpha: 1.0)
-        btnHome.borderColor = UIColor.red//.init(red: 228/255, green: 132/255, blue: 40/255, alpha: 1.0)
+//        btnMyJob.borderColor = UIColor.red// UIColor.init(red: 228/255, green: 132/255, blue: 40/255, alpha: 1.0)
+//        btnHome.borderColor = UIColor.red//.init(red: 228/255, green: 132/255, blue: 40/255, alpha: 1.0)
         btnCurrentlocation.layer.cornerRadius = 5
         btnCurrentlocation.layer.masksToBounds = true
         //        viewLocationDetails.layer.cornerRadius = 5
@@ -166,8 +162,8 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
         BottomButtonView.isHidden = true
         StartTripView.isHidden = true
         btnStartTrip.isHidden = true
-        viewHomeMyJobsBTN.isHidden = false
-        self.constrainLocationViewBottom.constant = 0//self.viewHomeMyJobsBTN.frame.height
+        (self.parent as? ContainerViewController)?.viewHomeMyJobsBTN.isHidden = false
+//        self.constrainLocationViewBottom.constant = 0//self.viewHomeMyJobsBTN.frame.height
         isAdvanceBooking = false
         Singletons.sharedInstance.isFirstTimeDidupdateLocation = true;
         moveMent = ARCarMovement()
@@ -247,7 +243,7 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
         mapView.isHidden = true
         subMapView.addSubview(mapView)
         
-        getCurrentPlace()
+        updateCurrentLocationLabel()
         
         if let reqAccepted: Bool = UserDefaults.standard.bool(forKey: tripStatus.kisRequestAccepted) as? Bool {
             //            Singletons.sharedInstance.isRequestAccepted = reqAccepted
@@ -275,7 +271,7 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
         runTimer()
     }
     override func viewDidLayoutSubviews() {
-        self.headerView?.lblTitle.text = "Home".localized
+        self.title = "Home".localized
         btnWaiting.setTitle("Hold Trip".localized, for: .normal)
         btnWaiting.setTitle("Stop waiting".localized, for: .selected)
         //        viewRoundForHome.layer.cornerRadius = viewRound.frame.size.height / 2
@@ -333,13 +329,17 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(true)
-        self.navigationController?.isNavigationBarHidden = true
         setLocalization()
+//        self.navigationController?.isNavigationBarHidden = true
+
     }
+
+
+    
     
     @objc func setLocalization()
      {
-        self.headerView?.lblTitle.text = "Home".localized
+//        self.title = "Home".localized
         btnWaiting.setTitle("Hold Trip".localized, for: .normal)
         btnWaiting.setTitle("Stop waiting".localized, for: .selected)
 //        btnHome.setTitle("Home".localized, for: .normal)
@@ -355,7 +355,7 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
     
     @IBAction func btnSidemenuClicked(_ sender: Any)
     {
-        sideMenuController?.toggle()
+        sideMenuController?.revealMenu(animated: true, completion: nil)
     }
     
     @objc func btnRightSideClicked(_ sender:Any)
@@ -713,9 +713,7 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
         })
         
     }
-    @IBAction func btnMyJob(_ sender: UIButton) {
-        performSegue(withIdentifier: "segueToMyJob", sender: self)
-    }
+
     
     // ------------------------------------------------------------
     //-------------------------------------------------------------
@@ -1205,7 +1203,7 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
                 self.StartTripView.isHidden = false
                 //                self.btnStartTrip.isHidden = false
                 self.viewLocationDetails.isHidden = false
-                self.constrainLocationViewBottom.constant = self.BottomButtonView.frame.height
+//                self.constrainLocationViewBottom.constant = self.BottomButtonView.frame.height
                 Singletons.sharedInstance.MeterStatus = meterStatus.kIsMeterStart
                 
                 self.pickupPassengerFromLocation()
@@ -1276,9 +1274,9 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
                 self.btnStartTrip.isHidden = false
                 self.btnStartTrip.layoutIfNeeded()
                 self.BottomButtonView.layoutIfNeeded()
-                self.viewHomeMyJobsBTN.isHidden = true
+                (self.parent as? ContainerViewController)?.viewHomeMyJobsBTN.isHidden = true
                 //                self.viewLocationDetails.isHidden = true
-                self.constrainLocationViewBottom.constant = self.BottomButtonView.frame.size.height
+//                self.constrainLocationViewBottom.constant = self.BottomButtonView.frame.size.height
             }
             
         }
@@ -1605,9 +1603,9 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
         self.btnStartTrip.isHidden = false
         self.aryBookingData = data as NSArray
         Singletons.sharedInstance.aryPassengerInfo = data as NSArray
-        self.viewHomeMyJobsBTN.isHidden = true
+        (self.parent as? ContainerViewController)?.viewHomeMyJobsBTN.isHidden = true
         //                self.viewLocationDetails.isHidden = true
-        self.constrainLocationViewBottom.constant = self.BottomButtonView.frame.size.height
+//        self.constrainLocationViewBottom.constant = self.BottomButtonView.frame.size.height
         self.isAdvanceBooking = true
         
         let getBookingAndPassengerInfo = self.getBookingAndPassengerInfo(data: data)
@@ -1682,8 +1680,8 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
         zoomoutCamera(PickupLat: PickupLat, PickupLng: PickupLng, DropOffLat: DropOffLat, DropOffLon: DropOffLon)
         self.getDirectionsSeconMethod(origin: originalLoc, destination: destiantionLoc, waypoints: ["\(waypointLatitude),\(waypointSetLongitude)"], travelMode: nil, completionHandler: nil)
         
-        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
-        
+        Utilities.hideActivityIndicator()
+
         let next = self.storyboard?.instantiateViewController(withIdentifier: "PassengerInfoViewController") as! PassengerInfoViewController
         next.strPickupLocation = self.strPickupLocation
         next.strDropoffLocation = self.strDropoffLocation
@@ -1824,7 +1822,7 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
             let okAction = UIAlertAction(title: "OK".localized, style: .default, handler: { (action) in
                 //                Utilities.showActivityIndicator()
                 
-                //                if SingletonClass.sharedInstance.passengerPaymentType == "cash" || SingletonClass.sharedInstance.passengerPaymentType == "Cash"
+                //                if Singletons.sharedInstance.passengerPaymentType == "cash" || Singletons.sharedInstance.passengerPaymentType == "Cash"
                 //                {
                 //
 //                self.completeTripFinalSubmit()
@@ -1927,7 +1925,7 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
             let okAction = UIAlertAction(title: "OK".localized, style: .default, handler: { (action) in
                 Utilities.showActivityIndicator()
                 
-                //                if SingletonClass.sharedInstance.passengerPaymentType == "cash" || SingletonClass.sharedInstance.passengerPaymentType == "Cash"
+                //                if Singletons.sharedInstance.passengerPaymentType == "cash" || Singletons.sharedInstance.passengerPaymentType == "Cash"
                 //                {
                 //
 //                self.completeTripFinalSubmit()
@@ -2226,7 +2224,7 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
             UtilityClass.showAlert("App Name".localized, message: "Sorry! Not connected to internet".localized, vc: self)
             return
         }
-        
+        self.updateCurrentLocationLabel()
         mapView.animate(toLocation: CLLocationCoordinate2D(latitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude))
         mapView.animate(toZoom: 17.5)
         
@@ -2405,7 +2403,7 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
             StartTripView.isHidden = false
             //            self.btnStartTrip.isHidden = true
             self.viewLocationDetails.isHidden = false
-            self.constrainLocationViewBottom.constant = self.StartTripView.frame.height
+//            self.constrainLocationViewBottom.constant = self.StartTripView.frame.height
             self.pickupPassengerFromLocation()
             
             self.view.bringSubviewToFront(StartTripView)
@@ -2416,11 +2414,11 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
             StartTripView.isHidden = false
             //            self.btnStartTrip.isHidden = true
             self.viewLocationDetails.isHidden = false
-            self.constrainLocationViewBottom.constant = self.StartTripView.frame.height
+//            self.constrainLocationViewBottom.constant = self.StartTripView.frame.height
             self.view.bringSubviewToFront(StartTripView)
             self.pickupPassengerFromLocation()
         }
-        self.constrainLocationViewBottom.constant = self.StartTripView.frame.size.height
+//        self.constrainLocationViewBottom.constant = self.StartTripView.frame.size.height
         Singletons.sharedInstance.MeterStatus = meterStatus.kIsMeterStart
 
     }
@@ -2718,41 +2716,41 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
         //        else
         //        {
         //1. Create the alert controller.
-        let alert = UIAlertController(title: "Tip".localized, message: "Want to ask about Tips?".localized, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes".localized, style: .default, handler: { [weak alert] (_) in
-            
-            
-            //                        Utilities.showActivityIndicator()
-            
-            if self.driverID == Singletons.sharedInstance.strDriverID
-            {
-                if self.isAdvanceBooking
-                {
-                    self.getSocketCallforGetingTipForBooklater(self.driverID, self.advanceBookingID)
-                }
-                else
-                {
-                    self.getSocketCallforGetingTip(self.driverID, self.bookingID)
-                    
-                }
-                let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "WaitForTipViewController") as? WaitForTipViewController
-                ViewController?.delegateWaitingTimeTip = self
-                //                ViewController?.arrBookingRequestData = (data as? [[String : AnyObject]])!
-                
-                
-                let alertWindow = UIWindow(frame: UIScreen.main.bounds)
-                alertWindow.rootViewController = UIViewController()
-                alertWindow.windowLevel = UIWindow.Level.alert + 1;
-                alertWindow.makeKeyAndVisible()
-                alertWindow.rootViewController?.present(ViewController!, animated: true, completion: {
-                    //                    SingletonClass.sharedInstance.firstRequestIsAccepted = true
-                })
-            }
-            
+//        let alert = UIAlertController(title: "Tip".localized, message: "Want to ask about Tips?".localized, preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Yes".localized, style: .default, handler: { [weak alert] (_) in
+//
+//
+//            //                        Utilities.showActivityIndicator()
+//
+//            if self.driverID == Singletons.sharedInstance.strDriverID
+//            {
+//                if self.isAdvanceBooking
+//                {
+//                    self.getSocketCallforGetingTipForBooklater(self.driverID, self.advanceBookingID)
+//                }
+//                else
+//                {
+//                    self.getSocketCallforGetingTip(self.driverID, self.bookingID)
+//
+//                }
+//                let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "WaitForTipViewController") as? WaitForTipViewController
+//                ViewController?.delegateWaitingTimeTip = self
+//                //                ViewController?.arrBookingRequestData = (data as? [[String : AnyObject]])!
+//
+//
+//                let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+//                alertWindow.rootViewController = UIViewController()
+//                alertWindow.windowLevel = UIWindow.Level.alert + 1;
+//                alertWindow.makeKeyAndVisible()
+//                alertWindow.rootViewController?.present(ViewController!, animated: true, completion: {
+//                    //                    Singletons.sharedInstance.firstRequestIsAccepted = true
+//                })
+//            }
+
             //                        DispatchQueue.main.asyncAfter(deadline: .now() + 40.0, execute:
             //                            {
             //                                Utilities.showActivityIndicator()
-            //                                if SingletonClass.sharedInstance.passengerPaymentType == "cash" || SingletonClass.sharedInstance.passengerPaymentType == "Cash"
+            //                                if Singletons.sharedInstance.passengerPaymentType == "cash" || Singletons.sharedInstance.passengerPaymentType == "Cash"
             //                                {
             //
             //                                    self.completeTripFinalSubmit()
@@ -2768,20 +2766,20 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
             //                                }
             //                        })
             
-        }))
-        alert.addAction(UIAlertAction(title: "No".localized, style: .destructive, handler: { [] (_) in
-            
+//        }))
+//        alert.addAction(UIAlertAction(title: "No".localized, style: .destructive, handler: { [] (_) in
+//
             Utilities.showActivityIndicator()
             if Singletons.sharedInstance.passengerPaymentType == "cash" || Singletons.sharedInstance.passengerPaymentType == "Cash" {
-                
+
                 //                self.completeTripButtonAction()
 //                self.completeTripFinalSubmit()
                 self.getLastAddressForLatLng(DropOffAddress: (self.lastLocation != nil) ? self.lastLocation : self.defaultLocation)
                 Appdelegate.WaitingTimeCount = 0
                 Appdelegate.WaitingTime = "00:00:00"
-                
+
                 self.tollFee = "0"
-                
+
             }
             else
             {
@@ -2792,10 +2790,10 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
                 Appdelegate.WaitingTime = "00:00:00"
                 self.tollFee = "0"
             }
-        }))
-        
-        self.present(alert, animated: true, completion: nil)
-        
+//        }))
+//
+//        self.present(alert, animated: true, completion: nil)
+
         
         //        }
     }
@@ -3005,8 +3003,8 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
         self.btnStartTrip.isHidden = true
         self.sumOfFinalDistance = 0
         
-        self.constrainLocationViewBottom.constant = 0
-        
+//        self.constrainLocationViewBottom.constant = 0
+
     }
     
     //MARK:- Holding Button
@@ -3029,7 +3027,7 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
                     Singletons.sharedInstance.isTripHolding = true
                     UserDefaults.standard.set(Singletons.sharedInstance.isTripHolding, forKey: holdTripStatus.kIsTripisHolding)
                     self.AdvancedStartHoldTrip()
-                    if (!App_Delegate.RoadPickupTimer.isValid())
+                    if (!App_Delegate.RoadPickupTimer.isValid)
                     {
                         App_Delegate.RoadPickupTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:  #selector(HomeViewController.updateTime), userInfo: nil, repeats: true)
                     }
@@ -3110,7 +3108,7 @@ class HomeViewController: ParentViewController, CLLocationManagerDelegate,ARCarM
                     Singletons.sharedInstance.isTripHolding = true
                     UserDefaults.standard.set(Singletons.sharedInstance.isTripHolding, forKey: holdTripStatus.kIsTripisHolding)
                     self.StartHoldTrip()
-                    if (!App_Delegate.RoadPickupTimer.isValid())
+                    if (!App_Delegate.RoadPickupTimer.isValid)
                     {
                         App_Delegate.RoadPickupTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:  #selector(HomeViewController.updateTime), userInfo: nil, repeats: true)
                     }

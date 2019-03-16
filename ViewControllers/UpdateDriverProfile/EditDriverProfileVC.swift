@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditDriverProfileVC: ParentViewController {
+class EditDriverProfileVC: BaseViewController {
 
      var crnRadios = CGFloat()
     @IBOutlet weak var lblEditProfile: UILabel!
@@ -42,19 +42,22 @@ class EditDriverProfileVC: ParentViewController {
         self.giveCornorRadiosToView(view: viewAccount)
         self.giveCornorRadiosToView(view: viewVehicleOption)
         self.giveCornorRadiosToView(view: viewDocument)
-        self.giveCornorRadiosToView(view: viewLogout)
+//        self.giveCornorRadiosToView(view: viewLogout)
         // Do any additional setup after loading the view.
     }
-    @IBOutlet weak var lblLogout: UILabel!
+//    @IBOutlet weak var lblLogout: UILabel!
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(true)
         setLocalizable()
+//        self.setNavBarWithBack(Title: "Profile Update".localized, IsNeedRightButton: false)
+        self.title = "Profile Update".localized
+
     }
     func setLocalizable()
     {
-        self.headerView?.lblTitle.text =   "Profile Update".localized
-        
+//        self.headerView?.lblTitle.text =   "Profile Update".localized
+
         
 
       
@@ -62,7 +65,7 @@ class EditDriverProfileVC: ParentViewController {
         lblAccount.text = "Account".localized
         lblVehicleOption.text = "Vehicle Option".localized
         lblDocument.text = "Documents".localized
-        lblLogout.text = "Logout".localized
+//        lblLogout.text = "Logout".localized
     }
     
     override func didReceiveMemoryWarning() {
@@ -84,8 +87,8 @@ class EditDriverProfileVC: ParentViewController {
     @IBOutlet var viewAccount: UIView!
     @IBOutlet var viewDocument: UIView!
     
-    @IBOutlet var viewLogout: UIView!
-    
+//    @IBOutlet var viewLogout: UIView!
+
     
     //-------------------------------------------------------------
     // MARK: - Custom Methods

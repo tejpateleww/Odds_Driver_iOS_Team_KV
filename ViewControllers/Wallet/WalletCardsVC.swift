@@ -13,7 +13,7 @@ import UIKit
     func didAddCard(cards: NSArray)
 }
 
-class WalletCardsVC: UIViewController, UITableViewDataSource, UITableViewDelegate, AddCadsDelegate {
+class WalletCardsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, AddCadsDelegate {
 
     
     weak var delegateForTopUp: SelectCardDelegate!
@@ -120,7 +120,8 @@ class WalletCardsVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.setNavBarWithBack(Title: "My Cards".localized, IsNeedRightButton: false)
+
         
     }
     

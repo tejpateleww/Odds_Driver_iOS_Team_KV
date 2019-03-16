@@ -28,7 +28,7 @@ class TabbarController: UITabBarController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-          self.navigationController?.isNavigationBarHidden = true
+//          self.navigationController?.isNavigationBarHidden = true
     }
     override func viewWillAppear(_ animated: Bool)
     {

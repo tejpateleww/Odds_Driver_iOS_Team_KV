@@ -442,12 +442,15 @@ class DispatchJobsBookNowViewController: UIViewController, getVehicleIdAndNameDe
                 self.aryData_Cars_and_taxi = result["cars_and_taxi"] as! [[String:AnyObject]]
                 self.aryData_Delivery_services = result["delivery_services"] as! [[String:AnyObject]]
                 
-                let activityData = ActivityData()
-                
+//                let activityData = ActivityData()
+
 //                DispatchQueue.main.async {
-                    NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+//                    NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
 //                }
-                
+
+
+                UtilityClass.showHUD()
+
                 for (i,_) in self.aryData_Cars_and_taxi.enumerated()
                 {
                     var dataOFCars = self.aryData_Cars_and_taxi[i]
@@ -515,7 +518,8 @@ class DispatchJobsBookNowViewController: UIViewController, getVehicleIdAndNameDe
         
         print("allElemsContained_Delivery_services : \(allElemsContained_Delivery_services)")
         
-        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+//        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+        Utilities.hideActivityIndicator()
     }
     
     // ----------------------------------------------------------------------

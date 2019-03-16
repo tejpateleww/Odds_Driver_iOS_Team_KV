@@ -12,7 +12,7 @@
         <!--TripToDestinationViewController-->
         <scene sceneID="QSv-RY-vPU">
             <objects>
-                <viewController storyboardIdentifier="TripToDestinationViewController" id="c7w-q1-i5R" userLabel="TripToDestinationViewController" customClass="TripToDestinationViewController" customModule="TanTaxi_Driver" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TripToDestinationViewController" id="c7w-q1-i5R" userLabel="TripToDestinationViewController" customClass="TripToDestinationViewController" customModule="ODDS_Driver" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0Jo-cG-A9L"/>
                         <viewControllerLayoutGuide type="bottom" id="XVE-SR-Lsj"/>
@@ -96,7 +96,7 @@
                                     <constraint firstAttribute="trailing" secondItem="w2x-uB-YGg" secondAttribute="trailing" constant="-10" id="wVN-mH-uH3"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgj-fe-but" customClass="ThemeButton" customModule="TanTaxi_Driver" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgj-fe-but" customClass="ThemeButton" customModule="ODDS_Driver" customModuleProvider="target">
                                 <rect key="frame" x="30" y="265" width="260" height="40"/>
                                 <color key="backgroundColor" red="0.89338213209999995" green="0.51630395650000005" blue="0.15679338570000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -140,12 +140,6 @@
                             <constraint firstItem="I7c-Qs-RS9" firstAttribute="leading" secondItem="7vu-dR-QAn" secondAttribute="leading" id="vVX-Hw-4Ic"/>
                         </constraints>
                     </view>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="showsBackButton" value="YES"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="showTitleLabelView" value="NO"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="hideSwitchButton" value="NO"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="strTitle" value="TRIP TO DESTINATION"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="btnDone" destination="Zgj-fe-but" id="p5q-PX-ci5"/>
                         <outlet property="btnSelectDestination" destination="Emp-AA-u7D" id="sd8-gF-tTF"/>

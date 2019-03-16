@@ -107,7 +107,7 @@ class updateDriverSelectVehicleTypesViewControllerViewController: UIViewControll
         txtCarType.placeholder = "Vehicle Type".localized
         txtNoOfPassenger.placeholder = "Number Of Passenger".localized
         btnSave.setTitle("Save".localized, for: .normal)
-        self.lblTitle.text = "Vehicle Option".localized
+        self.title = "Vehicle Option".localized
         
     }
     

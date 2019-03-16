@@ -142,7 +142,7 @@ class ParentViewController: UIViewController, HeaderViewDelegate {
     
     func SideMenuClicked()       //  Side Menu
     {
-        sideMenuController?.toggle()
+        sideMenuController?.revealMenu(animated: true, completion: nil)
     }
     func BackButtonClicked()     //  Back Button
     {

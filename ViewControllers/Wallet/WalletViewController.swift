@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SideMenuSwift
 class WalletViewController: UIViewController, UIScrollViewDelegate {
 
     
@@ -301,9 +301,9 @@ class WalletViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func btnBackToHome(_ sender: UIButton) {
         
-//        ((((self.navigationController?.childViewControllers[1]) as! CustomSideMenuViewController).childViewControllers[0] as! UINavigationController).childViewControllers[0] as! TabbarController).childViewControllers[0] as! ContentViewController)
+//        ((((self.navigationController?.childViewControllers[1]) as! SideMenuController).childViewControllers[0] as! UINavigationController).childViewControllers[0] as! TabbarController).childViewControllers[0] as! ContentViewController)
         
-        let tabbarVC = ((self.navigationController as! UINavigationController).viewControllers[1] as! CustomSideMenuViewController)//.childViewControllers[0]) as! UINavigationController).viewControllers[0] as! TabbarController
+        let tabbarVC = ((self.navigationController as! UINavigationController).viewControllers[1] as! SideMenuController)//.childViewControllers[0]) as! UINavigationController).viewControllers[0] as! TabbarController
         
         
         self.navigationController?.popToViewController(tabbarVC, animated: true)

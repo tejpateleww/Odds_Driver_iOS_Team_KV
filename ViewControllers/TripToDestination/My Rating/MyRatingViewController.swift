@@ -8,9 +8,9 @@
 
 import UIKit
 import FloatRatingView
+//import SideMenuController
 
-
-class MyRatingViewController : ParentViewController,UITableViewDataSource, UITableViewDelegate
+class MyRatingViewController : BaseViewController,UITableViewDataSource, UITableViewDelegate
 {
     var aryData = NSArray()
     //    var labelNoData = UILabel()
@@ -43,12 +43,21 @@ class MyRatingViewController : ParentViewController,UITableViewDataSource, UITab
         super.viewWillAppear(animated)
         self.webserviceForMyFeedbackList()
         self.setLocalizable()
+//        SideMenuController.preferences.interaction.panningEnabled = false
+//        SideMenuController.preferences.interaction.swipingEnabled = false
+//        sideMenuController?.preferences.drawing.panningEnabled = false
+
+
+//        SideMenuController.preferences.interaction.panningEnabled = false
+//        SideMenuController.preferences.interaction.swipingEnabled = false
+
+//        self.setNavBarWithMenu(Title:  "My Ratings".localized, IsNeedRightButton: true)
+        self.setNavBarWithBack(Title: "My Ratings".localized, IsNeedRightButton: false)
     }
     
     func setLocalizable() {
         
-        self.headerView?.lblTitle.text = "My Ratings".localized
-        self.lblNodataFound.text = "No data found.".localized
+         self.lblNodataFound.text = "No data found.".localized
         
     }
     
@@ -202,7 +211,7 @@ class MyRatingViewController : ParentViewController,UITableViewDataSource, UITab
     func webserviceForMyFeedbackList()
     {
         
-//        webserviceForFeedbackList(SingletonClass.sharedInstance.strDriverID as AnyObject, feedbackType: kDriverType as AnyObject, showHUD: true) { (result, status) in
+//        webserviceForFeedbackList(Singletons.sharedInstance.strDriverID as AnyObject, feedbackType: kDriverType as AnyObject, showHUD: true) { (result, status) in
 //            if status
 //            {
 //                print(result)

@@ -26,7 +26,7 @@ class UpdateProfilePersonelDetailsVC: UIViewController,UIImagePickerControllerDe
     // MARK: - Outlets
     //-------------------------------------------------------------
     
-    @IBOutlet weak var lblTitle: UILabel!
+//    @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet var lblEmail: UILabel!
     @IBOutlet var lblName: UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
@@ -126,7 +126,7 @@ class UpdateProfilePersonelDetailsVC: UIViewController,UIImagePickerControllerDe
     
     func setLocalizable()
     {
-        lblTitle.text = "Profile".localized
+        self.title = "Profile".localized
         txtFullName.placeholder = "Full Name".localized
         txtAddress.placeholder = "Address".localized
         txtMobile.placeholder = "Mobile Number".localized

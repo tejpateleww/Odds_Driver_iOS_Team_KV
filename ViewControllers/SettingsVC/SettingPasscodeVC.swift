@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingPasscodeVC: ParentViewController {
+class SettingPasscodeVC: BaseViewController {
 
     
     var bottomBorderOfPasscode = CALayer()
@@ -29,25 +29,23 @@ class SettingPasscodeVC: ParentViewController {
         super.viewDidLoad()
         
         viewChangePasscode.isHidden = true
-        
-        
+
         if(Singletons.sharedInstance.isPasscodeON)
         {
             self.switchPasscode.isOn = true
             viewChangePasscode.isHidden = false
-
         }
-        
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         setLocalizable()
     }
+    
     func setLocalizable(){
-//        btnSetPassword.setTitle("".localized, for: .normal)
         btnChangePasssworld.setTitle("Change Password".localized, for: .normal)
         btnProfile.setTitle("Profile".localized, for: .normal)
-        
+        self.title = "Settings".localized
     }
     
     override func didReceiveMemoryWarning() {
@@ -73,7 +71,6 @@ class SettingPasscodeVC: ParentViewController {
         
         
         if sender.isOn {
-            
             if(Singletons.sharedInstance.setPasscode == "")
             {
                 self.switchPasscode.isOn = false
@@ -86,9 +83,6 @@ class SettingPasscodeVC: ParentViewController {
                 Singletons.sharedInstance.isPasscodeON = true
                 UserDefaults.standard.set(Singletons.sharedInstance.isPasscodeON, forKey: "isPasscodeON")
             }
-            
-          
-            
         }
         else {
             viewChangePasscode.isHidden = true
@@ -119,28 +113,5 @@ class SettingPasscodeVC: ParentViewController {
         //        segueCreatePasscode
         
     }
-    
-    
-    //-------------------------------------------------------------
-    // MARK: - Custom Methods
-    //-------------------------------------------------------------
-    
-    func bottomBorder() {
-        
-        bottomBorderOfPasscode.frame = CGRect(x: 0.0, y: viewSetPasscode.frame.size.height - 1, width: viewSetPasscode.frame.size.width, height: 1.0)
-        bottomBorderOfPasscode.backgroundColor = UIColor.black.cgColor
-        viewSetPasscode.layer.addSublayer(bottomBorderOfPasscode)
-        
-        bottomBorderOfChangePasscode.frame = CGRect(x: 0.0, y: viewChangePasscode.frame.size.height - 1, width: viewChangePasscode.frame.size.width, height: 1.0)
-        bottomBorderOfChangePasscode.backgroundColor = UIColor.black.cgColor
-        viewChangePasscode.layer.addSublayer(bottomBorderOfChangePasscode)
-        
-        bottomBorderOfProfile.frame = CGRect(x: 0.0, y: viewProfile.frame.size.height - 1, width: viewProfile.frame.size.width, height: 1.0)
-        bottomBorderOfProfile.backgroundColor = UIColor.black.cgColor
-        viewProfile.layer.addSublayer(bottomBorderOfProfile)
-        
-    }
-    
-    
-    
+
 }

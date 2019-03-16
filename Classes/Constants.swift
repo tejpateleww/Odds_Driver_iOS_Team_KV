@@ -8,16 +8,16 @@
 
 import Foundation
 import UIKit
-import BFKit
+//import BFKit
 
 let App_Delegate = UIApplication.shared.delegate as! AppDelegate
-let ThemeYellowColor : UIColor = UIColor.init(hex: "E48428")
+let ThemeYellowColor : UIColor = UIColor.init(hex: "00aced")
 let ThemeGrayColor : UIColor = UIColor.init(hex:  "8e8c80")
 let ThemeStatusBarColor : UIColor = UIColor.init(hex:  "cccccc")
 let themeGrayBGColor : UIColor = UIColor.init(hex: "DDDDDD")
 let themeGrayTextColor : UIColor = UIColor.init(hex: "7A7A7C")
 let Appdelegate = UIApplication.shared.delegate as! AppDelegate
-let AppNAME : String = "TanTaxi-Driver"
+let AppNAME : String = "ODDS-Driver"
 
 let navigationBarHeightIphoneX = 84
 var utility = Utilities()
@@ -27,13 +27,13 @@ let currency : String = "TZS"
 let dictanceType : String = "km"
 
 let kIsSocketEmited : String = "IsEmited"
-let SCREEN_WIDTH = UIScreen.screenWidth
-let SCREEN_HEIGHT = UIScreen.screenHeight
+let SCREEN_WIDTH = UIScreen.main.bounds.width
+let SCREEN_HEIGHT = UIScreen.main.bounds.height
 let kAcceptTripStatus : String = "accepted"
 let kPendingTripStatus : String = "pending"
 let kTravellingTripStatus : String = "traveling"
-let SCREEN_MAX_LENGTH = max(UIScreen.screenWidth, UIScreen.screenHeight)
-let SCREEN_MIN_LENGTH = min(UIScreen.screenWidth, UIScreen.screenHeight)
+let SCREEN_MAX_LENGTH = max(SCREEN_WIDTH, SCREEN_HEIGHT)
+let SCREEN_MIN_LENGTH = min(SCREEN_WIDTH, SCREEN_HEIGHT)
 
 let IS_IPHONE_4_OR_LESS = UIDevice.current.userInterfaceIdiom == .phone && SCREEN_MAX_LENGTH < 568.0
 let IS_IPHONE_5 = UIDevice.current.userInterfaceIdiom == .phone && SCREEN_MAX_LENGTH == 568.0
@@ -110,13 +110,15 @@ let kShopping : String = "Shopping"
 //SideMenu Option
 let kMyJobs : String = "My Jobs"
 let kPaymentOption : String = "Payment Option"
+let kPassword : String = "Change Password"
 let kWallet : String = "Wallet"
+let kTripToDestination : String = "Trip to Destination"
 let kMyRating : String = "My Rating"
-let kInviteFriend : String = "Invite Friend"
+let kInviteFriend : String = "Invite Driver"
 let kSettings : String = "Settings"
 let kLegal : String = "Legal"
 let kSupport : String = "Support"
-let kLogout : String = "Log Out"
+let kLogout : String = "Logout"
 
 //let kMeter : String = "Meter"
 //let kTripToDstination : String = "Trip To Destination"
@@ -124,11 +126,14 @@ let kLogout : String = "Log Out"
 
 //SideMenu Option Icon
 let kiconMyJobs : String = "iconMyjobInactive"
-let kiconPaymentOption : String = "iconPaymentInactive"
+let kiconPaymentOption : String = "iconPaymentOptions"
 let kiconWallet : String = "iconWalletInactive"
+let kiconPassword : String = "iconLock"
+let kiconTripToDestination : String = "iconTriptoDestination"
+
 let kiconMyRating : String = "iconRatingInactive"
-let kiconInviteFriend : String = "iconAddress"
-let kiconSettings : String = "iconSettingUnselect"
+let kiconInviteFriend : String = "iconInviteFriend"
+let kiconSettings : String = "iconSettingUnSelect"
 //let klegalicon : String = "iconlegall"
 let klegal : String = "iconlegall"
 let kiconSupport : String = "iconSupportInactive"

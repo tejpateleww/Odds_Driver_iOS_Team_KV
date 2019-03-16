@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SideMenuSwift
 class SetPasscodeViewController: UIViewController {
 
     
@@ -236,8 +236,10 @@ class SetPasscodeViewController: UIViewController {
                             else {
 //                                let next = self.storyboard?.instantiateViewController(withIdentifier: "WalletViewController") as! WalletViewController
 //                                self.navigationController?.pushViewController(next, animated: true)
-                                let tabbarVC = ((self.navigationController as! UINavigationController).viewControllers[1] as! CustomSideMenuViewController)
-                                self.navigationController?.popToViewController(tabbarVC, animated: true)
+                                if let tabbarVC = self.navigationController?.viewControllers.first?.children.first as? HomeViewController
+                                {
+                                    self.navigationController?.popToViewController(tabbarVC, animated: true)
+                                }
                             }
                         }
                         
@@ -380,7 +382,7 @@ class SetPasscodeViewController: UIViewController {
 //            self.dismiss(animated: false, completion: nil)
 //            self.tabBarController?.selectedIndex = 0
 //            
-//            let tabbar =  (((((((self.presentingViewController as! UINavigationController).childViewControllers).last as! CustomSideMenuViewController).childViewControllers[0]) as! UINavigationController).childViewControllers[0]) as! TabbarController)
+//            let tabbar =  (((((((self.presentingViewController as! UINavigationController).childViewControllers).last as! SideMenuController).childViewControllers[0]) as! UINavigationController).childViewControllers[0]) as! TabbarController)
 //            tabbar.selectedIndex = 0
 
         }

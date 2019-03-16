@@ -7,8 +7,9 @@
 //
 
 import UIKit
-import BFKit
+//import BFKit
 import QuartzCore
+import NVActivityIndicatorView
 
 class Utilities: NSObject
 {
@@ -33,6 +34,8 @@ class Utilities: NSObject
     class func hideActivityIndicator()
     {
         SVProgressHUD.dismiss()
+        NVActivityIndicatorPresenter.sharedInstance.stopAnimating(nil)
+
     }
     
     class func showAlertWithCompletion(_ title: String, message: String, vc: UIViewController,completionHandler: @escaping CompletionHandler) -> Void
@@ -449,7 +452,8 @@ class Utilities: NSObject
         
         
     }
-    
+
+
     
     @objc class func poptoViewController (_ sender: UIButton?)
     {

@@ -6,7 +6,7 @@
 
 
 import UIKit
-import SideMenuController
+import SideMenuSwift
 import IQKeyboardManagerSwift
 import GooglePlaces
 import GoogleMaps
@@ -39,7 +39,7 @@ let googlPlacesApiKey = "AIzaSyCSwJSvFn2je-EXNxjUEUrU06_L7flz4qw" // "AIzaSyCKEP
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.shared.enable = true
         UserDefaults.standard.set(false, forKey: kIsSocketEmited)
         UserDefaults.standard.synchronize()
         
@@ -51,11 +51,18 @@ let googlPlacesApiKey = "AIzaSyCSwJSvFn2je-EXNxjUEUrU06_L7flz4qw" // "AIzaSyCKEP
         Fabric.with([Crashlytics.self])
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
-        SideMenuController.preferences.drawing.menuButtonImage = UIImage(named: "menu")
-        SideMenuController.preferences.drawing.sidePanelPosition = .overCenterPanelLeft
-        SideMenuController.preferences.drawing.sidePanelWidth = (window?.frame.width)! * 0.85
-        SideMenuController.preferences.drawing.centerPanelShadow = true
-        SideMenuController.preferences.animating.statusBarBehaviour = .showUnderlay
+//        SideMenuController.preferences.drawing.menuButtonImage = UIImage(named: "menu")
+//        SideMenuController.preferences.drawing.sidePanelPosition = .overCenterPanelLeft
+//        SideMenuController.preferences.drawing.sidePanelWidth = (window?.frame.width)! * 0.85
+//        SideMenuController.preferences.drawing.centerPanelShadow = true
+//        SideMenuController.preferences.animating.statusBarBehaviour = .showUnderlay
+
+        SideMenuController.preferences.basic.menuWidth = SCREEN_WIDTH - 40
+        SideMenuController.preferences.basic.defaultCacheKey = "0"
+        SideMenuController.preferences.basic.position = .above
+        SideMenuController.preferences.basic.statusBarBehavior = .none
+        SideMenuController.preferences.basic.direction = .left
+
         UIApplication.shared.isIdleTimerDisabled = true
         
         // Google Map
@@ -71,7 +78,7 @@ let googlPlacesApiKey = "AIzaSyCSwJSvFn2je-EXNxjUEUrU06_L7flz4qw" // "AIzaSyCKEP
         
         if (UserDefaults.standard.object(forKey:  driverProfileKeys.kKeyDriverProfile) != nil)
         {
-            self.setDataInSingletonClass()
+            self.setDataInSingletons()
         }
         else
         {
@@ -114,7 +121,7 @@ let googlPlacesApiKey = "AIzaSyCSwJSvFn2je-EXNxjUEUrU06_L7flz4qw" // "AIzaSyCKEP
         return true
     }
     
-    func setDataInSingletonClass()
+    func setDataInSingletons()
     {
         //        Singletons.sharedInstance.dictDriverProfile = NSMutableDictionary(dictionary:UserDefaults.standard.object(forKey:  driverProfileKeys.kKeyDriverProfile) as! NSDictionary)
         
@@ -305,7 +312,7 @@ let googlPlacesApiKey = "AIzaSyCSwJSvFn2je-EXNxjUEUrU06_L7flz4qw" // "AIzaSyCKEP
                 let navigationController = application.windows[0].rootViewController as! UINavigationController
                 let viewControllers: [UIViewController] = navigationController.viewControllers
                 for aViewController in viewControllers {
-                    if aViewController is CustomSideMenuViewController {
+                    if aViewController is SideMenuController {
                         
                         //                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                         let homeVC = aViewController.children[0].children[0] as? HomeViewController
@@ -360,6 +367,61 @@ let googlPlacesApiKey = "AIzaSyCSwJSvFn2je-EXNxjUEUrU06_L7flz4qw" // "AIzaSyCKEP
             
         })
     }
+
+    // MARK:- Login & Logout Methods
+
+    func GoToHome() {
+        let storyborad = UIStoryboard(name: "Main", bundle: nil)
+        let CustomSideMenu = storyborad.instantiateViewController(withIdentifier: "SideMenu") as! SideMenuController
+        let NavHomeVC = UINavigationController(rootViewController: CustomSideMenu)
+        NavHomeVC.isNavigationBarHidden = true
+        UIApplication.shared.keyWindow?.rootViewController = NavHomeVC
+    }
+
+    func GoToLogin() {
+
+        let storyborad = UIStoryboard(name: "Main", bundle: nil)
+        let Login = storyborad.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        //        let customNavigation = UINavigationController(rootViewController: Login)
+        let NavHomeVC = UINavigationController(rootViewController: Login)
+        NavHomeVC.isNavigationBarHidden = true
+        UIApplication.shared.keyWindow?.rootViewController = NavHomeVC
+
+    }
+
+    func GoToLogout() {
+
+        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
+            print("\(key) = \(value) \n")
+
+            if key == "Token" || key  == "i18n_language" {
+
+            }
+            else {
+                UserDefaults.standard.removeObject(forKey: key)
+            }
+        }
+        //        UserDefaults.standard.set(false, forKey: kIsSocketEmited)
+        //        UserDefaults.standard.synchronize()
+
+        Singletons.sharedInstance.strPassengerID = ""
+        UserDefaults.standard.removeObject(forKey: "profileData")
+        Singletons.sharedInstance.isDriverLoggedIN = false
+        //                self.performSegue(withIdentifier: "unwindToContainerVC", sender: self)
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+
+        UserDefaults.standard.removeObject(forKey: "Passcode")
+        Singletons.sharedInstance.setPasscode = ""
+
+        UserDefaults.standard.removeObject(forKey: "isPasscodeON")
+        Singletons.sharedInstance.isPasscodeON = false
+
+        Singletons.sharedInstance.isPasscodeON = false
+        self.GoToLogin()
+    }
+
+
+
     //-------------------------------------------------------------
     // MARK: - FireBase Methods
     //-------------------------------------------------------------
@@ -382,7 +444,7 @@ let googlPlacesApiKey = "AIzaSyCSwJSvFn2je-EXNxjUEUrU06_L7flz4qw" // "AIzaSyCKEP
             let navigationController = applicationObject.windows[0].rootViewController as! UINavigationController
             let viewControllers: [UIViewController] = navigationController.viewControllers
             for aViewController in viewControllers {
-                if aViewController is CustomSideMenuViewController {
+                if aViewController is SideMenuController {
                     let homeVC = aViewController.children[0].children[0] as? HomeViewController
                     homeVC?.webserviceOFSignOut()
                 }
@@ -414,7 +476,7 @@ let googlPlacesApiKey = "AIzaSyCSwJSvFn2je-EXNxjUEUrU06_L7flz4qw" // "AIzaSyCKEP
             //        else if(typeKey == "Tickpay")
             //        {
             //            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            //                let tabbarvc = (((((((self.window?.rootViewController as! UINavigationController).viewControllers[1].childViewControllers.last!) as! MenuController).navigationController)?.childViewControllers.last) as! CustomSideMenuViewController).childViewControllers[0] as! UINavigationController).childViewControllers[0] as! TabbarController
+            //                let tabbarvc = (((((((self.window?.rootViewController as! UINavigationController).viewControllers[1].childViewControllers.last!) as! MenuController).navigationController)?.childViewControllers.last) as! SideMenuController).childViewControllers[0] as! UINavigationController).childViewControllers[0] as! TabbarController
             //
             //                tabbarvc.selectedIndex = 4
             //            }
@@ -428,7 +490,7 @@ let googlPlacesApiKey = "AIzaSyCSwJSvFn2je-EXNxjUEUrU06_L7flz4qw" // "AIzaSyCKEP
                 //
                 //                })
                 //
-                //                let tabBarTemp = (((self.window?.rootViewController as! UINavigationController).childViewControllers.last as! CustomSideMenuViewController).childViewControllers[0] as! UINavigationController).childViewControllers[0] as! TabbarController
+                //                let tabBarTemp = (((self.window?.rootViewController as! UINavigationController).childViewControllers.last as! SideMenuController).childViewControllers[0] as! UINavigationController).childViewControllers[0] as! TabbarController
                 //
                 //                tabBarTemp.selectedIndex = 1
                 //                let MyJob = tabBarTemp.childViewControllers[1] as! MyJobsViewController
@@ -444,12 +506,12 @@ let googlPlacesApiKey = "AIzaSyCSwJSvFn2je-EXNxjUEUrU06_L7flz4qw" // "AIzaSyCKEP
                 //                navController?.present(notificationController ?? UIViewController(), animated: true, completion: {
                 //
                 
-                //                    let tabbarvc = (((((((self.window?.rootViewController as! UINavigationController).viewControllers[1].childViewControllers.last!) as! MenuController).navigationController)?.childViewControllers.last) as! CustomSideMenuViewController).childViewControllers[0] as! UINavigationController).childViewControllers[0] as! TabbarController
+                //                    let tabbarvc = (((((((self.window?.rootViewController as! UINavigationController).viewControllers[1].childViewControllers.last!) as! MenuController).navigationController)?.childViewControllers.last) as! SideMenuController).childViewControllers[0] as! UINavigationController).childViewControllers[0] as! TabbarController
                 //                    Singletons.sharedInstance.isFromNotification = true
                 //
                 //                    tabbarvc.selectedIndex = 1
                 //
-                //                let tabBarTemp = (((self.window?.rootViewController as! UINavigationController).childViewControllers.last as! CustomSideMenuViewController).childViewControllers[0] as! UINavigationController).childViewControllers[0] as! TabbarController
+                //                let tabBarTemp = (((self.window?.rootViewController as! UINavigationController).childViewControllers.last as! SideMenuController).childViewControllers[0] as! UINavigationController).childViewControllers[0] as! TabbarController
                 //                 Singletons.sharedInstance.isFromNotification = true
                 //                tabBarTemp.selectedIndex = 1
                 //

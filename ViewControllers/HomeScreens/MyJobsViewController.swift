@@ -7,13 +7,13 @@
 //
 
 import UIKit
-import SideMenuController
+//import SideMenuController
 
 protocol RefreshDataDelegate: class
 {
     func refreshJobs()
 }
-class MyJobsViewController: ParentViewController
+class MyJobsViewController: BaseViewController
 {
     
     var crnRadios = CGFloat()
@@ -76,8 +76,8 @@ class MyJobsViewController: ParentViewController
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
-        
+         self.setNavBarWithMenu(Title:  "My Jobs".localized, IsNeedRightButton: true)
+
         //        if Singletons.sharedInstance.isPresentVC == true
         //        {
         //
@@ -108,7 +108,7 @@ class MyJobsViewController: ParentViewController
     
     func setLocalization()
     {
-        self.headerView?.lblTitle.text = "My Jobs".localized
+//        self.headerView?.lblTitle.text = "My Jobs".localized
         btnFutureBooking.setTitle( "Future Booking".localized, for: .normal)
         btnPastJobs.setTitle("Past Jobs".localized, for: .normal)
         btnPendingJobs.setTitle("Pending Jobs".localized, for: .normal)

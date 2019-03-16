@@ -11,7 +11,7 @@ import MessageUI
 import Social
 import SDWebImage
 
-class InviteDriverViewController : ParentViewController,MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
+class InviteDriverViewController : BaseViewController,MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
 
     
     @IBOutlet var lblReferalAmount: UILabel!
@@ -37,22 +37,28 @@ class InviteDriverViewController : ParentViewController,MFMailComposeViewControl
         self.btnFaceBook.clipsToBounds = true
         let profileData = Singletons.sharedInstance.dictDriverProfile
 
-        
-        lblReferalAmount.text = "Referral amount \((profileData?.object(forKey: "profile") as! NSDictionary).object(forKey: "ReferralAmount") as! Double) \(currency)"
-        if let ReferralCode = (profileData?.object(forKey: "profile") as! NSDictionary).object(forKey: "ReferralCode") as? String {
-            strReferralCode = ReferralCode
-            lblReferralCode.text = strReferralCode
+        if let dictProfile = profileData?["profile"] as? [String : AnyObject]
+        {
+            if let strReferalAmount = dictProfile["ReferralAmount"] as? String
+            {
+                  lblReferalAmount.text = strReferalAmount
+            }
+
+            if let strReferalCode = dictProfile["ReferralCode"] as? String
+            {
+                strReferralCode = strReferalCode
+
+                lblReferralCode.text = strReferralCode
+            }
+
+            if let imgProfile = dictProfile["Image"] as? String
+            {
+
+                imgProfilePick.sd_setImage(with: URL(string: imgProfile), completed: nil)
+            }
+
         }
-        //
-        //        if let RefarMoney = (profileData?.object(forKey: "profile") as! NSDictionary).object(forKey: "ReferralAmount") as? Double {
-        //            strReferralMoney = String(RefarMoney)
-        //            lblReferralMoney.text = "\(currency) \(strReferralMoney)"
-        //        }
-        //
-        if let imgProfile = (profileData?.object(forKey: "profile") as! NSDictionary).object(forKey: "Image") as? String {
-            
-            imgProfilePick.sd_setImage(with: URL(string: imgProfile), completed: nil)
-        }
+
 
         // border
         viewBottom.layer.borderWidth = 1.0
@@ -69,12 +75,7 @@ class InviteDriverViewController : ParentViewController,MFMailComposeViewControl
         imgProfilePick.layer.borderColor = ThemeYellowColor.cgColor
         imgProfilePick.layer.borderWidth = 1.0
         
-//        headerView?.btnBack.addTarget(self, action: #selector(self.nevigateToBack), for: .touchUpInside)//binal
 
-//        imgProfilePick.layer.cornerRadius = imgProfilePick.frame.width / 2
-//        imgProfilePick.layer.masksToBounds = true
-//        imgProfilePick.layer.borderWidth = 1.0
-//        imgProfilePick.layer.borderColor = UIColor.black.cgColor
 
         // Do any additional setup after loading the view.
     }
@@ -82,7 +83,9 @@ class InviteDriverViewController : ParentViewController,MFMailComposeViewControl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         setLocalization()
-        
+        self.title = "My Ratings".localized
+//        self.setNavBarWithBack(Title: "My Ratings".localized, IsNeedRightButton: false)
+
     }
     @IBOutlet weak var btnShare: UIButton!
     
@@ -94,11 +97,6 @@ class InviteDriverViewController : ParentViewController,MFMailComposeViewControl
         lblWhenAFrindRidesWithYourCode.text = "When a friend rides with your code".localized
         lblShareYourInviteCode.text =   "Share Your Invite Code".localized
         btnShare.setTitle("Share".localized, for: .normal)
-  
-        self.headerView?.lblTitle.text = "My Ratings".localized
-        
-        
-        
 
     }
     
@@ -127,7 +125,7 @@ class InviteDriverViewController : ParentViewController,MFMailComposeViewControl
     {
         for controller in self.navigationController!.viewControllers as Array {
             if controller.isKind(of: TabbarController.self) {
-                self.sideMenuController?.embed(centerViewController: controller)
+//                self.sideMenuController?.embed(centerViewController: controller)
                 break
             }
         }

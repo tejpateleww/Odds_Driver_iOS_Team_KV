@@ -8,6 +8,7 @@
  
  import UIKit
  import CoreLocation
+ import SideMenuSwift
  //import ACFloatingTextfield_Swift
  
  class LoginViewController: UIViewController, CLLocationManagerDelegate,UITextFieldDelegate {
@@ -134,7 +135,7 @@
         //
         
         btnSignUp.layer.cornerRadius = 3.0
-        btnSignUp.layer.borderColor = UIColor.black.cgColor
+        btnSignUp.layer.borderColor = UIColor.white.cgColor
         btnSignUp.layer.borderWidth = 1.0
         btnSignUp.clipsToBounds = true
         //
@@ -215,7 +216,7 @@
     }
     
     @IBAction func btnSignIn(_ sender: UIButton) {
-        //        CustomSideMenuViewController
+        //        SideMenuController
         
         if (validateAllFields())
         {
@@ -355,8 +356,10 @@
                     {
                         Singletons.sharedInstance.strCurrentBalance = currentBalance
                     }
-                    let next = self.storyboard?.instantiateViewController(withIdentifier: "CustomSideMenuViewController") as! CustomSideMenuViewController
-                    self.navigationController?.pushViewController(next, animated: true)
+
+                    (UIApplication.shared.delegate as! AppDelegate).GoToHome()
+//                    let next = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuController") as! SideMenuController
+//                    self.navigationController?.pushViewController(next, animated: true)
                 }
                 
             }
@@ -368,7 +371,11 @@
                     UtilityClass.showAlert("App Name".localized, message: res, vc: self)
                 }
                 else if let resDict = result as? NSDictionary {
-                    UtilityClass.showAlert("App Name".localized, message: resDict.object(forKey: GetResponseMessageKey()) as! String, vc: self)
+                    if let errorMessage = resDict[ GetResponseMessageKey()] as? String
+                    {
+                        UtilityClass.showAlert("App Name".localized, message: errorMessage, vc: self)
+
+                    }
                 }
                 else if let resAry = result as? NSArray {
                     UtilityClass.showAlert("App Name".localized, message: (resAry.object(at: 0) as! NSDictionary).object(forKey: GetResponseMessageKey()) as! String, vc: self)
@@ -447,8 +454,10 @@
                         
                         if(Singletons.sharedInstance.isDriverLoggedIN)
                         {
-                            let next = self.storyboard?.instantiateViewController(withIdentifier: "CustomSideMenuViewController") as! CustomSideMenuViewController
-                            self.navigationController?.pushViewController(next, animated: true)
+//                            let next = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuController") as! SideMenuController
+//                            self.navigationController?.pushViewController(next, animated: true)
+                            (UIApplication.shared.delegate as! AppDelegate).GoToHome()
+
                         }
                     })
                     alert.addAction(UPDATE)
@@ -460,18 +469,21 @@
                    
                     if(Singletons.sharedInstance.isDriverLoggedIN)
                     {
-                        let next = self.storyboard?.instantiateViewController(withIdentifier: "CustomSideMenuViewController") as! CustomSideMenuViewController
-                        self.navigationController?.pushViewController(next, animated: false)
+//                        let next = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuController") as! SideMenuController
+//                        self.navigationController?.pushViewController(next, animated: false)
+
+                        (UIApplication.shared.delegate as! AppDelegate).GoToHome()
+
                     }
 //                    if(Singletons.sharedInstance.isDriverLoggedIN)
 //                    {
-//                        let next = self.storyboard?.instantiateViewController(withIdentifier: "CustomSideMenuViewController") as! CustomSideMenuViewController
+//                        let next = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuController") as! SideMenuController
 //                        self.navigationController?.pushViewController(next, animated: true)
 //                    }
                     
                 }
                 
-                //                if(SingletonClass.sharedInstance.isUserLoggedIN)
+                //                if(Singletons.sharedInstance.isUserLoggedIN)
                 //                {
                 //                    self.performSegue(withIdentifier: "segueToHomeVC", sender: nil)
                 //                }//bhaveshbhai

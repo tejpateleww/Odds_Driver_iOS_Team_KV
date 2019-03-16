@@ -6,8 +6,10 @@
 //
 
 import UIKit
-import SideMenuController
+//import SideMenuController
 import SDWebImage
+import SideMenuSwift
+
 
 let KEnglish : String = "EN"
 let KSwiley : String = "SW"
@@ -19,7 +21,7 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     var driverFullName = String()
     var driverImage = UIImage()
-    var driverMobileNo = String()
+    var driverEmail = String()
     var strImagPath = String()
     var strSelectedLaungage = String()
     private var previousIndex: NSIndexPath?
@@ -29,11 +31,15 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
         super.viewDidLoad()
         
         strSelectedLaungage = KEnglish
+        //kMyJobs
+        //kiconMyJobs
+        //kMyRating
+        //kiconMyRating
+        aryItemNames = [kPaymentOption,kPassword,kTripToDestination,kInviteFriend,kSettings,kLogout]
         
-        aryItemNames = [kMyJobs,kPaymentOption,kWallet,kMyRating,kInviteFriend,kSettings,kLegal,kSupport,kLogout]
-        
-        aryItemIcons = [kiconMyJobs,kiconPaymentOption,kiconWallet,kiconMyRating,kiconInviteFriend,kiconSettings,klegal
-            ,kiconSupport,kIconLogout]
+        aryItemIcons = [kiconPaymentOption,kiconPassword,kiconTripToDestination,kiconInviteFriend,kiconSettings,kIconLogout]
+
+        self.view.backgroundColor = ThemeYellowColor
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(MenuController.setRating), name: NSNotification.Name(rawValue: "rating"), object: nil)
@@ -49,9 +55,9 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func giveGradientColor() {
         
-        let colorTop =  UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0).cgColor//(red: 0, green: 0, blue: 0, alpha: 1.0).cgColor
-        let colorMiddle =  UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0).cgColor//UIColor(red: 36/255, green: 24/255, blue: 3/255, alpha: 0.5).cgColor
-        let colorBottom = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0).cgColor//UIColor(red: 64/255, green: 43/255, blue: 6/255, alpha: 0.8).cgColor
+//        let colorTop =  UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0).cgColor//(red: 0, green: 0, blue: 0, alpha: 1.0).cgColor
+//        let colorMiddle =  UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0).cgColor//UIColor(red: 36/255, green: 24/255, blue: 3/255, alpha: 0.5).cgColor
+//        let colorBottom = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0).cgColor//UIColor(red: 64/255, green: 43/255, blue: 6/255, alpha: 0.8).cgColor
         //
         //        let gradientLayer = CAGradientLayer()
         //        gradientLayer.colors = [ colorTop, colorMiddle, colorBottom]
@@ -98,7 +104,7 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
             return 1
         }
         else if section == 1 {
-            return 1// return aryItemNames.count
+            return aryItemNames.count
         }
         else {
             return 0
@@ -110,7 +116,7 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
     {
         //        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         
-        let cellProfile = tableView.dequeueReusableCell(withIdentifier: "SideMenuIDriverProfile") as! SideMenuTableViewCell
+        let cellProfile = tableView.dequeueReusableCell(withIdentifier: "MainHeaderTableViewCell") as! MainHeaderTableViewCell
         let cellItemList = tableView.dequeueReusableCell(withIdentifier: "SideMenuItemsList") as! SideMenuTableViewCell
         
         cellProfile.selectionStyle = .none
@@ -124,80 +130,38 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
             cellProfile.imgProfile.layer.masksToBounds = true
             cellProfile.imgProfile.layer.borderColor = ThemeYellowColor.cgColor
             cellProfile.imgProfile.layer.borderWidth = 1.0
-            cellProfile.lblDriverName.text = driverFullName
-            cellProfile.lblGmail.text = driverMobileNo
+            cellProfile.lblName.text = driverFullName
+            cellProfile.lblMobileNumber.text = driverEmail
             //            cellProfile.lblRating.text = Singletons.sharedInstance.strRating
             cellProfile.imgProfile.sd_setImage(with: URL(string: strImagPath))
-            cellProfile.btnUpdateProfile.addTarget(self, action: #selector(self.updateProfile), for: .touchUpInside)
-            cellProfile.lblLaungageName.layer.cornerRadius = 5
-            cellProfile.lblLaungageName.backgroundColor = ThemeYellowColor
-            cellProfile.lblLaungageName.layer.borderColor = UIColor.black.cgColor
-            cellProfile.lblLaungageName.layer.borderWidth = 0.5
-            
-            if let SelectedLanguage = UserDefaults.standard.value(forKey: "i18n_language") as? String {
-                if SelectedLanguage == "en" {
-                    cellProfile.lblLaungageName.text = "SW"
-                } else if SelectedLanguage == "sw" {
-                    cellProfile.lblLaungageName.text = "EN"
-                }
-            }
+//            cellProfile.lblLaungageName.layer.cornerRadius = 5
+//            cellProfile.lblLaungageName.backgroundColor = ThemeYellowColor
+//            cellProfile.lblLaungageName.layer.borderColor = UIColor.black.cgColor
+//            cellProfile.lblLaungageName.layer.borderWidth = 0.5
+
+//            if let SelectedLanguage = UserDefaults.standard.value(forKey: "i18n_language") as? String {
+//                if SelectedLanguage == "en" {
+//                    cellProfile.lblLaungageName.text = "SW"
+//                } else if SelectedLanguage == "sw" {
+//                    cellProfile.lblLaungageName.text = "EN"
+//                }
+//            }
 //            cellProfile.lblLaungageName.text = strSelectedLaungage
             
-            cellProfile.btnLaungageChange.addTarget(self, action: #selector(btnLaungageClicked(_:)), for: .touchUpInside)
+//            cellProfile.btnLaungageChange.addTarget(self, action: #selector(btnLaungageClicked(_:)), for: .touchUpInside)
             //            .layer.cornerRadius = btnHome.frame.size.height / 2
             //            btnMyJob.clipsToBounds = true
             //            btnMyJob.borderColor = UIColor.red
             return cellProfile
         }
         else if indexPath.section == 1 {
-            //            cellItemList.lblItemNames.text = aryItemNames[indexPath.row]
-            //            cellItemList.imgItems.image = UIImage(named: aryItemIcons[indexPath.row])
-            
-            cellItemList.lblMyJobs.text = "My Jobs".localized
-            cellItemList.lblMyRaitng.text = "My Ratings".localized
-            cellItemList.lblInviteFrnd.text = "Invite Friends".localized
-            cellItemList.lblTripToDestination.text = "Trip to Destination".localized
-            cellItemList.lblLegal.text = "Legal".localized
-            cellItemList.lblSupport.text = "Support".localized
-            cellItemList.btnLogOut.setTitle("Log Out".localized, for: .normal)
-            
-            cellItemList.btnMyJob.addTarget(self, action: #selector(self.MyJob), for: .touchUpInside)
-            //            cellItemList.btnMyJob.tag = indexPath.row
-            cellItemList.btnPaymentOption.addTarget(self, action: #selector(self.PayMentOption), for: .touchUpInside)
-            cellItemList.btnWallet.addTarget(self, action: #selector(self.Wallet), for: .touchUpInside)
-            cellItemList.btnMyRating.addTarget(self, action: #selector(self.MyRating), for: .touchUpInside)
-            cellItemList.btnInviteFriend.addTarget(self, action: #selector(self.InviteFriend), for: .touchUpInside)
-            cellItemList.btnTripToDestination.addTarget(self, action: #selector(self.setting), for: .touchUpInside)
-            cellItemList.btnLegal.addTarget(self, action: #selector(self.Legal), for: .touchUpInside)
-            cellItemList.btnSupport.addTarget(self, action: #selector(self.Support), for: .touchUpInside)
-            cellItemList.btnLogOuts.addTarget(self, action: #selector(self.LogOut), for: .touchUpInside)
-            
-            cellItemList.btnMyJob.layer.shadowOpacity = 0.7
-            cellItemList.btnMyJob.layer.shadowRadius = 15.0
-            cellItemList.btnMyJob.layer.shadowColor = UIColor.black.cgColor
-            cellItemList.btnPaymentOption.layer.shadowOpacity = 0.7
-            cellItemList.btnPaymentOption.layer.shadowRadius = 15.0
-            cellItemList.btnPaymentOption.layer.shadowColor = UIColor.black.cgColor
-            cellItemList.btnWallet.layer.shadowOpacity = 0.7
-            cellItemList.btnWallet.layer.shadowRadius = 15.0
-            cellItemList.btnWallet.layer.shadowColor = UIColor.black.cgColor
-            cellItemList.btnMyRating.layer.shadowOpacity = 0.7
-            cellItemList.btnMyRating.layer.shadowRadius = 15.0
-            cellItemList.btnMyRating.layer.shadowColor = UIColor.black.cgColor
-            cellItemList.btnInviteFriend.layer.shadowOpacity = 0.7
-            cellItemList.btnInviteFriend.layer.shadowRadius = 15.0
-            cellItemList.btnInviteFriend.layer.shadowColor = UIColor.black.cgColor
-            cellItemList.btnTripToDestination.layer.shadowOpacity = 0.7
-            cellItemList.btnTripToDestination.layer.shadowRadius = 15.0
-            cellItemList.btnTripToDestination.layer.shadowColor = UIColor.black.cgColor
-            cellItemList.btnLegal.layer.shadowOpacity = 0.7
-            cellItemList.btnLegal.layer.shadowRadius = 15.0
-            cellItemList.btnLegal.layer.shadowColor = UIColor.black.cgColor
-            cellItemList.btnSupport.layer.shadowOpacity = 0.7
-            cellItemList.btnSupport.layer.shadowRadius = 15.0
-            cellItemList.btnSupport.layer.shadowColor = UIColor.black.cgColor
-            cellItemList.btnLogOuts.layer.cornerRadius = cellItemList.btnLogOuts.frame.size.height / 2
-            cellItemList.btnLogOuts.clipsToBounds = true
+            cellItemList.lblTtile.text = aryItemNames[indexPath.row].localized
+//
+            let tintedImage = UIImage.init(named: aryItemIcons[indexPath.row])?.withRenderingMode(.alwaysTemplate)
+            cellItemList.lblImage.image = tintedImage
+            cellItemList.lblImage.tintColor = .white
+
+
             return cellItemList
         }
         else {
@@ -271,11 +235,16 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     @objc func MyRating(){
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "MyRatingViewController") as! MyRatingViewController
-        self.navigationController?.pushViewController(viewController, animated: true)
+        let homeVC = self.parent?.children.first?.children.first as? HomeViewController
+        sideMenuController?.hideMenu(animated: true, completion: nil)
+        homeVC?.navigationController?.pushViewController(viewController, animated: true)
     }
     @objc func InviteFriend(){
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "InviteDriverViewController") as! InviteDriverViewController
-        self.navigationController?.pushViewController(viewController, animated: true)
+        let homeVC = self.parent?.children.first?.children.first as? HomeViewController
+        sideMenuController?.hideMenu(animated: true, completion: nil)
+
+        homeVC?.navigationController?.pushViewController(viewController, animated: true)
     }
     @objc func setting(){
         
@@ -305,153 +274,66 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
         
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    { 
+        if indexPath.section == 1
+        {
+            let homeVC = self.parent?.children.first?.children.first?.children.first as? HomeViewController
+            let strCellItemTitle = aryItemNames[indexPath.row]
+            if strCellItemTitle == kPaymentOption
+            {
+
+                if(Singletons.sharedInstance.CardsVCHaveAryData.count == 0)
+                {
+                    let viewController = self.storyboard?.instantiateViewController(withIdentifier: "WalletAddCardsViewController") as! WalletAddCardsViewController
+                    homeVC?.navigationController?.pushViewController(viewController, animated: true)
+
+                }
+                else
+                {
+                    let viewController = self.storyboard?.instantiateViewController(withIdentifier: "WalletCardsVC") as! WalletCardsVC
+                    homeVC?.navigationController?.pushViewController(viewController, animated: true)
+                }
+
+            }
+            else if strCellItemTitle == kPassword
+            {
+                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController
+                homeVC?.navigationController?.pushViewController(viewController, animated: true)
+            }
+            else if strCellItemTitle == kInviteFriend
+            {
+                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "InviteDriverViewController") as! InviteDriverViewController
+                homeVC?.navigationController?.pushViewController(viewController, animated: true)
+            }
+            else if strCellItemTitle == kSettings
+            {
+                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SettingPasscodeVC") as! SettingPasscodeVC
+                homeVC?.navigationController?.pushViewController(viewController, animated: true)
+            }
+            else if strCellItemTitle == kTripToDestination
+            {
+                let storyboard = UIStoryboard(name: "TripToDestination", bundle: nil)
+                let viewController = storyboard.instantiateViewController(withIdentifier: "TripToDestinationViewController") as! TripToDestinationViewController
+                homeVC?.navigationController?.pushViewController(viewController, animated: true)
+            }
+            else if strCellItemTitle == kLogout
+            {
+                (UIApplication.shared.delegate as! AppDelegate).GoToLogout()
+
+            }
+
+            sideMenuController?.hideMenu()
+        }
+
     }
-    
-    //    //[kMyJobs,kPaymentOption,kWallet,kMyRating,kInviteFriend,kSettings,kLogout]
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)  {
-    //
-    //        if indexPath.section == 1
-    //        {
-    //
-    //            let strCellItemTitle = aryItemNames[indexPath.row]
-    //
-    //            if strCellItemTitle == kWallet
-    //            {
-    //                if(Singletons.sharedInstance.CardsVCHaveAryData.count == 0)
-    //                {
-    //                      let viewController = self.storyboard?.instantiateViewController(withIdentifier: "WalletAddCardsViewController") as! WalletAddCardsViewController
-    //                    self.navigationController?.pushViewController(viewController, animated: true)
-    //
-    //                }
-    //                else
-    //                {
-    //                    let viewController = self.storyboard?.instantiateViewController(withIdentifier: "WalletCardsVC") as! WalletCardsVC
-    //                    self.navigationController?.pushViewController(viewController, animated: true)
-    //
-    //
-    //                }
-    //            }
-    //            else if strCellItemTitle == kWallet
-    //            {
-    //
-    //                //                self.moveToComingSoon()
-    //                //                   UserDefaults.standard.set(Singletons.sharedInstance.isPasscodeON, forKey: "isPasscodeON")
-    //
-    //                if (Singletons.sharedInstance.isPasscodeON) {
-    //                    //                    if Singletons.sharedInstance.setPasscode == "" {
-    //                    //                        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SetPasscodeViewController") as! SetPasscodeViewController
-    //                    //                        self.navigationController?.pushViewController(viewController, animated: true)
-    //                    //                    }
-    //                    //                    else {
-    //                    //                        if (Singletons.sharedInstance.passwordFirstTime) {
-    //                    //
-    //                    //                            let next = self.storyboard?.instantiateViewController(withIdentifier: "WalletViewController") as! WalletViewController
-    //                    //                            self.navigationController?.pushViewController(next, animated: true)
-    //                    //                        }
-    //                    //                        else {
-    //                    let viewController = self.storyboard?.instantiateViewController(withIdentifier: "VerifyPasswordViewController") as! VerifyPasswordViewController
-    //                    viewController.strStatusToNavigate = "wallet"
-    //                    self.navigationController?.pushViewController(viewController, animated: true)
-    //
-    //                    //                        }
-    //                }
-    //
-    //                else
-    //                {
-    //                    let next = self.storyboard?.instantiateViewController(withIdentifier: "WalletViewController") as! WalletViewController
-    //                    self.navigationController?.pushViewController(next, animated: true)
-    //                }
-    //
-    //
-    //
-    //
-    //                //                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SetPasscodeViewController") as! SetPasscodeViewController
-    //                //                self.navigationController?.pushViewController(viewController, animated: true)
-    //                //
-    //
-    //                //                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "WalletViewController") as! WalletViewController
-    //                //                self.navigationController?.pushViewController(viewController, animated: true)
-    //
-    //            }
-    ////            else if indexPath.row == 2 {
-    ////
-    ////                if (Singletons.sharedInstance.isPasscodeON) {
-    ////                    let tabbar =  ((((((self.navigationController?.childViewControllers)?.last as! CustomSideMenuViewController).childViewControllers[0]) as! UINavigationController).childViewControllers[0]) as! TabbarController)
-    ////                    tabbar.selectedIndex = 4
-    ////                    let viewController = self.storyboard?.instantiateViewController(withIdentifier: "VerifyPasswordViewController") as! VerifyPasswordViewController
-    ////                    self.present(viewController, animated: false, completion: nil)
-    ////                    sideMenuController?.toggle()
-    ////
-    ////                }
-    ////                else {
-    ////                    let tabbar =  ((((((self.navigationController?.childViewControllers)?.last as! CustomSideMenuViewController).childViewControllers[0]) as! UINavigationController).childViewControllers[0]) as! TabbarController)
-    ////                    tabbar.selectedIndex = 4
-    ////
-    ////                    sideMenuController?.toggle()
-    ////                }
-    ////
-    ////            }
-    ////            else if indexPath.row == 2 {
-    //////                 self.moveToComingSoon()
-    ////
-    ////                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "WeeklyEarningViewController") as! WeeklyEarningViewController
-    ////                self.navigationController?.pushViewController(viewController, animated: true)
-    ////            }
-    ////            else if strCellItemTitle == kDriverNews {
-    //////                self.moveToComingSoon()
-    ////
-    ////                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "DriverNewsViewController") as! DriverNewsViewController
-    ////                self.navigationController?.pushViewController(viewController, animated: true)
-    ////
-    ////            }
-    //           else if strCellItemTitle == kInviteFriend {
-    //                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "InviteDriverViewController") as! InviteDriverViewController
-    //                self.navigationController?.pushViewController(viewController, animated: true)
-    //            }
-    ////            else if strCellItemTitle == kChangePassword {
-    ////
-    ////                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController
-    ////                self.navigationController?.pushViewController(viewController, animated: true)
-    ////
-    ////            }
-    //            else if strCellItemTitle == kSettings {
-    //
-    //                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SettingPasscodeVC") as! SettingPasscodeVC
-    //                self.navigationController?.pushViewController(viewController, animated: true)
-    //
-    //            }
-    ////            else if strCellItemTitle == kMeter
-    ////            {
-    ////
-    ////                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "MeterViewController") as! MeterViewController
-    ////                self.navigationController?.pushViewController(viewController, animated: true)
-    ////            }
-    ////            else if strCellItemTitle == kTripToDstination
-    ////            {
-//                    let storyboard = UIStoryboard(name: "TripToDestination", bundle: nil)
-//                    let viewController = storyboard.instantiateViewController(withIdentifier: "TripToDestinationViewController") as! TripToDestinationViewController
-    //
-    ////                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "TripToDestinationViewController") as! TripToDestinationViewController
-    ////                self.navigationController?.pushViewController(viewController, animated: true)
-    ////
-    ////            }
-    ////            else if strCellItemTitle == kShareRide {
-    ////                let viewController = storyboard?.instantiateViewController(withIdentifier: "ShareRideViewController") as! ShareRideViewController
-    ////                self.navigationController?.pushViewController(viewController, animated: true)
-    //                //            }//binal
-    //
-    //        }
-    //
-    //    }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 180
         }
         else if indexPath.section == 1 {
-            return 524//self.view.frame.size.height
+            return 50
         }
         else {
             return 524
@@ -478,7 +360,7 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
         //            NSMutableDictionary(Singletons.sharedInstance.dictDriverProfile.object(forKey: "profile") as NSDictionary).object(forKey: "profile")
         
         driverFullName = profile.object(forKey: "Fullname") as! String
-        driverMobileNo = profile.object(forKey: "Email") as! String
+        driverEmail = profile.object(forKey: "Email") as! String
         
         strImagPath = profile.object(forKey: "Image") as! String
         

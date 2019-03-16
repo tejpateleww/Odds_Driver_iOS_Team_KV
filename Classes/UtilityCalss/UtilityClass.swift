@@ -142,12 +142,12 @@ class UtilityClass: NSObject {
         NVActivityIndicatorView.DEFAULT_BLOCKER_DISPLAY_TIME_THRESHOLD = 55
         NVActivityIndicatorView.DEFAULT_TYPE = .ballRotate
         NVActivityIndicatorView.DEFAULT_COLOR = ThemeYellowColor
-        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData, nil)
         
     }
     
     class func hideHUD() {
-           NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+           NVActivityIndicatorPresenter.sharedInstance.stopAnimating(nil)
     }
     
     class func showACProgressHUD() {

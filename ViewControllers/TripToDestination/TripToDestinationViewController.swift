@@ -12,7 +12,7 @@ import GooglePlaces
 import FormTextField
 
 
-class TripToDestinationViewController: ParentViewController, GMSAutocompleteViewControllerDelegate, UITextFieldDelegate
+class TripToDestinationViewController: BaseViewController, GMSAutocompleteViewControllerDelegate, UITextFieldDelegate
 {
     @IBOutlet var btnSelectDestination: UIButton!
     @IBOutlet var viewSwitchButton: UIView!
@@ -20,7 +20,7 @@ class TripToDestinationViewController: ParentViewController, GMSAutocompleteView
     @IBOutlet var txtDestination: UITextField!
     @IBOutlet var viewTextfield: UIView!
     @IBOutlet weak var lblDestinationTrip: UILabel!
-    
+     var userDefault = UserDefaults.standard
     @IBOutlet var btnDone: UIButton!
     var doubleLat = Double()
     var doubleLng = Double()
@@ -74,7 +74,8 @@ class TripToDestinationViewController: ParentViewController, GMSAutocompleteView
     
     func  setLocalizable()
     {
-        self.headerView?.lblTitle.text = "Trip to Destination".localized
+//        self.headerView?.lblTitle.text = "Trip to Destination".localized
+        self.title = "Trip to Destination".localized
         self.lblDestinationTrip.text = "Trip to Destination".localized
         btnDone.setTitle("Submit".localized, for: .normal)
             txtDestination.placeholder = "Destination Location".localized

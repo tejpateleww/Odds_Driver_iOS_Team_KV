@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SideMenuSwift
 class SplashViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -68,8 +68,10 @@ class SplashViewController: UIViewController {
                         
                         if(Singletons.sharedInstance.isDriverLoggedIN)
                         {
-                            let next = self.storyboard?.instantiateViewController(withIdentifier: "CustomSideMenuViewController") as! CustomSideMenuViewController
-                            self.navigationController?.pushViewController(next, animated: true)
+//                            let next = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuController") as! SideMenuController
+//                            self.navigationController?.pushViewController(next, animated: true)
+                            (UIApplication.shared.delegate as! AppDelegate).GoToHome()
+
                         } else {
                             let LoginPage = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
                             let NavigationControl = UINavigationController(rootViewController: LoginPage)
@@ -85,7 +87,7 @@ class SplashViewController: UIViewController {
                     
 //                    if(Singletons.sharedInstance.isDriverLoggedIN)
 //                    {
-//                        let next = self.storyboard?.instantiateViewController(withIdentifier: "CustomSideMenuViewController") as! CustomSideMenuViewController
+//                        let next = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuController") as! SideMenuController
 //                        self.navigationController?.pushViewController(next, animated: false)
 //                    } else {
                         let LoginPage = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
@@ -94,13 +96,13 @@ class SplashViewController: UIViewController {
 //                    }
                     //                    if(Singletons.sharedInstance.isDriverLoggedIN)
                     //                    {
-                    //                        let next = self.storyboard?.instantiateViewController(withIdentifier: "CustomSideMenuViewController") as! CustomSideMenuViewController
+                    //                        let next = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuController") as! SideMenuController
                     //                        self.navigationController?.pushViewController(next, animated: true)
                     //                    }
                     
                 }
                 
-                //                if(SingletonClass.sharedInstance.isUserLoggedIN)
+                //                if(Singletons.sharedInstance.isUserLoggedIN)
                 //                {
                 //                    self.performSegue(withIdentifier: "segueToHomeVC", sender: nil)
                 //                }//bhaveshbhai

@@ -10,7 +10,7 @@ import UIKit
 
 import FormTextField
 
-class WalletAddCardsViewController: ParentViewController, UIPickerViewDataSource, UIPickerViewDelegate, CardIOPaymentViewControllerDelegate
+class WalletAddCardsViewController: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate, CardIOPaymentViewControllerDelegate
 {
     
     
@@ -70,6 +70,8 @@ class WalletAddCardsViewController: ParentViewController, UIPickerViewDataSource
             stackViewForTextFields.spacing = 8
             constraintHeightOfStackView.constant = 222.5
         }
+
+        self.navigationController?.navigationBar.isHidden = false
         btnCard.layer.cornerRadius = btnCard.frame.size.height / 2
         btnCard.clipsToBounds = true
         
@@ -127,6 +129,10 @@ class WalletAddCardsViewController: ParentViewController, UIPickerViewDataSource
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+//        self.setNavBarWithBack(Title: "Cards".localized, IsNeedRightButton: false)
+        self.title = "Cards".localized
+
         cardNum()
         cardExpiry()
         cardCVV()

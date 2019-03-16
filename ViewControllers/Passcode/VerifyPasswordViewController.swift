@@ -175,12 +175,12 @@ class VerifyPasswordViewController: UIViewController {
             
 //            self.dismiss(animated: true, completion: nil)
 //            
-//            let tabbarVC = (((self.presentingViewController as! UINavigationController).viewControllers[1]) as! CustomSideMenuViewController)//.childViewControllers[0]) as! UINavigationController).viewControllers[0] as! TabbarController
+//            let tabbarVC = (((self.presentingViewController as! UINavigationController).viewControllers[1]) as! SideMenuController)//.childViewControllers[0]) as! UINavigationController).viewControllers[0] as! TabbarController
 //            
 //            self.dismiss(animated: true, completion: nil)
 ////            self.navigationController?.popToViewController(tabbarVC, animated: true)
 //            
-//            let tabbar =  (((((((self.presentingViewController as! UINavigationController).viewControllers[1]) as! CustomSideMenuViewController).childViewControllers[0]) as! UINavigationController).childViewControllers[0]) as! TabbarController)
+//            let tabbar =  (((((((self.presentingViewController as! UINavigationController).viewControllers[1]) as! SideMenuController).childViewControllers[0]) as! UINavigationController).childViewControllers[0]) as! TabbarController)
 //            tabbar.selectedIndex = 0
         }
         else {

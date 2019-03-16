@@ -47,7 +47,7 @@ class UpdateProfileAccountVC: UIViewController {
         setLocalizable()
     }
     func setLocalizable(){
-        self.lblTitle.text = "Account".localized
+        self.title = "Account".localized
         txtAccountHolderName.placeholder = "Name".localized
         txtBankName.placeholder = "Bank Name".localized
         txtBSB.placeholder = "Bsb".localized
