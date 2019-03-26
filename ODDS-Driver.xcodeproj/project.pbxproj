@@ -430,7 +430,6 @@
 		340B0EEB221ABB4D002A1E13 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		3A5DDCA321BA588800F9B5A3 /* WaitForTipViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitForTipViewController.swift; sourceTree = "<group>"; };
 		3A5F1BCB21CE0872000007AE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		3A6DECF521B9216B002501FA /* TanTaxi-Driver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TanTaxi-Driver.entitlements"; sourceTree = "<group>"; };
 		3AC13C5521C8C80000DA3FE6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3AF9136621C9199F00E2C08A /* MyRatingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRatingViewCell.swift; sourceTree = "<group>"; };
 		3AFADC8D219E98970009E3D2 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -517,6 +516,7 @@
 		E8A00ED1BA5D44BC868270B9 /* Pods-ODDS-Driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ODDS-Driver.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ODDS-Driver/Pods-ODDS-Driver.debug.xcconfig"; sourceTree = "<group>"; };
 		EE5FF5B9223A5DA5000FF171 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EEB3CDF8223B6A7B00676539 /* MainHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		EEC4C18D223FBAFC00AF137E /* ODDS-Driver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ODDS-Driver.entitlements"; sourceTree = "<group>"; };
 		EECDB7D8203D48AE0079F78B /* MeterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterViewController.swift; sourceTree = "<group>"; };
 		EEF2E7D1206BC2220013A2B4 /* Pods_PickNGo_Driver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pods_PickNGo_Driver.framework; sourceTree = "<group>"; };
 		EEF8E18D223BE50F00AEAEF2 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -563,7 +563,7 @@
 		00E5CE9A1F8B402C004409A4 = {
 			isa = PBXGroup;
 			children = (
-				3A6DECF521B9216B002501FA /* TanTaxi-Driver.entitlements */,
+				EEC4C18D223FBAFC00AF137E /* ODDS-Driver.entitlements */,
 				21A5A2CA1FBC61950047E9AA /* Location.gpx */,
 				EEFEA5AF221184F900D88655 /* Localizable.strings */,
 				00E929BC202AE2C000A399E2 /* Classes */,
@@ -2158,7 +2158,7 @@
 			baseConfigurationReference = E8A00ED1BA5D44BC868270B9 /* Pods-ODDS-Driver.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "TanTaxi-Driver.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "ODDS-Driver.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -2183,7 +2183,7 @@
 			baseConfigurationReference = E111D3FBD4E215CF9F27E5D0 /* Pods-ODDS-Driver.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "TanTaxi-Driver.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "ODDS-Driver.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
