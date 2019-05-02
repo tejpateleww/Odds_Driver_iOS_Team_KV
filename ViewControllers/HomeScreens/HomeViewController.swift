@@ -236,6 +236,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                     manager.allowsBackgroundLocationUpdates = true
                     manager.distanceFilter = 5
                     manager.desiredAccuracy = 2
+                      updateCurrentLocationLabel()
                     //                    manager.distanceFilter = //
                 }
                 
@@ -249,7 +250,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         mapView.isHidden = true
         subMapView.addSubview(mapView)
         
-        updateCurrentLocationLabel()
+
         
         if let reqAccepted: Bool = UserDefaults.standard.bool(forKey: tripStatus.kisRequestAccepted) as? Bool {
             //            Singletons.sharedInstance.isRequestAccepted = reqAccepted
@@ -431,6 +432,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
             print("The location we are getting in background mode is \(location)")
         }
         defaultLocation = location
+
+        if(self.lblLocationOnMap.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0)
+        {
+            self.updateCurrentLocationLabel()
+        }
         
         //        if(Singletons.sharedInstance.isFirstTimeDidupdateLocation == true)
         //        {
@@ -2232,7 +2238,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         
         self.originCoordinate = CLLocationCoordinate2DMake(defaultLocation.coordinate.latitude, defaultLocation.coordinate.longitude)
         App_Delegate.RoadPickupTimer.invalidate()
-        
+        self.manager.startUpdatingLocation()
         driverMarker = nil
         Singletons.sharedInstance.isRequestAccepted = false
         
@@ -2946,7 +2952,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
             //                webserviceCallForCompleteTrip(dictOFParam: dictOFParam as AnyObject)
         }
 
-        if(Singletons.sharedInstance.strBookingType == "BookNow")
+        if(Singletons.sharedInstance.strBookingType == "BookNow" || Singletons.sharedInstance.strBookingType == "")
         {
             webserviceCallForCompleteTrip(dictOFParam: dictOFParam as AnyObject, dictOfImages)
 
