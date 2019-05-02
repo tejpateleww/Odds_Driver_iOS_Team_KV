@@ -210,22 +210,22 @@ class EditDriverProfileVC: BaseViewController
             if (status) {
                 print(result)
                 
-                let socket = (UIApplication.shared.delegate as! AppDelegate).SocketManager
+                let socket = (UIApplication.shared.delegate as! AppDelegate).socket
                 
-                socket.off(socketApiKeys.kReceiveBookingRequest)
-                socket.off(socketApiKeys.kBookLaterDriverNotify)
+                socket?.off(socketApiKeys.kReceiveBookingRequest)
+                socket?.off(socketApiKeys.kBookLaterDriverNotify)
                 
-                socket.off(socketApiKeys.kGetBookingDetailsAfterBookingRequestAccepted)
-                socket.off(socketApiKeys.kAdvancedBookingInfo)
+                socket?.off(socketApiKeys.kGetBookingDetailsAfterBookingRequestAccepted)
+                socket?.off(socketApiKeys.kAdvancedBookingInfo)
                 
-                socket.off(socketApiKeys.kReceiveMoneyNotify)
-                socket.off(socketApiKeys.kAriveAdvancedBookingRequest)
+                socket?.off(socketApiKeys.kReceiveMoneyNotify)
+                socket?.off(socketApiKeys.kAriveAdvancedBookingRequest)
                 
-                socket.off(socketApiKeys.kDriverCancelTripNotification)
-                socket.off(socketApiKeys.kAdvancedBookingDriverCancelTripNotification)
+                socket?.off(socketApiKeys.kDriverCancelTripNotification)
+                socket?.off(socketApiKeys.kAdvancedBookingDriverCancelTripNotification)
                 Singletons.sharedInstance.setPasscode = ""
                 Singletons.sharedInstance.isPasscodeON = false
-                socket.disconnect()
+                socket?.disconnect()
                 
                 for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
                     print("\(key) = \(value) \n")

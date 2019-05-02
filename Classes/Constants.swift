@@ -164,7 +164,7 @@ func GetTripStatusKey() -> String {
 }
 
 func GetResponseMessageKey() -> String {
-    var MessageKey:String = ""
+    var MessageKey:String = "message"
     if let SelectedLanguage = UserDefaults.standard.value(forKey: "i18n_language") as? String {
         MessageKey = (SelectedLanguage == "en") ? "message" : "swahili_message"
     }
