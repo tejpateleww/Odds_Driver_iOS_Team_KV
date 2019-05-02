@@ -101,12 +101,12 @@
 //            else {
 //                UtilityClass.showAlert(appName.kAPPName, message: "Sorry! Not connected to internet".localized, vc: self)
 //            }
-        if(Singletons.sharedInstance.isDriverLoggedIN)
-        {
-//            let next = self.storyboard?.instantiateViewController(withIdentifier: "CustomSideMenuViewController") as! CustomSideMenuViewController
-//            self.navigationController?.pushViewController(next, animated: false)
-            (UIApplication.shared.delegate as! AppDelegate).GoToHome()
-        }
+//        if(Singletons.sharedInstance.isDriverLoggedIN)
+//        {
+////            let next = self.storyboard?.instantiateViewController(withIdentifier: "CustomSideMenuViewController") as! CustomSideMenuViewController
+////            self.navigationController?.pushViewController(next, animated: false)
+//            (UIApplication.shared.delegate as! AppDelegate).GoToHome()
+//        }
 //            webserviceOfAppSetting()
     //
         }

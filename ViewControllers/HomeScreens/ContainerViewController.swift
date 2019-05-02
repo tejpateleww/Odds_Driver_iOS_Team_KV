@@ -11,6 +11,10 @@ import UIKit
 class ContainerViewController: BaseViewController {
  @IBOutlet var viewHomeMyJobsBTN: UIView!
     @IBOutlet weak var scrollObject: UIScrollView!
+    
+    @IBOutlet weak var btnHome: ThemeButton!
+    
+    @IBOutlet weak var btnMyJobs: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 

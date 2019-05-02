@@ -166,7 +166,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         BottomButtonView.isHidden = true
         StartTripView.isHidden = true
         btnStartTrip.isHidden = true
-        (self.parent as? ContainerViewController)?.viewHomeMyJobsBTN.isHidden = false
+//        (self.parent as? ContainerViewController)?.viewHomeMyJobsBTN.isHidden = false
 //        self.constrainLocationViewBottom.constant = 0//self.viewHomeMyJobsBTN.frame.height
         isAdvanceBooking = false
         Singletons.sharedInstance.isFirstTimeDidupdateLocation = true;
@@ -1117,6 +1117,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                                 vcFuture.webserviceOFFurureBooking()
                             }
                             VC.btnFutureBookingClicked(VC.btnFutureBooking)
+                            (self.parent as! ContainerViewController).btnMyJob((self.parent as! ContainerViewController).btnMyJobs)
+                            
                         }
                     }
                     else
@@ -1172,7 +1174,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                 
                 self.advanceBookingID = ((data as NSArray).object(at: 0) as! NSDictionary).object(forKey: "BookingId") as! String
                 
-                
+                (self.parent as! ContainerViewController).btnHome((self.parent as! ContainerViewController).btnHome)
                 //                if (self.isFirstTimeFromPndingJobs) {
                 //                    self.BottomButtonView.isHidden = false
                 //                    self.StartTripView.isHidden = true
@@ -1303,7 +1305,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                 self.btnStartTrip.isHidden = false
                 self.btnStartTrip.layoutIfNeeded()
                 self.BottomButtonView.layoutIfNeeded()
-                (self.parent as? ContainerViewController)?.viewHomeMyJobsBTN.isHidden = true
+//                (self.parent as? ContainerViewController)?.viewHomeMyJobsBTN.isHidden = true
                 //                self.viewLocationDetails.isHidden = true
 //                self.constrainLocationViewBottom.constant = self.BottomButtonView.frame.size.height
             }
@@ -1632,7 +1634,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         self.btnStartTrip.isHidden = false
         self.aryBookingData = data as NSArray
         Singletons.sharedInstance.aryPassengerInfo = data as NSArray
-        (self.parent as? ContainerViewController)?.viewHomeMyJobsBTN.isHidden = true
+//        (self.parent as? ContainerViewController)?.viewHomeMyJobsBTN.isHidden = true
         //                self.viewLocationDetails.isHidden = true
 //        self.constrainLocationViewBottom.constant = self.BottomButtonView.frame.size.height
         self.isAdvanceBooking = true
