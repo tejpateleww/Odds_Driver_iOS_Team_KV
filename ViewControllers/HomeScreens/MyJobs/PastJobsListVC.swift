@@ -218,8 +218,8 @@ class PastJobsListVC: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.lblBooingId.text = "\("Booking Id".localized) : \(data.object(forKey: "Id") as? String ?? strNotAvailable)"// "Booking ID: \(data.object(forKey: "Id") as? String ?? strNotAvailable)"
         
         cell.lblDropoffLocation.text = data.object(forKey: "DropoffLocation") as? String // PickupLocation
-        cell.lblpassengerEmail.text = data.object(forKey: "PassengerEmail") as? String
-        cell.lblPassengerNo.text = data.object(forKey: "PassengerMobileNo") as? String
+      //  cell.lblpassengerEmail.text = data.object(forKey: "PassengerEmail") as? String
+       // cell.lblPassengerNo.text = data.object(forKey: "PassengerMobileNo") as? String
         //                cell.lblPickupTime.text = data.object(forKey: "PickupTime") as? String
         
         
@@ -313,9 +313,9 @@ class PastJobsListVC: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         cell.lblTripDistanceDesc.text =  "\(strTripDistance) km" // data.object(forKey: "TripDistance") as? String
-        cell.lbltripDurationDesc.text = strTripDuration // data.object(forKey: "TripDuration") as? String
-        cell.lblCarModelDesc.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "Model", isNotHave: strNotAvailable) //  data.object(forKey: "Model") as? String
-        cell.lblNightFareDesc.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "NightFare", isNotHave: strNotAvailable) //  data.object(forKey: "NightFare") as? String
+     //   cell.lbltripDurationDesc.text = strTripDuration // data.object(forKey: "TripDuration") as? String
+       // cell.lblCarModelDesc.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "Model", isNotHave: strNotAvailable) //  data.object(forKey: "Model") as? String
+      //  cell.lblNightFareDesc.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "NightFare", isNotHave: strNotAvailable) //  data.object(forKey: "NightFare") as? String
         
         let strTripFare = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "TripFare", isNotHave: strNotAvailable)
         cell.lblTripFareDesc.text = "\(strTripFare) \(currency)" //  data.object(forKey: "TripFare") as? String
@@ -352,8 +352,8 @@ class PastJobsListVC: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.lblTripStatusInfo.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: GetTripStatusKey(), isNotHave: strNotAvailable)
        
         
-        cell.lblFlightNumber.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "FlightNumber", isNotHave: strNotAvailable) // data.object(forKey: "FlightNumber") as? String
-        cell.lblNotes.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "Notes", isNotHave: strNotAvailable) //data.object(forKey: "Notes") as? String
+     //   cell.lblFlightNumber.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "FlightNumber", isNotHave: strNotAvailable) // data.object(forKey: "FlightNumber") as? String
+      //  cell.lblNotes.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "Notes", isNotHave: strNotAvailable) //data.object(forKey: "Notes") as? String
 //        cell.lblPaymentType.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "PaymentType", isNotHave: strNotAvailable) //data.object(forKey: "PaymentType") as? String
         
         cell.lblWaitingTime.text = strWaitingTime // data.object(forKey: "WaitingTime") as? String
@@ -369,23 +369,23 @@ class PastJobsListVC: UIViewController, UITableViewDataSource, UITableViewDelega
 //        cell.lblDispatcherNumberTitle.text = ""
 //
         
-        cell.stackViewEmail.isHidden = true
-        cell.stackViewName.isHidden = true
-        cell.stackViewNumber.isHidden = true
+//        cell.stackViewEmail.isHidden = true
+//        cell.stackViewName.isHidden = true
+//        cell.stackViewNumber.isHidden = true
         
         if((data.object(forKey: "DispatcherDriverInfo")) != nil)
         {
             print("There is driver info and passengger name is \(String(describing: cell.lblPassengerName.text))")
             
-            cell.lblDispatcherName.text = (data.object(forKey: "DispatcherDriverInfo") as? [String:AnyObject])!["Email"] as? String
-            cell.lblDispatcherEmail.text = (data.object(forKey: "DispatcherDriverInfo") as? [String:AnyObject])!["Fullname"] as? String
-            cell.lblDispatcherNumber.text = (data.object(forKey: "DispatcherDriverInfo") as? [String:AnyObject])!["MobileNo"] as? String
-            cell.lblDispatcherNameTitle.text = "DISPACTHER NAME"
-            cell.lblDispatcherEmailTitle.text = "DISPATCHER EMAIL"
-            cell.lblDispatcherNumberTitle.text = "DISPATCHER TITLE"
-            cell.stackViewEmail.isHidden = false
-            cell.stackViewName.isHidden = false
-            cell.stackViewNumber.isHidden = false
+//            cell.lblDispatcherName.text = (data.object(forKey: "DispatcherDriverInfo") as? [String:AnyObject])!["Email"] as? String
+//            cell.lblDispatcherEmail.text = (data.object(forKey: "DispatcherDriverInfo") as? [String:AnyObject])!["Fullname"] as? String
+//            cell.lblDispatcherNumber.text = (data.object(forKey: "DispatcherDriverInfo") as? [String:AnyObject])!["MobileNo"] as? String
+//            cell.lblDispatcherNameTitle.text = "DISPACTHER NAME"
+//            cell.lblDispatcherEmailTitle.text = "DISPATCHER EMAIL"
+//            cell.lblDispatcherNumberTitle.text = "DISPATCHER TITLE"
+//            cell.stackViewEmail.isHidden = false
+//            cell.stackViewName.isHidden = false
+//            cell.stackViewNumber.isHidden = false
         }
         
         //            }

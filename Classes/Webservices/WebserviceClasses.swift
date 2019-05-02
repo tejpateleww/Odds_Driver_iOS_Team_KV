@@ -19,7 +19,7 @@ import NVActivityIndicatorView
 let BaseURL = WebserviceURLs.kBaseURL
 var request : Request!
 
-let header: [String:String] = ["key":"Tantaxi123*"]
+let header: [String:String] = ["key":"shipodds123*"]
 
 
 //-------------------------------------------------------------
@@ -180,11 +180,91 @@ func getDataOfHistory(_ dictParams: AnyObject, nsURL: String,  completion: @esca
 }
 
 
+//-------------------------------------------------------------
+// MARK: - Webservice For Image as parameter
+//-------------------------------------------------------------
 
-
+func parameterWithImage(_ dictParams: [String:AnyObject], images: [String : UIImage], nsURL: String, completion: @escaping (_ result: AnyObject, _ success: Bool) -> Void) {
+    
+    let url = BaseURL + nsURL
+    
+    if Connectivity.isConnectedToInternet() == false {
+        completion("Sorry! Not connected to internet".localized as AnyObject, false)
+        return
+    }
+    
+    UtilityClass.showACProgressHUD()
+    
+    Alamofire.upload(multipartFormData: { (multipartFormData) in
+        for (key, value) in images{
+            if let imageData = value.jpegData(compressionQuality: 0.6)
+            {
+                multipartFormData.append(imageData, withName: key, fileName: "image.jpeg", mimeType: "image/jpeg")
+            }
+        }
+        
+        
+        for (key, value) in dictParams
+        {
+            if JSONSerialization.isValidJSONObject(value) {
+                let array = value as! [String]
+                
+                for string in array {
+                    if let stringData = string.data(using: .utf8) {
+                        multipartFormData.append(stringData, withName: key+"[]")
+                    }
+                }
+            } else {
+                multipartFormData.append(String(describing: value).data(using: .utf8)!, withName: key)
+            }
+        }
+    }, usingThreshold: 10 * 1024 * 1024, to: url, method: .post, headers: header) { (encodingResult) in
+        switch encodingResult
+        {
+        case .success(let upload, _, _):
+            request =  upload.responseJSON {
+                response in
+                
+                if let JSON = response.result.value {
+                    
+                    if ((JSON as AnyObject).object(forKey: "status") as! Bool) == true
+                    {
+                        completion(JSON as AnyObject, true)
+                        print("If JSON")
+                        
+                    }
+                    else
+                    {
+                        completion(JSON as AnyObject, false)
+                        print("else JSON")
+                    }
+                }
+                else
+                {
+                    print("ERROR")
+                }
+                
+                UtilityClass.hideACProgressHUD()
+                
+                //                 NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+                //                HUD.flash(HUDContentType.systemActivity, delay: 0.0)
+                
+            }
+        case .failure( _):
+            print("failure")
+            
+            UtilityClass.hideACProgressHUD()
+            
+            //             NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+            //            HUD.hide()
+            break
+        }
+    }
+}
 //-------------------------------------------------------------
 // MARK: - Webservice For Send Image Method
 //-------------------------------------------------------------
+
 
 func sendImage(_ dictParams: [String:AnyObject], image1: UIImage, image2: UIImage, image3: UIImage, image4: UIImage, image5: UIImage, image6: UIImage, nsURL: String, completion: @escaping (_ result: AnyObject, _ success: Bool) -> Void) {
     

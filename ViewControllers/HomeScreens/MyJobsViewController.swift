@@ -76,8 +76,8 @@ class MyJobsViewController: BaseViewController
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-         self.setNavBarWithMenu(Title:  "My Jobs".localized, IsNeedRightButton: true)
-
+        
+        self.setNavBarWithMenuORBack(Title: "My Jobs".localized, LetfBtn: kIconBack, IsNeedRightButton: true, isTranslucent: false)
         //        if Singletons.sharedInstance.isPresentVC == true
         //        {
         //
@@ -303,7 +303,7 @@ class MyJobsViewController: BaseViewController
         //        let socket = (((self.navigationController?.childViewControllers[0] as! TabbarController).childViewControllers)[0] as! ContentViewController).socket
         
         
-        let socket = (UIApplication.shared.delegate as! AppDelegate).SocketManager
+        let socket = (UIApplication.shared.delegate as! AppDelegate).socket
         //
         //        var isAdvance = (((self.navigationController?.childViewControllers[0] as! TabbarController).childViewControllers)[0] as! HomeViewController).isAdvanceBooking
         //        isAdvance = true
@@ -319,7 +319,7 @@ class MyJobsViewController: BaseViewController
         
         isAdvance = true
         let myJSON = ["DriverId" : Singletons.sharedInstance.strDriverID, "BookingId" : Singletons.sharedInstance.strPendinfTripData] as [String : Any]
-        socket.emit("NotifyPassengerForAdvancedTrip", with: [myJSON])
+        socket?.emit("NotifyPassengerForAdvancedTrip", with: [myJSON])
         Singletons.sharedInstance.strBookingType = "BookLater"
         print("Start Trip : \(myJSON)")
         

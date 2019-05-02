@@ -29,87 +29,115 @@ class BaseViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    func setNavBarWithMenu(Title:String, IsNeedRightButton:Bool){
+    func setNavBarWithMenuORBack(Title:String,LetfBtn : String, IsNeedRightButton:Bool ,isTranslucent : Bool)
+    {
 //        self.navigationController?.navigationBar.isTranslucent = false
         
-        if Title == "Home" {
+        if Title == "Home"
+        {
             let titleImage = UIImageView(frame: CGRect(x: 10, y: 0, width: 100, height: 30))
             titleImage.contentMode = .scaleAspectFit
             titleImage.image = UIImage(named: "Title_logo")
 //            titleImage.backgroundColor  = themeYellowColor
              self.navigationItem.titleView = titleImage
-        } else {
-            self.navigationItem.title = Title.uppercased()
+        }
+        else
+        {
+            self.navigationItem.title = Title//.uppercased()
         }
         self.navigationController?.isNavigationBarHidden = false
 //        self.navigationController?.navigationBar.isOpaque = false
         self.navigationController?.navigationBar.barTintColor = ThemeYellowColor;
         self.navigationController?.navigationBar.tintColor = UIColor.white;
-        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.isTranslucent = isTranslucent
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
 
+        if LetfBtn == kIconMenu
+        {
+            let leftNavBarButton = UIBarButtonItem(image: UIImage(named: LetfBtn), style: .plain, target: self, action: #selector(self.OpenMenuAction))
+            self.navigationItem.leftBarButtonItem = nil
+            self.navigationItem.leftBarButtonItem = leftNavBarButton
+            
+        }
+        else
+        {
+            let leftNavBarButton = UIBarButtonItem(image: UIImage(named: LetfBtn), style: .plain, target: self, action: #selector(self.btnBackAction))
+            self.navigationItem.leftBarButtonItem = nil
+            self.navigationItem.leftBarButtonItem = leftNavBarButton
+        }
         
-        let leftNavBarButton = UIBarButtonItem(image: UIImage(named: "iconMenu"), style: .plain, target: self, action: #selector(self.OpenMenuAction))
-        self.navigationItem.leftBarButtonItem = nil
-        self.navigationItem.leftBarButtonItem = leftNavBarButton
-        
-        if IsNeedRightButton == true {
+        if IsNeedRightButton == true
+        {
             let rightNavBarButton = UIBarButtonItem(customView: self.btnDuty)
 
                 //UIBarButtonItem(image: UIImage(named: "iconSwitchOff"), style: .plain, target: self, action: #selector(self.btnCallAction))
             self.navigationItem.rightBarButtonItem = nil
             self.navigationItem.rightBarButtonItem = rightNavBarButton
-        } else {
+        }
+        else
+        {
             self.navigationItem.rightBarButtonItem = nil
         }
-    }
-    
-    func setNavBarWithBack(Title:String, IsNeedRightButton:Bool) {
-//        self.navigationController?.navigationBar.isTranslucent = false
         
-        if Title == "Home" {
-            let titleImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-            titleImage.contentMode = .scaleAspectFit
-            titleImage.image = UIImage(named: "Title_logo")
-            self.navigationItem.titleView = titleImage
-        } else {
-            self.navigationItem.title = Title.uppercased().localizedUppercase
-        }
-        self.navigationController?.navigationBar.barTintColor = ThemeYellowColor;
-        self.navigationController?.navigationBar.tintColor = UIColor.white;
-        self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.isTranslucent = false
-
-        
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        let leftNavBarButton = UIBarButtonItem(image: UIImage(named: "iconBack"), style: .plain, target: self, action: #selector(self.btnBackAction))
-        self.navigationItem.leftBarButtonItem = nil
-        self.navigationItem.leftBarButtonItem = leftNavBarButton
-        
-        
-        if IsNeedRightButton == true {
-
-            let rightNavBarButton = UIBarButtonItem(customView: self.btnDuty)
-                //UIBarButtonItem(image: UIImage(named: "icon_Call"), style: .plain, target: self, action: #selector(self.webserviceForChangeDutyStatus))
-            self.navigationItem.rightBarButtonItem = nil
-            self.navigationItem.rightBarButtonItem = rightNavBarButton
-        } else {
-            self.navigationItem.rightBarButtonItem = nil
-        }
-        if UserDefaults.standard.value(forKey: "i18n_language") != nil {
+        if UserDefaults.standard.value(forKey: "i18n_language") != nil
+        {
             if let language = UserDefaults.standard.value(forKey: "i18n_language") as? String {
                 if language == "sw" {
-//                    btnLeft.semanticContentAttribute = .forceLeftToRight
+                    //                    btnLeft.semanticContentAttribute = .forceLeftToRight
                     
-//                    image = UIImage.init(named: "icon_BackWhite")?.imageFlippedForRightToLeftLayoutDirection()
+                    //                    image = UIImage.init(named: "icon_BackWhite")?.imageFlippedForRightToLeftLayoutDirection()
                 }
             }
         }
     }
+    
+//    func setNavBarWithBack(Title:String, IsNeedRightButton:Bool ,isTranslucent : Bool)
+//    {
+////        self.navigationController?.navigationBar.isTranslucent = false
+//
+//        if Title == "Home" {
+//            let titleImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+//            titleImage.contentMode = .scaleAspectFit
+//            titleImage.image = UIImage(named: "Title_logo")
+//            self.navigationItem.titleView = titleImage
+//        } else {
+//            self.navigationItem.title = Title.uppercased().localizedUppercase
+//        }
+//        self.navigationController?.navigationBar.barTintColor = ThemeYellowColor;
+//        self.navigationController?.navigationBar.tintColor = UIColor.white;
+//        self.navigationController?.isNavigationBarHidden = false
+//        self.navigationController?.navigationBar.isTranslucent = false
+//
+//
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        let leftNavBarButton = UIBarButtonItem(image: UIImage(named: "iconBack"), style: .plain, target: self, action: #selector(self.btnBackAction))
+//        self.navigationItem.leftBarButtonItem = nil
+//        self.navigationItem.leftBarButtonItem = leftNavBarButton
+//
+//
+//        if IsNeedRightButton == true {
+//
+//            let rightNavBarButton = UIBarButtonItem(customView: self.btnDuty)
+//                //UIBarButtonItem(image: UIImage(named: "icon_Call"), style: .plain, target: self, action: #selector(self.webserviceForChangeDutyStatus))
+//            self.navigationItem.rightBarButtonItem = nil
+//            self.navigationItem.rightBarButtonItem = rightNavBarButton
+//        } else {
+//            self.navigationItem.rightBarButtonItem = nil
+//        }
+//        if UserDefaults.standard.value(forKey: "i18n_language") != nil {
+//            if let language = UserDefaults.standard.value(forKey: "i18n_language") as? String {
+//                if language == "sw" {
+////                    btnLeft.semanticContentAttribute = .forceLeftToRight
+//
+////                    image = UIImage.init(named: "icon_BackWhite")?.imageFlippedForRightToLeftLayoutDirection()
+//                }
+//            }
+//        }
+//    }
 
 
     //-------------------------------------------------------------
@@ -147,8 +175,9 @@ class BaseViewController: UIViewController {
                         self.btnDuty.isSelected = false
                         Singletons.sharedInstance.driverDuty = "0"
                         UtilityClass.showAlert("", message: (result as! NSDictionary).object(forKey: GetResponseMessageKey()) as! String, vc: self)
+            
                         UIApplication.shared.isIdleTimerDisabled = false
-                        let socket = (UIApplication.shared.delegate as! AppDelegate).SocketManager
+                        let socket = (UIApplication.shared.delegate as! AppDelegate).Socktmanager
                         socket.disconnect()
 
                     }
@@ -158,11 +187,11 @@ class BaseViewController: UIViewController {
                         self.btnDuty.isSelected = true
                         Singletons.sharedInstance.driverDuty = "1"
 
-                        let socket = (UIApplication.shared.delegate as! AppDelegate).SocketManager
+                        let socket = (UIApplication.shared.delegate as! AppDelegate).Socktmanager
                         socket.connect()
                         UIApplication.shared.isIdleTimerDisabled = true
 
-                        UtilityClass.showAlert("", message: (result as! NSDictionary).object(forKey: GetResponseMessageKey()) as! String, vc: self)
+                        UtilityClass.showAlert("", message: result["message"] as! String, vc: self)
 
                         let contentVC = (self.navigationController?.children[0] as? TabbarController)?.children[0] as? HomeViewController
                         contentVC?.UpdateDriverLocation()

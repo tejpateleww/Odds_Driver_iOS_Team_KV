@@ -35,9 +35,9 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
         //kiconMyJobs
         //kMyRating
         //kiconMyRating
-        aryItemNames = [kPaymentOption,kPassword,kTripToDestination,kInviteFriend,kSettings,kLogout]
+        aryItemNames = [kPassword,kTripToDestination,kInviteFriend,kSettings,kLogout]//kPaymentOption,
         
-        aryItemIcons = [kiconPaymentOption,kiconPassword,kiconTripToDestination,kiconInviteFriend,kiconSettings,kIconLogout]
+        aryItemIcons = [kiconPassword,kiconTripToDestination,kiconInviteFriend,kiconSettings,kIconLogout]//kiconPaymentOption,
 
         self.view.backgroundColor = ThemeYellowColor
         
@@ -148,7 +148,7 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
 //            }
 //            cellProfile.lblLaungageName.text = strSelectedLaungage
             
-//            cellProfile.btnLaungageChange.addTarget(self, action: #selector(btnLaungageClicked(_:)), for: .touchUpInside)
+            cellProfile.btnProfile.addTarget(self, action: #selector(btnProfileClicked(_:)), for: .touchUpInside)
             //            .layer.cornerRadius = btnHome.frame.size.height / 2
             //            btnMyJob.clipsToBounds = true
             //            btnMyJob.borderColor = UIColor.red
@@ -168,6 +168,14 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
             return UITableViewCell()
         }
         
+    }
+    @objc func btnProfileClicked(_ sender : UIButton)
+    {
+        let homeVC = self.parent?.children.first?.children.first?.children.first as? HomeViewController
+        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "EditDriverProfileVC") as! EditDriverProfileVC
+        homeVC?.navigationController?.pushViewController(viewController, animated: true)
+        sideMenuController?.hideMenu()
     }
     @objc func btnLaungageClicked(_ sender : UIButton)
     {
@@ -254,6 +262,7 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.navigationController?.pushViewController(viewController, animated: true)
         
     }
+   
     @objc func Legal(){
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "LegalViewController") as! LegalViewController
         self.navigationController?.pushViewController(viewController, animated: true)
@@ -296,6 +305,20 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
                 }
 
             }
+//            else if strCellItemTitle == "Home"
+//            {
+//                if let viewCon = self.parent?.children.first?.children.last as? ContainerViewController
+//                {
+//                    sideMenuController?.revealMenu(animated: true, completion: nil)
+//                }
+//                else
+//                {
+//                    let viewContainer = self.parent?.children.first?.children.first?.children.first as? HomeViewController
+//                    sideMenuController?.contentViewController = viewContainer
+//                }
+////                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+////                homeVC?.navigationController?.pushViewController(viewController, animated: true)
+//            }
             else if strCellItemTitle == kPassword
             {
                 let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController

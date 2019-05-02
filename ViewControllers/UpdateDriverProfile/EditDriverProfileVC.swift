@@ -8,7 +8,8 @@
 
 import UIKit
 
-class EditDriverProfileVC: BaseViewController {
+class EditDriverProfileVC: BaseViewController
+{
 
      var crnRadios = CGFloat()
     @IBOutlet weak var lblEditProfile: UILabel!
@@ -20,6 +21,14 @@ class EditDriverProfileVC: BaseViewController {
     @IBOutlet weak var lblDocument: UILabel!
     @IBOutlet weak var lblAccount: UILabel!
     @IBOutlet weak var lblVehicleOption: UILabel!
+    
+    
+    @IBOutlet weak var iconProfile: UIImageView!
+    @IBOutlet weak var iconVehicle: UIImageView!
+    @IBOutlet weak var iconAccountInfo: UIImageView!
+    @IBOutlet weak var iconDocumentlUser: UIImageView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +53,17 @@ class EditDriverProfileVC: BaseViewController {
         self.giveCornorRadiosToView(view: viewDocument)
 //        self.giveCornorRadiosToView(view: viewLogout)
         // Do any additional setup after loading the view.
+        
+        
+        self.iconProfile.image = UIImage.init(named: "iconEditProfile")?.withRenderingMode(.alwaysTemplate)
+        self.iconProfile.tintColor = ThemeYellowColor
+        self.iconVehicle.image = UIImage.init(named: "iocnVehicleOptions")?.withRenderingMode(.alwaysTemplate)
+        self.iconVehicle.tintColor = ThemeYellowColor
+        self.iconAccountInfo.image = UIImage.init(named: "iconAccount")?.withRenderingMode(.alwaysTemplate)
+        self.iconAccountInfo.tintColor = ThemeYellowColor
+        self.iconDocumentlUser.image = UIImage.init(named: "iconDocument")?.withRenderingMode(.alwaysTemplate)
+        self.iconDocumentlUser.tintColor = ThemeYellowColor
+        
     }
 //    @IBOutlet weak var lblLogout: UILabel!
     override func viewWillAppear(_ animated: Bool)
@@ -51,7 +71,9 @@ class EditDriverProfileVC: BaseViewController {
         super.viewWillAppear(true)
         setLocalizable()
 //        self.setNavBarWithBack(Title: "Profile Update".localized, IsNeedRightButton: false)
-        self.title = "Profile Update".localized
+//        self.title = "Profile Update".localized
+       
+            self.setNavBarWithMenuORBack(Title: "Profile Update".localized, LetfBtn: kIconBack, IsNeedRightButton: false, isTranslucent: false)
 
     }
     func setLocalizable()
@@ -188,22 +210,22 @@ class EditDriverProfileVC: BaseViewController {
             if (status) {
                 print(result)
                 
-                let socket = (UIApplication.shared.delegate as! AppDelegate).SocketManager
+                let socket = (UIApplication.shared.delegate as! AppDelegate).socket
                 
-                socket.off(socketApiKeys.kReceiveBookingRequest)
-                socket.off(socketApiKeys.kBookLaterDriverNotify)
+                socket?.off(socketApiKeys.kReceiveBookingRequest)
+                socket?.off(socketApiKeys.kBookLaterDriverNotify)
                 
-                socket.off(socketApiKeys.kGetBookingDetailsAfterBookingRequestAccepted)
-                socket.off(socketApiKeys.kAdvancedBookingInfo)
+                socket?.off(socketApiKeys.kGetBookingDetailsAfterBookingRequestAccepted)
+                socket?.off(socketApiKeys.kAdvancedBookingInfo)
                 
-                socket.off(socketApiKeys.kReceiveMoneyNotify)
-                socket.off(socketApiKeys.kAriveAdvancedBookingRequest)
+                socket?.off(socketApiKeys.kReceiveMoneyNotify)
+                socket?.off(socketApiKeys.kAriveAdvancedBookingRequest)
                 
-                socket.off(socketApiKeys.kDriverCancelTripNotification)
-                socket.off(socketApiKeys.kAdvancedBookingDriverCancelTripNotification)
+                socket?.off(socketApiKeys.kDriverCancelTripNotification)
+                socket?.off(socketApiKeys.kAdvancedBookingDriverCancelTripNotification)
                 Singletons.sharedInstance.setPasscode = ""
                 Singletons.sharedInstance.isPasscodeON = false
-                socket.disconnect()
+                socket?.disconnect()
                 
                 for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
                     print("\(key) = \(value) \n")

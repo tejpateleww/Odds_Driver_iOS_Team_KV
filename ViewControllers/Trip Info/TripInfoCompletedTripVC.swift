@@ -11,7 +11,7 @@ import MarqueeLabel
 
 class TripInfoCompletedTripVC: UIViewController {
     var delegate: CompleterTripInfoDelegate!
-    
+ 
     var dictData = NSDictionary()
     
    
@@ -197,7 +197,10 @@ class TripInfoCompletedTripVC: UIViewController {
     
     func setData() {
         
-        dictData = NSMutableDictionary(dictionary: (dictData.object(forKey: "details") as! NSDictionary))
+        guard let localData =  self.dictData.object(forKey: "details") as? NSDictionary else{
+            return
+        }
+       dictData = NSMutableDictionary(dictionary: localData)
         print(dictData)
         
         lblPickupLocation.text = dictData.object(forKey: "PickupLocation") as? String
@@ -333,3 +336,4 @@ class TripInfoCompletedTripVC: UIViewController {
     }
     
 }
+

@@ -9,8 +9,9 @@
 import UIKit
 import SDWebImage
 import ACFloatingTextfield_Swift
+import IQDropDownTextField
 
-class UpdateProfilePersonelDetailsVC: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIPickerViewDelegate,UITextFieldDelegate {
+class UpdateProfilePersonelDetailsVC: BaseViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIPickerViewDelegate,UITextFieldDelegate {
     
     var aryCompanyIDS = [[String:AnyObject]]()
     var companyID = String()
@@ -37,10 +38,10 @@ class UpdateProfilePersonelDetailsVC: UIViewController,UIImagePickerControllerDe
     @IBOutlet weak var btnChangePass: ThemeButton!
     @IBOutlet weak var btnSave: ThemeButton!
     @IBOutlet weak var txtCompanyID: UITextField!
-    @IBOutlet weak var txtMobile: ACFloatingTextfield!
-    @IBOutlet weak var txtFullName: ACFloatingTextfield!
+    @IBOutlet weak var txtMobile: UITextField!
+    @IBOutlet weak var txtFullName: UITextField!
     @IBOutlet weak var txtDOB: UITextField!
-    @IBOutlet weak var txtAddress: ACFloatingTextfield!
+    @IBOutlet weak var txtAddress: UITextField!
     @IBOutlet weak var txtPostCode: UITextField!
     @IBOutlet weak var txtCity: UITextField!
     @IBOutlet weak var txtState: UITextField!
@@ -118,6 +119,9 @@ class UpdateProfilePersonelDetailsVC: UIViewController,UIImagePickerControllerDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+         self.setNavBarWithMenuORBack(Title: "Update Profile".localized, LetfBtn: kIconBack, IsNeedRightButton: false, isTranslucent: false)
+        
         thePicker.reloadAllComponents()
         thePicker.reloadInputViews()
         setLocalizable()
@@ -338,10 +342,10 @@ class UpdateProfilePersonelDetailsVC: UIViewController,UIImagePickerControllerDe
             //aryCompanyIDS = UserDefaults.standard.object(forKey: OTPCodeStruct.kCompanyList) as! [[String : AnyObject]]
 
             
-        txtMobile.text          = profile.object(forKey: "MobileNo") as? String
+        txtMobile.text          = profile.object(forKey: "ZipCode") as? String
         txtFullName.text        = profile.object(forKey: "Fullname") as? String
         lblName.text  = profile.object(forKey: "Fullname") as? String
-        lblEmail.text  = profile.object(forKey: "Email") as? String
+        lblEmail.text  = profile.object(forKey: "MobileNo") as? String
         txtDOB.text             = profile.object(forKey: "DOB") as? String
         txtAddress.text         = profile.object(forKey: "Address") as? String
         txtPostCode.text        = profile.object(forKey: "ZipCode") as? String

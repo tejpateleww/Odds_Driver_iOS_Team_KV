@@ -30,16 +30,16 @@ class FutureBookingTableViewCell: UITableViewCell {
    
     @IBOutlet var lblDate: UILabel!
     @IBOutlet weak var lblPassengerName: UILabel!
-    @IBOutlet weak var lblFlighNum: UILabel!
+///    @IBOutlet weak var lblFlighNum: UILabel!
     
   
     @IBOutlet var viewCell: UIView!
-    @IBOutlet weak var lblNoteas: UILabel!
+ //   @IBOutlet weak var lblNoteas: UILabel!
     @IBOutlet weak var lblpeymentType: UILabel!
     @IBOutlet weak var lblCarMoidel: UILabel!
     @IBOutlet weak var lblTripDistance: UILabel!
-    @IBOutlet weak var lblDropLoactionTilte: UILabel!
-    @IBOutlet weak var lblPickUpLocation: UILabel!
+//    @IBOutlet weak var lblDropLoactionTilte: UILabel!
+//    @IBOutlet weak var lblPickUpLocation: UILabel!
     //    @IBOutlet weak var lblTimeAndDateAtTop: UILabel!
     @IBOutlet weak var lblPickUpTimeTitle: UILabel!
     @IBOutlet weak var lblPickupTimeValue: UILabel!
@@ -57,15 +57,15 @@ class FutureBookingTableViewCell: UITableViewCell {
     @IBOutlet weak var lblTripDestanceDesc: UILabel!
     @IBOutlet weak var lblCarModelDesc: UILabel!
     @IBOutlet weak var lblPaymentType: UILabel!
-    @IBOutlet weak var lblFlightNumber: UILabel!
-    @IBOutlet weak var lblNotes: UILabel!
-    @IBOutlet var lblDispatcherName: UILabel!
-    @IBOutlet var lblDispatcherEmail: UILabel!
-    @IBOutlet var lblDispatcherNumber: UILabel!
-    @IBOutlet var lblDispatcherNameTitle: UILabel!
-    @IBOutlet var lblDispatcherEmailTitle: UILabel!
-    @IBOutlet var lblDispatcherNumberTitle: UILabel!
-    @IBOutlet var stackViewEmail: UIStackView!
-    @IBOutlet var stackViewName: UIStackView!
-    @IBOutlet var stackViewNumber: UIStackView!
+   // @IBOutlet weak var lblFlightNumber: UILabel!
+   // @IBOutlet weak var lblNotes: UILabel!
+//    @IBOutlet var lblDispatcherName: UILabel!
+//    @IBOutlet var lblDispatcherEmail: UILabel!
+//    @IBOutlet var lblDispatcherNumber: UILabel!
+//    @IBOutlet var lblDispatcherNameTitle: UILabel!
+//    @IBOutlet var lblDispatcherEmailTitle: UILabel!
+//    @IBOutlet var lblDispatcherNumberTitle: UILabel!
+//    @IBOutlet var stackViewEmail: UIStackView!
+//    @IBOutlet var stackViewName: UIStackView!
+//    @IBOutlet var stackViewNumber: UIStackView!
 }

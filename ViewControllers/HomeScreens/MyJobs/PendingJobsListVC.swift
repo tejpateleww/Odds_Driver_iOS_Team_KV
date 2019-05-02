@@ -71,12 +71,12 @@ class PendingJobsListVC: UIViewController, UITableViewDataSource, UITableViewDel
         
         tableView.tableFooterView = UIView()
         
-//        labelNoData = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
-//        self.labelNoData.text = "Loading..."
-//        labelNoData.textAlignment = .center
-//        self.view.addSubview(labelNoData)
-//        self.tableView.isHidden = true
- 
+        //        labelNoData = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        //        self.labelNoData.text = "Loading..."
+        //        labelNoData.textAlignment = .center
+        //        self.view.addSubview(labelNoData)
+        //        self.tableView.isHidden = true
+        
         self.tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
         self.tableView.addSubview(self.refreshControl)
         
@@ -85,9 +85,9 @@ class PendingJobsListVC: UIViewController, UITableViewDataSource, UITableViewDel
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-//        webserviceofPendingJobs()
+        //        webserviceofPendingJobs()
         setLocalizable()
-         self.title = "My Job".localized
+        self.title = "My Job".localized
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -138,7 +138,7 @@ class PendingJobsListVC: UIViewController, UITableViewDataSource, UITableViewDel
         cell.lblTripDetailsTitle.text = "Distance Travel :".localized
         cell.lblPaymentTypeTitle.text = "Payment Type :".localized
         cell.btnStartTrip.setTitle("Start Trip".localized, for: .normal)
-       
+        
         cell.viewCell.layer.cornerRadius = 10
         cell.viewCell.clipsToBounds = true
         
@@ -146,7 +146,7 @@ class PendingJobsListVC: UIViewController, UITableViewDataSource, UITableViewDel
         
         cell.lblPassengerName.text = data.object(forKey: "PassengerName") as? String
         cell.lblDateTime.text = (checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "PickupDateTime", isNotHave: strNotAvailable)).components(separatedBy: " ")[0]
-//            data.object(forKey: "CreatedDate") as? String
+        //            data.object(forKey: "CreatedDate") as? String
         
         if let TimeAndDate: String = data.object(forKey: "PickupDateTime") as? String {
             
@@ -178,9 +178,9 @@ class PendingJobsListVC: UIViewController, UITableViewDataSource, UITableViewDel
         cell.lblPassengerNoDesc.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "PassengerContact", isNotHave: strNotAvailable) // data.object(forKey: "PassengerContact") as? String
         cell.lblPickupTimeDesc.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "PickupDateTime", isNotHave: strNotAvailable) // data.object(forKey: "PickupDateTime") as? String
         cell.lblCarModelDesc.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "Model", isNotHave: strNotAvailable) // data.object(forKey: "Model") as? String
-        cell.lblFlightNumber.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "FlightNumber", isNotHave: strNotAvailable) //data.object(forKey: "FlightNumber") as? String
-        cell.lblNotes.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "Notes", isNotHave: strNotAvailable) //data.object(forKey: "Notes") as? String
-        
+//        cell.lblFlightNumber.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "FlightNumber", isNotHave: strNotAvailable) //data.object(forKey: "FlightNumber") as? String
+//        cell.lblNotes.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "Notes", isNotHave: strNotAvailable) //data.object(forKey: "Notes") as? String
+//
         cell.lblPaymentType.text = checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: GetPaymentTypeKey(), isNotHave: strNotAvailable)
         
         cell.btnStartTrip.tag = Int((data.object(forKey: "Id") as? String)!)!
@@ -224,31 +224,31 @@ class PendingJobsListVC: UIViewController, UITableViewDataSource, UITableViewDel
         
         cell.lblTripDetails.text = "\("N/A" != checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "TripDistance", isNotHave: strNotAvailable) ? checkDictionaryHaveValue(dictData: data as! [String : AnyObject], didHaveValue: "TripDistance", isNotHave: strNotAvailable) : "0") km" //
         
-        cell.lblDispatcherName.text = ""
+    //    cell.lblDispatcherName.text = ""
         cell.lblDispatcherEmail.text = ""
         cell.lblDispatcherNumber.text = ""
-        cell.lblDispatcherName.text = ""
+      //  cell.lblDispatcherName.text = ""
         cell.lblDispatcherEmailTitle.text = ""
         cell.lblDispatcherNumber.text = ""
         
-        cell.stackViewEmail.isHidden = true
-        cell.stackViewName.isHidden = true
-        cell.stackViewNumber.isHidden = true
+//        cell.stackViewEmail.isHidden = true
+//        cell.stackViewName.isHidden = true
+//        cell.stackViewNumber.isHidden = true
         
         if((data.object(forKey: "DispatcherDriverInfo")) != nil)
         {
             print("There is driver info and passengger name is \(String(describing: cell.lblPassengerName.text))")
             
-            cell.lblDispatcherName.text = (data.object(forKey: "DispatcherDriverInfo") as? [String:AnyObject])!["Email"] as? String
+        //    cell.lblDispatcherName.text = (data.object(forKey: "DispatcherDriverInfo") as? [String:AnyObject])!["Email"] as? String
             cell.lblDispatcherEmail.text = (data.object(forKey: "DispatcherDriverInfo") as? [String:AnyObject])!["Fullname"] as? String
             cell.lblDispatcherNumber.text = (data.object(forKey: "DispatcherDriverInfo") as? [String:AnyObject])!["MobileNo"] as? String
-            cell.lblDispatcherName.text = "DISPACTHER NAME"
+         //   cell.lblDispatcherName.text = "DISPACTHER NAME"
             cell.lblDispatcherEmailTitle.text = "DISPATCHER EMAIL"
             cell.lblDispatcherNumber.text = "DISPATCHER TITLE"
             
-            cell.stackViewEmail.isHidden = false
-            cell.stackViewName.isHidden = false
-            cell.stackViewNumber.isHidden = false
+//            cell.stackViewEmail.isHidden = false
+//            cell.stackViewName.isHidden = false
+//            cell.stackViewNumber.isHidden = false
         }
         
         return cell
@@ -290,26 +290,26 @@ class PendingJobsListVC: UIViewController, UITableViewDataSource, UITableViewDel
                 self.aryData = ((result as! NSDictionary).object(forKey: "history") as! NSArray)
                 self.getPendingJobs()
                 
-//                if(self.aryPendingJobs.count == 0)
-//                {
-//                    self.labelNoData.text = "Please check back later"
-//                    self.tableView.isHidden = true
-//                }
-//                else
-//                {
-//                    self.labelNoData.removeFromSuperview()
-//
-//                    if self.tableView != nil
-//                    {
-//                        self.tableView.isHidden = false
-//                    }
-//                    else
-//                    {
-//                        self.tableView.delegate = self
-//                        self.tableView.dataSource = self
-//                        self.tableView.isHidden = false
-//                    }
-//                }
+                //                if(self.aryPendingJobs.count == 0)
+                //                {
+                //                    self.labelNoData.text = "Please check back later"
+                //                    self.tableView.isHidden = true
+                //                }
+                //                else
+                //                {
+                //                    self.labelNoData.removeFromSuperview()
+                //
+                //                    if self.tableView != nil
+                //                    {
+                //                        self.tableView.isHidden = false
+                //                    }
+                //                    else
+                //                    {
+                //                        self.tableView.delegate = self
+                //                        self.tableView.dataSource = self
+                //                        self.tableView.isHidden = false
+                //                    }
+                //                }
                 
                 if self.aryPendingJobs.count > 0 {
                     self.lblNodataFound.isHidden = true

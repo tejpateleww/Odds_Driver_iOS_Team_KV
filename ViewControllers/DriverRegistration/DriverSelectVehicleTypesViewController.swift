@@ -444,7 +444,7 @@ class DriverSelectVehicleTypesViewController: UIViewController,getVehicleIdAndNa
                 //                let checkCarModelClass: Bool = Singletons.sharedInstance.boolTaxiModel
                 
                 
-                self.aryDataCarsAndTaxi = result["cars_and_taxi"] as! [[String:AnyObject]]
+                self.aryDataCarsAndTaxi = result["delivery_services"] as! [[String:AnyObject]]
                 
                 
                 for (i,_) in self.aryDataCarsAndTaxi.enumerated()

@@ -9,18 +9,23 @@
 import UIKit
 
 class PendingJobsListTableViewCell: UITableViewCell {
-
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         btnStartTrip.layer.cornerRadius = 5
         btnStartTrip.layer.masksToBounds = true
         // Initialization code
-    }
+        tblParcel.delegate = self
+        tblParcel.dataSource = self
+//        self.tblHeightConstraint?.constant = (129 * 3)
 
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -31,22 +36,25 @@ class PendingJobsListTableViewCell: UITableViewCell {
     // total Cell Height is 158.5
     
     // First View height is 81
+    @IBOutlet weak var tblParcel: UITableView!
+    @IBOutlet weak var tblHeightConstraint: NSLayoutConstraint?
+    
     @IBOutlet weak var lblBookingId: UILabel!
     
     @IBOutlet var lblBookingIDTitle: UILabel!
-    @IBOutlet var lblPickupLocationTitle: UILabel!
+ //   @IBOutlet var lblPickupLocationTitle: UILabel!
     @IBOutlet weak var lblPickUpLocation: UILabel!
     @IBOutlet weak var btnStartTrip: UIButton!
     
-    @IBOutlet var lblDropOffLoationTitle: UILabel!
+   // @IBOutlet var lblDropOffLoationTitle: UILabel!
     @IBOutlet weak var lblDispatcherEmailTitle: UILabel!
     @IBOutlet weak var lblPaymentTypeTitle: UILabel!
     
     @IBOutlet weak var lblPassengerName: UILabel!
- 
+    
     @IBOutlet var lblTripDetails: UILabel!
     @IBOutlet var lblTripDetailsTitle: UILabel!
-    @IBOutlet weak var lblFlightNumTitle: UILabel!
+ //   @IBOutlet weak var lblFlightNumTitle: UILabel!
     @IBOutlet weak var lblDropoffLocationDescription: UILabel!
     
     @IBOutlet var lblDateTime: UILabel!
@@ -56,43 +64,55 @@ class PendingJobsListTableViewCell: UITableViewCell {
     @IBOutlet weak var lblCarModelTitle: UILabel!
     @IBOutlet weak var lblDateAndTime: UILabel!
     
-    @IBOutlet weak var lblNotesTitle: UILabel!
+ //   @IBOutlet weak var lblNotesTitle: UILabel!
     @IBOutlet weak var viewAllDetails: UIView! // Height is 72
     
     @IBOutlet weak var lblpassengerEmailDesc: UILabel!
     @IBOutlet weak var lblPassengerNoDesc: UILabel!
     @IBOutlet weak var lblPickupTimeDesc: UILabel!
     @IBOutlet weak var lblCarModelDesc: UILabel!
-    @IBOutlet weak var lblFlightNumber: UILabel!
-  
+  //  @IBOutlet weak var lblFlightNumber: UILabel!
+    
     @IBOutlet var viewCell: UIView!
-    @IBOutlet var lblDispatcherNameTitle: UILabel!
-    @IBOutlet weak var lblNotes: UILabel!
-    @IBOutlet var lblDispatcherName: UILabel!
+   // @IBOutlet var lblDispatcherNameTitle: UILabel!
+  //  @IBOutlet weak var lblNotes: UILabel!
+ //   @IBOutlet var lblDispatcherName: UILabel!
     @IBOutlet var lblDispatcherEmail: UILabel!
     @IBOutlet var lblDispatcherNumber: UILabel!
-    @IBOutlet var stackViewEmail: UIStackView!
-    @IBOutlet var stackViewName: UIStackView!
-    @IBOutlet var stackViewNumber: UIStackView!
+//    @IBOutlet var stackViewEmail: UIStackView!
+//    @IBOutlet var stackViewName: UIStackView!
+//    @IBOutlet var stackViewNumber: UIStackView!
     
     @IBOutlet var lblPaymentType: UILabel!
     
-//    @IBOutlet weak var lblDispatcherNum: UILabel!
-//    @IBOutlet weak var lblPassengerEmailInfo: UILabel!
-//    
-//    @IBOutlet weak var lblDropLocationInfo: UILabel!
-//    
-//    @IBOutlet weak var lblDispathcherName: UILabel!
-//    
-//    @IBOutlet weak var lblPAssengerNum: UILabel!
-//    @IBOutlet weak var lblBookingIdDetails: UILabel!
-//    
-//    @IBOutlet weak var lblDEscriptiondetail: UILabel!
-//    @IBOutlet weak var lblPickupDetail: UIStackView!
-//    @IBOutlet weak var lblPickUpTime: UILabel!
-//    @IBOutlet weak var lblPickupLocationDesc: UILabel!
-//    
-//    @IBOutlet weak var lblTripDistanceTitle: UILabel!
-
+    //    @IBOutlet weak var lblDispatcherNum: UILabel!
+    //    @IBOutlet weak var lblPassengerEmailInfo: UILabel!
+    //
+    //    @IBOutlet weak var lblDropLocationInfo: UILabel!
+    //
+    //    @IBOutlet weak var lblDispathcherName: UILabel!
+    //
+    //    @IBOutlet weak var lblPAssengerNum: UILabel!
+    //    @IBOutlet weak var lblBookingIdDetails: UILabel!
+    //
+    //    @IBOutlet weak var lblDEscriptiondetail: UILabel!
+    //    @IBOutlet weak var lblPickupDetail: UIStackView!
+    //    @IBOutlet weak var lblPickUpTime: UILabel!
+    //    @IBOutlet weak var lblPickupLocationDesc: UILabel!
+    //
+    //    @IBOutlet weak var lblTripDistanceTitle: UILabel!
+    
+    
+}
+extension PendingJobsListTableViewCell: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: PendingParcelTableViewCell.identifier, for: indexPath) as! PendingParcelTableViewCell
+        return cell
+    }
+    
     
 }

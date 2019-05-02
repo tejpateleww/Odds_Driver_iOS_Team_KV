@@ -19,8 +19,8 @@ struct WebSupport {
 
 struct WebserviceURLs {
     
-    static let kBaseURL                                 = "https://www.tantaxitanzania.com/Drvier_Api/"//"https://pickngolk.info/web/Drvier_Api/" // "http://54.169.67.226/web/Drvier_Api/" //
-    static let kImageBaseURL                            = "https://www.tantaxitanzania.com/" // "http://54.169.67.226/web/" //
+    static let kBaseURL                                 = "https://www.shipodds.com/web/Drvier_Api/" //https://www.tantaxitanzania.com/Drvier_Api/"//"https://pickngolk.info/web/Drvier_Api/" // "http://54.169.67.226/web/Drvier_Api/" //
+    static let kImageBaseURL                            = "https://www.shipodds.com/web/" // "http://54.169.67.226/web/" //
     static let kOTPForDriverRegister                    = "OtpForRegister"
     static let kVehicalModelList                        = "TaxiModel/"
     static let kDriverRegister                          = "Register"
@@ -197,7 +197,7 @@ struct RegistrationFinalKeys {
 
 struct socketApiKeys {
     
-    static let kSocketBaseURL = "https://www.tantaxitanzania.com:8081"//"http://3.120.161.225:8080" //"http://13.237.0.107:8080/" //http://3.120.161.225:8080"//"https://pickngolk.info:8081" // "https://pickngolk.info:8081"   // "http://54.169.67.226:8080"  //
+    static let kSocketBaseURL = "https://www.shipodds.com:8080"//"https://www.tantaxitanzania.com:8081"//"http://3.120.161.225:8080" //"http://13.237.0.107:8080/" //http://3.120.161.225:8080"//"https://pickngolk.info:8081" // "https://pickngolk.info:8081"   // "http://54.169.67.226:8080"  //
     
     static let kUpdateDriverLocation = "UpdateDriverLatLong"
     static let kReceiveBookingRequest = "AriveBookingRequest"

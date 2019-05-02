@@ -52,7 +52,7 @@ class MyRatingViewController : BaseViewController,UITableViewDataSource, UITable
 //        SideMenuController.preferences.interaction.swipingEnabled = false
 
 //        self.setNavBarWithMenu(Title:  "My Ratings".localized, IsNeedRightButton: true)
-        self.setNavBarWithBack(Title: "My Ratings".localized, IsNeedRightButton: false)
+        self.setNavBarWithMenuORBack(Title: "My Ratings".localized, LetfBtn: kIconBack, IsNeedRightButton: false, isTranslucent: false) //(Title: "My Ratings".localized, IsNeedRightButton: false)
     }
     
     func setLocalizable() {

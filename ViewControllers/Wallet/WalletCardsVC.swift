@@ -120,7 +120,7 @@ class WalletCardsVC: BaseViewController, UITableViewDataSource, UITableViewDeleg
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setNavBarWithBack(Title: "My Cards".localized, IsNeedRightButton: false)
+//        self.setNavBarWithBack(Title: "My Cards".localized, IsNeedRightButton: false)
 
         
     }

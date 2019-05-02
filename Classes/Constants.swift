@@ -106,6 +106,9 @@ let kBookaTable : String = "Book a Table"
 let kShopping : String = "Shopping"
 
 
+let kIconMenu : String = "iconMenu"
+let kIconBack : String = "iconBack"
+
 
 //SideMenu Option
 let kMyJobs : String = "My Jobs"
@@ -161,7 +164,7 @@ func GetTripStatusKey() -> String {
 }
 
 func GetResponseMessageKey() -> String {
-    var MessageKey:String = ""
+    var MessageKey:String = "message"
     if let SelectedLanguage = UserDefaults.standard.value(forKey: "i18n_language") as? String {
         MessageKey = (SelectedLanguage == "en") ? "message" : "swahili_message"
     }

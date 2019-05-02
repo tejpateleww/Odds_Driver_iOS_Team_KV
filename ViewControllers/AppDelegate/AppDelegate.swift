@@ -18,9 +18,8 @@ import SocketIO
 import Firebase
 
 
-let googlApiKey = "AIzaSyD1bcITZ_nUkP-ke6xgaP5RIC--tXQU3I4" //"AIzaSyBpHWct2Dal71hBjPis6R1CU0OHZNfMgCw"         // AIzaSyB08IH_NbumyQIAUCxbpgPCuZtFzIT5WQo
-let googlPlacesApiKey = "AIzaSyD1bcITZ_nUkP-ke6xgaP5RIC--tXQU3I4" // "AIzaSyCKEP5WGD7n5QWtCopu0QXOzM9Qec4vAfE"   //   AIzaSyBBQGfB0ca6oApMpqqemhx8-UV-gFls_Zk
-
+let googlApiKey = "AIzaSyDcug87uBhFLMo1KlqyaO10shE-sNTBCmw"//"AIzaSyD1bcITZ_nUkP-ke6xgaP5RIC--tXQU3I4" //"AIzaSyBpHWct2Dal71hBjPis6R1CU0OHZNfMgCw"         // AIzaSyB08IH_NbumyQIAUCxbpgPCuZtFzIT5WQo
+let googlPlacesApiKey = "AIzaSyDcug87uBhFLMo1KlqyaO10shE-sNTBCmw"//"AIzaSyD1bcITZ_nUkP-ke6xgaP5RIC--tXQU3I4" // "AIzaSyCKEP5WGD7n5QWtCopu0QXOzM9Qec4vAfE"   //   AIzaSyBBQGfB0ca6oApMpqqemhx8-UV-gFls_Zk
 @UIApplicationMain class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, UNUserNotificationCenterDelegate,MessagingDelegate
 {
     
@@ -34,11 +33,23 @@ let googlPlacesApiKey = "AIzaSyD1bcITZ_nUkP-ke6xgaP5RIC--tXQU3I4" // "AIzaSyCKEP
     var Speed  = ""
     
     var RoadPickupTimer = Timer()
-    let SocketManager = SocketIOClient(socketURL: URL(string: socketApiKeys.kSocketBaseURL)!, config: [.log(false), .compress])
-    
+
+
+    let Socktmanager = SocketManager(socketURL: URL(string: socketApiKeys.kSocketBaseURL)!, config: [.log(false), .compress])
+    var socket : SocketIOClient! = nil//Socktmanager.defaultSocket
+
+//    let SocketManagerObject = SocketManager(socketURL: URL(string: socketApiKeys.kSocketBaseURL)!, config: [.log(false), .compress])
+//    var objectTemp : SocketIOClient!
+
+
+    //SocketIOClient(socketURL: URL(string: socketApiKeys.kSocketBaseURL)!, config: [.log(false), .compress])
+//    let SocketManager = SocketManager(socketURL: URL(string: socketApiKeys.kSocketBaseURL)!, config: [.log(false), .compress]) //SocketIOClient(socketURL: URL(string: socketApiKeys.kSocketBaseURL)!, config: [.log(false), .compress])
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+
+
+        socket = Socktmanager.defaultSocket
         IQKeyboardManager.shared.enable = true
         UserDefaults.standard.set(false, forKey: kIsSocketEmited)
         UserDefaults.standard.synchronize()
@@ -203,8 +214,8 @@ let googlPlacesApiKey = "AIzaSyD1bcITZ_nUkP-ke6xgaP5RIC--tXQU3I4" // "AIzaSyCKEP
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
         print("App is in Background mode")
-        SocketManager.connect()
-        SocketManager.on(clientEvent: .connect) {data, ack in
+        Socktmanager.connect()
+        socket.on(clientEvent: .connect) {data, ack in
             print ("socket connected")
             
         }
@@ -529,7 +540,7 @@ extension String {
         
         
         let lang = UserDefaults.standard.string(forKey: "i18n_language")
-        print(lang)
+//        print(lang)
         let path = Bundle.main.path(forResource: lang, ofType: "lproj")
         let bundle = Bundle(path: path!)
         print(path ?? "")

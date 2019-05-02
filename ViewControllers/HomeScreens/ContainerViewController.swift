@@ -20,8 +20,8 @@ class ContainerViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.setNavBarWithMenu(Title:  "Home".localized, IsNeedRightButton: true)
-
+//        self.setNavBarWithMenu(Title:  "Home".localized, IsNeedRightButton: true)
+        self.setNavBarWithMenuORBack(Title: "Home".localized, LetfBtn: kIconMenu, IsNeedRightButton: true, isTranslucent: false)
     }
 
     @IBAction func btnHome(_ sender: UIButton) {

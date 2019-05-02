@@ -8,7 +8,8 @@
 
 import UIKit
 import SideMenuSwift
-class SetPasscodeViewController: UIViewController {
+class SetPasscodeViewController: BaseViewController
+{
 
     
     var aryPassword = [String]()
@@ -21,6 +22,7 @@ class SetPasscodeViewController: UIViewController {
     var strImages = String()
     var strCheckOldPassword = String()
     
+    @IBOutlet weak var imgLock: UIImageView!
     
      var isCheckPasscodeTrue = Bool()
     //-------------------------------------------------------------
@@ -49,6 +51,8 @@ class SetPasscodeViewController: UIViewController {
             lblPassword.text = "Create password"
         }
   
+        self.imgLock.image = UIImage.init(named: "iconLock")?.withRenderingMode(.alwaysTemplate)
+        self.imgLock.tintColor = ThemeYellowColor
     }
     
     //-------------------------------------------------------------
@@ -67,7 +71,10 @@ class SetPasscodeViewController: UIViewController {
             imgPasscodes[i].image = UIImage(named: "iconLockStar")
         }
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.setNavBarWithMenuORBack(Title: "", LetfBtn: "iconBackBlack", IsNeedRightButton: false, isTranslucent: true)
+    }
     @IBAction func btnNumbersAction(_ sender: UIButton) {
 //        let strOldPasscode = Singletons.sharedInstance.setPasscode
 
@@ -332,47 +339,76 @@ class SetPasscodeViewController: UIViewController {
             }
             
         }
-        else if strPassword.count <= 4 && strPassword.count != 0 {
-            strPassword.removeLast()
-            aryImagesPassword.removeLast()
-           
-            
-            if aryImagesPassword.count <= 4 && aryImagesPassword.count >= 0
-            {
-                for j in 0..<imgPasscodes.count {
-                   
-                    if aryImagesPassword.count > j {
-                        imgPasscodes[j].image = UIImage(named: "iconDot")
-                    }
-                    else {
-                        imgPasscodes[j].image = UIImage(named: "iconLockStar")
-                    }
-                }
-            }
-            
-            
-            print("Removerd strPassword = \(strPassword)")
-        }
-        else if strRetypePassword.count <= 4 && strRetypePassword.count != 0 {
-            
-            strRetypePassword.removeLast()
-            aryImagesRetypePassword.removeLast()
-            
-            if aryImagesRetypePassword.count <= 4 && aryImagesRetypePassword.count >= 0
-            {
-                for j in 0..<imgPasscodes.count {
-                    
-                    if aryImagesRetypePassword.count > j {
-                        imgPasscodes[j].image = UIImage(named: "iconDot")
-                    }
-                    else {
-                        imgPasscodes[j].image = UIImage(named: "iconLockStar")
+        else if self.lblPassword.text == "Verify Passcode"
+        {
+            if strRetypePassword.count <= 4 && strRetypePassword.count != 0 {
+                
+                strRetypePassword.removeLast()
+                aryImagesRetypePassword.removeLast()
+                
+                if aryImagesRetypePassword.count <= 4 && aryImagesRetypePassword.count >= 0
+                {
+                    for j in 0..<imgPasscodes.count {
+                        
+                        if aryImagesRetypePassword.count > j {
+                            imgPasscodes[j].image = UIImage(named: "iconDot")
+                        }
+                        else {
+                            imgPasscodes[j].image = UIImage(named: "iconLockStar")
+                        }
                     }
                 }
+                
+                print("Removerd strRetypePassword = \(strRetypePassword)")
             }
-            
-             print("Removerd strRetypePassword = \(strRetypePassword)")
         }
+        else
+        {
+            if strPassword.count <= 4 && strPassword.count != 0
+            {
+                
+                strPassword.removeLast()
+                aryImagesPassword.removeLast()
+                
+                
+                if aryImagesPassword.count <= 4 && aryImagesPassword.count >= 0
+                {
+                    for j in 0..<imgPasscodes.count {
+                        
+                        if aryImagesPassword.count > j {
+                            imgPasscodes[j].image = UIImage(named: "iconDot")
+                        }
+                        else {
+                            imgPasscodes[j].image = UIImage(named: "iconLockStar")
+                        }
+                    }
+                }
+                print("Removerd strPassword = \(strPassword)")
+                
+                
+            }
+        }
+//        else
+//        else if strRetypePassword.count <= 4 && strRetypePassword.count != 0 {
+//
+//            strRetypePassword.removeLast()
+//            aryImagesRetypePassword.removeLast()
+//
+//            if aryImagesRetypePassword.count <= 4 && aryImagesRetypePassword.count >= 0
+//            {
+//                for j in 0..<imgPasscodes.count {
+//
+//                    if aryImagesRetypePassword.count > j {
+//                        imgPasscodes[j].image = UIImage(named: "iconDot")
+//                    }
+//                    else {
+//                        imgPasscodes[j].image = UIImage(named: "iconLockStar")
+//                    }
+//                }
+//            }
+//
+//             print("Removerd strRetypePassword = \(strRetypePassword)")
+//        }
         
     }
     @IBAction func btnBack(_ sender: UIButton) {

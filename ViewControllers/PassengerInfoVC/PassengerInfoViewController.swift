@@ -13,6 +13,9 @@ class PassengerInfoViewController: UIViewController,MFMessageComposeViewControll
   
     
 
+   @IBOutlet weak var tblParcel: UITableView!
+     @IBOutlet weak var infoView: UIView!
+     @IBOutlet weak var tblHeight : NSLayoutConstraint!
     
     var strPickupLocation = String()
     var strDropoffLocation = String()
@@ -234,6 +237,18 @@ class PassengerInfoViewController: UIViewController,MFMessageComposeViewControll
     }
     
     
+    
+    
+}
+extension PassengerInfoViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: PendingParcelTableViewCell.identifier, for: indexPath) as! PendingParcelTableViewCell
+        return cell
+    }
     
     
 }

@@ -417,12 +417,12 @@ class Utilities: NSObject
         return myDictData
     }
     
-    class func setNavigationBarInViewController (controller : UIViewController,naviColor : UIColor, naviTitle : String, leftImage : String , rightImage : String)
+    class func setNavigationBarInViewController (controller : UIViewController,naviColor : UIColor, naviTitle : String, leftImage : String , rightImage : String, isTranslucent : Bool)
     {
         UIApplication.shared.statusBarStyle = .lightContent
         controller.navigationController?.isNavigationBarHidden = false
         controller.navigationController?.navigationBar.isOpaque = false;
-        controller.navigationController?.navigationBar.isTranslucent = false
+        controller.navigationController?.navigationBar.isTranslucent = isTranslucent
         
         controller.navigationController?.navigationBar.barTintColor = naviColor;
         controller.navigationController?.navigationBar.tintColor = UIColor.white;
