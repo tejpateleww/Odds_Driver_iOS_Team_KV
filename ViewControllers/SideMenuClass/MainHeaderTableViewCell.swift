@@ -34,5 +34,7 @@ class MainHeaderTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblMobileNumber: UILabel!
     
+    @IBOutlet weak var btnProfile: UIButton!
+    
     
 }

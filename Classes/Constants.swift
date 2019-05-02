@@ -106,6 +106,9 @@ let kBookaTable : String = "Book a Table"
 let kShopping : String = "Shopping"
 
 
+let kIconMenu : String = "iconMenu"
+let kIconBack : String = "iconBack"
+
 
 //SideMenu Option
 let kMyJobs : String = "My Jobs"

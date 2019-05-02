@@ -9,7 +9,8 @@
 import UIKit
 
 
-class UpdateProfileAccountVC: UIViewController {
+class UpdateProfileAccountVC: BaseViewController
+{
     
     var strDriverID = String()
     
@@ -24,7 +25,8 @@ class UpdateProfileAccountVC: UIViewController {
     // MARK: - Base Methods
     //-------------------------------------------------------------
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
 
         
@@ -42,8 +44,10 @@ class UpdateProfileAccountVC: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(true)
+        self.setNavBarWithMenuORBack(Title: "test", LetfBtn: kBackIcon, IsNeedRightButton: false, isTranslucent: false)
         setLocalizable()
     }
     func setLocalizable(){

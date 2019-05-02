@@ -64,8 +64,8 @@
         self.txtPassword.placeholder = "Password".localized
         self.btnForgotPassWord.setTitle("Forgot Password".localized, for: .normal)
         self.btnSignIn.setTitle("Sign In".localized, for: .normal)
-        self.btnSignUp.setTitle("Sign Up".localized, for: .normal)
-        self.lblDonTHaveAnyAccount.text = "Don't have an Account?".localized
+//        self.btnSignUp.setTitle("Sign Up".localized, for: .normal)
+        self.lblDonTHaveAnyAccount.text = "Don't have an Account? Sign Up".localized
         
     }
     
@@ -81,7 +81,7 @@
 //            if Connectivity.isConnectedToInternet()
 //            {
 //                print("Yes! internet is available.")
-                self.webserviceOfAppSetting()
+//                self.webserviceOfAppSetting()
                 // do some tasks..
 //            }
 //            else
@@ -101,7 +101,12 @@
 //            else {
 //                UtilityClass.showAlert(appName.kAPPName, message: "Sorry! Not connected to internet".localized, vc: self)
 //            }
-    
+        if(Singletons.sharedInstance.isDriverLoggedIN)
+        {
+//            let next = self.storyboard?.instantiateViewController(withIdentifier: "CustomSideMenuViewController") as! CustomSideMenuViewController
+//            self.navigationController?.pushViewController(next, animated: false)
+            (UIApplication.shared.delegate as! AppDelegate).GoToHome()
+        }
 //            webserviceOfAppSetting()
     //
         }
@@ -129,15 +134,15 @@
         
         Utilities.setStatusBarColor(color: UIColor.clear)
         
-
+        webserviceOfAppSetting()
         
        
         //
         
-        btnSignUp.layer.cornerRadius = 3.0
-        btnSignUp.layer.borderColor = UIColor.white.cgColor
-        btnSignUp.layer.borderWidth = 1.0
-        btnSignUp.clipsToBounds = true
+//        btnSignUp.layer.cornerRadius = 3.0
+//        btnSignUp.layer.borderColor = UIColor.white.cgColor
+//        btnSignUp.layer.borderWidth = 1.0
+//        btnSignUp.clipsToBounds = true
         //
         //        if DeviceType.IS_IPHONE_4_OR_LESS || DeviceType.IS_IPAD {
         //            constraintHeightOfLogo.constant = 120
@@ -511,9 +516,10 @@
                         
                         UtilityClass.showAlertWithCompletion("App Name".localized, message: (result as! NSDictionary).object(forKey: GetResponseMessageKey()) as! String, vc: self, completionHandler: { ACTION in
                             
-                            UIApplication.shared.open((NSURL(string: appName.kAPPUrl)! as URL), options: [:], completionHandler: { (status) in
-                                
-                            })//openURL(NSURL(string: appName.kAPPUrl)! as URL)
+//                            UIApplication.shared.open((NSURL(string: appName.kAPPUrl)! as URL), options: [:], completionHandler: { (status) in
+//
+//                            })
+                            //openURL(NSURL(string: appName.kAPPUrl)! as URL)
                         })
                     }
                     else {

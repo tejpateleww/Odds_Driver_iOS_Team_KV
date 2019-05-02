@@ -73,6 +73,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
     
     @IBOutlet weak var viewRound: UIView!
     
+    @IBOutlet weak var iconCurrentDot: UIImageView!
     @IBOutlet weak var viewRoundForHome: UIView!
     
     var switchControl = UISwitch()
@@ -152,13 +153,16 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         super.viewDidLoad()
         
 //       self.title = "Home"
-      
+      self.iconCurrentDot.image = UIImage.init(named: "iconRoundOrange")?.withRenderingMode(.alwaysTemplate)
+        self.iconCurrentDot.tintColor = ThemeYellowColor
 //        btnMyJob.borderColor = UIColor.red// UIColor.init(red: 228/255, green: 132/255, blue: 40/255, alpha: 1.0)
 //        btnHome.borderColor = UIColor.red//.init(red: 228/255, green: 132/255, blue: 40/255, alpha: 1.0)
         btnCurrentlocation.layer.cornerRadius = 5
         btnCurrentlocation.layer.masksToBounds = true
         //        viewLocationDetails.layer.cornerRadius = 5
         //        btnHome.b
+        
+        
         BottomButtonView.isHidden = true
         StartTripView.isHidden = true
         btnStartTrip.isHidden = true
@@ -210,7 +214,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         
         let stringToArrayOFVehicleModel = stringOFVehicleModel.components(separatedBy: ",")
         
-        Singletons.sharedInstance.arrVehicleClass = NSMutableArray(array: stringToArrayOFVehicleModel.map { Int($0)!})
+        Singletons.sharedInstance.arrVehicleClass = stringToArrayOFVehicleModel.map({$0}) as! [String] ///NSMutableArray(array: stringToArrayOFVehicleModel.map { Int($0)!})
         
         driverID = Vehicle.object(forKey: "DriverId") as! String
         
@@ -269,6 +273,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         }
         
         runTimer()
+        
+        self.btnCurrentLocation(self.btnCurrentlocation)
     }
     override func viewDidLayoutSubviews() {
         self.title = "Home".localized

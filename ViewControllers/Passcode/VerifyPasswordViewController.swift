@@ -46,7 +46,8 @@ class VerifyPasswordViewController: UIViewController {
             
             btnBackAction.isHidden = true
         }
-        else {
+        else
+        {
             btnBackAction.isHidden = false
             
         }

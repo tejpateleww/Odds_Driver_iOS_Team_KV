@@ -76,8 +76,8 @@ class MyJobsViewController: BaseViewController
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-         self.setNavBarWithMenu(Title:  "My Jobs".localized, IsNeedRightButton: true)
-
+        
+        self.setNavBarWithMenuORBack(Title: "My Jobs".localized, LetfBtn: kIconBack, IsNeedRightButton: true, isTranslucent: false)
         //        if Singletons.sharedInstance.isPresentVC == true
         //        {
         //

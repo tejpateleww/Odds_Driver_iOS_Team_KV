@@ -9,7 +9,7 @@
 import UIKit
 import IQDropDownTextField
 
-class updateDriverSelectVehicleTypesViewControllerViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate,IQDropDownTextFieldDelegate
+class updateDriverSelectVehicleTypesViewControllerViewController: BaseViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate,IQDropDownTextFieldDelegate
 {
     
     
@@ -21,6 +21,33 @@ class updateDriverSelectVehicleTypesViewControllerViewController: UIViewControll
     var aryDataCarsAndTaxiVehicleTypes = [String]()
     var aryDataDeliveryServicesVehicleTypes = [String]()
     var strVehicleClass = String()
+    
+    
+    //-------------------------------------------------------------
+    // MARK: - Outlets
+    //-------------------------------------------------------------
+    
+    
+    @IBOutlet weak var imgVehicle: UIImageView!
+    
+    @IBOutlet weak var txtVehicleRegistrationNumber: UITextField!
+    @IBOutlet weak var txtCompany: UITextField!
+    @IBOutlet weak var txtCarType: UITextField!
+    
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet var txtNoOfPassenger: IQDropDownTextField!
+    @IBOutlet var txtVehicleModel: UITextField!
+    
+    @IBOutlet weak var btnCarsAndTexis: UIButton!
+    @IBOutlet weak var btnDeliveryService: UIButton!
+    
+    @IBOutlet weak var viewCarsAndTexis: UIView!
+    @IBOutlet weak var viewDeliveryService: UIView!
+    
+    @IBOutlet weak var viewbtnCarsAndTexis: UIView!
+    @IBOutlet weak var viewbtnDeliveryService: UIView!
+    
+    
     
     //-------------------------------------------------------------
     // MARK: - Base Methods
@@ -75,7 +102,7 @@ class updateDriverSelectVehicleTypesViewControllerViewController: UIViewControll
         {
             let carType = UserDefaults.standard.object(forKey: RegistrationFinalKeys.kCarThreeTypeName) as! String
             txtCarType.text = carType
-//            Singletons.sharedInstance.vehicleClass = carType
+            Singletons.sharedInstance.vehicleClass = carType
         }
         
     }
@@ -84,15 +111,17 @@ class updateDriverSelectVehicleTypesViewControllerViewController: UIViewControll
         super.viewWillAppear(animated)
         getData()
         
+        self.setNavBarWithMenuORBack(Title: "Vehicle Option".localized, LetfBtn: kIconBack, IsNeedRightButton: false, isTranslucent: false)
+        
         let profile: NSMutableDictionary = NSMutableDictionary(dictionary: (Singletons.sharedInstance.dictDriverProfile.object(forKey: "profile") as! NSDictionary))
         
         let Vehicle: NSMutableDictionary = NSMutableDictionary(dictionary: profile.object(forKey: "Vehicle") as! NSDictionary)
         
-        let stringOFVehicleModel: String = Vehicle.object(forKey: "VehicleModel") as! String
+        let stringOFVehicleModel: String = Vehicle.object(forKey: "VehicleClass") as! String
         
         let stringToArrayOFVehicleModel = stringOFVehicleModel.components(separatedBy: ",")
         
-        Singletons.sharedInstance.arrVehicleClass = NSMutableArray(array: stringToArrayOFVehicleModel.map { Int($0)!})
+        Singletons.sharedInstance.arrVehicleClass = stringToArrayOFVehicleModel.map({$0}) as! [String]//NSMutableArray(array: stringToArrayOFVehicleModel.map { Int($0)!})
         setLocalizable()
     }
     @IBOutlet weak var btnSave: ThemeButton!
@@ -119,35 +148,11 @@ class updateDriverSelectVehicleTypesViewControllerViewController: UIViewControll
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        imgVehicle.layer.cornerRadius = imgVehicle.frame.width / 2
+        imgVehicle.layer.cornerRadius = 10
         imgVehicle.clipsToBounds = true
     }
     
-    //-------------------------------------------------------------
-    // MARK: - Outlets
-    //-------------------------------------------------------------
-    
-    
-    @IBOutlet weak var imgVehicle: UIImageView!
-    
-    @IBOutlet weak var txtVehicleRegistrationNumber: UITextField!
-    @IBOutlet weak var txtCompany: UITextField!
-    @IBOutlet weak var txtCarType: UITextField!
 
-    @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet var txtNoOfPassenger: IQDropDownTextField!
-    @IBOutlet var txtVehicleModel: UITextField!
-    
-    @IBOutlet weak var btnCarsAndTexis: UIButton!
-    @IBOutlet weak var btnDeliveryService: UIButton!
-    
-    @IBOutlet weak var viewCarsAndTexis: UIView!
-    @IBOutlet weak var viewDeliveryService: UIView!
-    
-    @IBOutlet weak var viewbtnCarsAndTexis: UIView!
-    @IBOutlet weak var viewbtnDeliveryService: UIView!
-    
-    
     //-------------------------------------------------------------
     // MARK: - Actions and Custom Methods
     //-------------------------------------------------------------
@@ -312,14 +317,14 @@ class updateDriverSelectVehicleTypesViewControllerViewController: UIViewControll
         
         
         txtVehicleRegistrationNumber.text = Vehicle.object(forKey: "VehicleRegistrationNo") as? String
-        txtVehicleModel.text = Vehicle.object(forKey: "VehicleModel") as? String
+        txtVehicleModel.text = Vehicle.object(forKey: "Company") as? String
         
         txtCompany.text = Vehicle.object(forKey: "VehicleModelName") as? String
 
         let carType = Vehicle.object(forKey: "VehicleClass") as? String
         txtCarType.text = carType
 
-        txtNoOfPassenger.selectedItem = Vehicle.object(forKey: "NoOfPassenger") as? String
+//        txtNoOfPassenger.selectedItem = Vehicle.object(forKey: "NoOfPassenger") as? String
         imgVehicle.sd_setImage(with: URL.init(string: Vehicle.object(forKey: "VehicleImage") as! String), completed: nil)
     }
     
@@ -489,7 +494,7 @@ class updateDriverSelectVehicleTypesViewControllerViewController: UIViewControll
                 //                let checkCarModelClass: Bool = Singletons.sharedInstance.boolTaxiModel
                 
                 
-                self.aryDataCarsAndTaxi = result["cars_and_taxi"] as! [[String:AnyObject]]
+                self.aryDataCarsAndTaxi = result["delivery_services"] as! [[String:AnyObject]]
                 
                 
                 for (i,_) in self.aryDataCarsAndTaxi.enumerated()

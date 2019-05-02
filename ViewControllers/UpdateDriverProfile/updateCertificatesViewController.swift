@@ -27,7 +27,7 @@ class updateCertificatesViewController: UIViewController, UIImagePickerControlle
         super.viewDidLoad()
 
         
-        imgVehicleImage.layer.cornerRadius = imgVehicleImage.frame.width / 2
+        imgVehicleImage.layer.cornerRadius = 10//imgVehicleImage.frame.width / 2
         imgVehicleImage.layer.masksToBounds = true
         
         imgVehicleImage.layer.borderWidth = 1.0

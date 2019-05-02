@@ -85,6 +85,7 @@ class InviteDriverViewController : BaseViewController,MFMailComposeViewControlle
         setLocalization()
         self.title = "My Ratings".localized
 //        self.setNavBarWithBack(Title: "My Ratings".localized, IsNeedRightButton: false)
+        self.setNavBarWithMenuORBack(Title: "Invite Drivers".localized, LetfBtn: kIconBack, IsNeedRightButton: false, isTranslucent: true)
 
     }
     @IBOutlet weak var btnShare: UIButton!

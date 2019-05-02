@@ -14,7 +14,7 @@ class Singletons: NSObject {
 
 //    var isOnTabbarView = Bool()
     var dictDriverProfile : NSMutableDictionary!
-    var arrVehicleClass: NSMutableArray!
+    var arrVehicleClass: [String]!
  
     var AryVehicleClass: [Int]!
     

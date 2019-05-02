@@ -79,11 +79,11 @@ class CarAndTaxiesVC: UIViewController, UITableViewDataSource, UITableViewDelega
         {
             for i in 0..<self.aryData.count
             {
-                let vehicleID = ((self.aryData as NSArray).object(at: i) as! NSDictionary).object(forKey: "Id") as! String
-                let anotherVehicleID : Int = Int(vehicleID)!
+                let vehicleName = ((self.aryData as NSArray).object(at: i) as! NSDictionary).object(forKey: "Name") as! String
+//                let anotherVehicleID : Int = Int(vehicleID)!
                 for j in 0..<Singletons.sharedInstance.arrVehicleClass.count
                 {
-                    if (anotherVehicleID == (Singletons.sharedInstance.arrVehicleClass.object(at: j)) as! Int)
+                    if (vehicleName == Singletons.sharedInstance.arrVehicleClass[j] )//(Singletons.sharedInstance.arrVehicleClass.object(at: j))) //as! Int)
                     {
                         self.aryChooseCareModel.append(((self.aryData as NSArray).object(at: i) as! NSDictionary).object(forKey: "Id") as! String)
                         self.aryChooseCarName.append(((self.aryData as NSArray).object(at: i) as! NSDictionary).object(forKey: "Name") as! String)
