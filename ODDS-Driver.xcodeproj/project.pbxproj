@@ -227,6 +227,7 @@
 		63F23F77218890D300FB629F /* LegalWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F23F76218890D300FB629F /* LegalWebView.swift */; };
 		645BF90822674DA4006D4D8E /* PendingParcelsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645BF90722674DA4006D4D8E /* PendingParcelsTableViewCell.swift */; };
 		ADE943A3C88325458BC09C01 /* Pods_ODDS_Driver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F194C99D06F795219F0128F3 /* Pods_ODDS_Driver.framework */; };
+		EE226CD7228D6BA500CAED8A /* ParcelTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE226CD6228D6BA500CAED8A /* ParcelTypeTableViewCell.swift */; };
 		EE5FF5BA223A5DA5000FF171 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FF5B9223A5DA5000FF171 /* BaseViewController.swift */; };
 		EEB3CDF9223B6A7B00676539 /* MainHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB3CDF8223B6A7B00676539 /* MainHeaderTableViewCell.swift */; };
 		EECDB7D9203D48AE0079F78B /* MeterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDB7D8203D48AE0079F78B /* MeterViewController.swift */; };
@@ -518,6 +519,7 @@
 		D0C5C9AD80887164E8079598 /* Pods-TanTaxi-Driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TanTaxi-Driver.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TanTaxi-Driver/Pods-TanTaxi-Driver.debug.xcconfig"; sourceTree = "<group>"; };
 		E111D3FBD4E215CF9F27E5D0 /* Pods-ODDS-Driver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ODDS-Driver.release.xcconfig"; path = "Pods/Target Support Files/Pods-ODDS-Driver/Pods-ODDS-Driver.release.xcconfig"; sourceTree = "<group>"; };
 		E8A00ED1BA5D44BC868270B9 /* Pods-ODDS-Driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ODDS-Driver.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ODDS-Driver/Pods-ODDS-Driver.debug.xcconfig"; sourceTree = "<group>"; };
+		EE226CD6228D6BA500CAED8A /* ParcelTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParcelTypeTableViewCell.swift; sourceTree = "<group>"; };
 		EE5FF5B9223A5DA5000FF171 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EEB3CDF8223B6A7B00676539 /* MainHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		EEC4C18D223FBAFC00AF137E /* ODDS-Driver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ODDS-Driver.entitlements"; sourceTree = "<group>"; };
@@ -1569,6 +1571,7 @@
 			isa = PBXGroup;
 			children = (
 				00E9291C202AE2BF00A399E2 /* ReceiveRequestViewController.swift */,
+				EE226CD6228D6BA500CAED8A /* ParcelTypeTableViewCell.swift */,
 			);
 			path = "Receive Request For Trip";
 			sourceTree = "<group>";
@@ -1941,6 +1944,7 @@
 				00E929FD202AE2C100A399E2 /* TickPayAlertViewController.swift in Sources */,
 				00E92A25202AE2C100A399E2 /* SPAnimationSpring.swift in Sources */,
 				00E92A70202AE2C100A399E2 /* Singletons.swift in Sources */,
+				EE226CD7228D6BA500CAED8A /* ParcelTypeTableViewCell.swift in Sources */,
 				2101CD0E216F2CBA007B9680 /* ThemeButton.swift in Sources */,
 				00E92A45202AE2C100A399E2 /* SPUIViewExtenshion.swift in Sources */,
 				00E92A1A202AE2C100A399E2 /* ARCarMovement.swift in Sources */,

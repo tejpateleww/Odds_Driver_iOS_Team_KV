@@ -13,6 +13,7 @@ import MarqueeLabel
 
 class ReceiveRequestViewController: UIViewController, SRCountdownTimerDelegate {
 
+
     //-------------------------------------------------------------
     // MARK: - Outlets
     //-------------------------------------------------------------
@@ -23,12 +24,16 @@ class ReceiveRequestViewController: UIViewController, SRCountdownTimerDelegate {
     
     @IBOutlet weak var lblMessage: UILabel!
     
+    @IBOutlet weak var viewLocationDetails: UIView!
     @IBOutlet weak var lblGrandTotal: UILabel!
     @IBOutlet weak var lblPickUpLocationInfo: UILabel!
     @IBOutlet weak var lblPickupLocation: MarqueeLabel!
     @IBOutlet weak var lblDropoffLocationInfo: UILabel!
     @IBOutlet weak var lblDropoffLocation: MarqueeLabel!
     
+    @IBOutlet weak var imgToFromAddress: UIImageView!
+    @IBOutlet weak var constraintHeightTable: NSLayoutConstraint!
+    @IBOutlet weak var lblPaymrntType: UILabel!
     //    @IBOutlet weak var lblFlightNumber: UILabel!
     //    @IBOutlet weak var lblNotes: UILabel!
     
@@ -41,6 +46,7 @@ class ReceiveRequestViewController: UIViewController, SRCountdownTimerDelegate {
     
     @IBOutlet weak var viewDetails: UIView!
     
+    @IBOutlet weak var imgParcelImage: UIImageView!
     @IBOutlet weak var viewCountdownTimer: SRCountdownTimer!
     //    @IBOutlet var constratintHorizontalSpaceBetweenButtonAndTimer: NSLayoutConstraint!
     
@@ -54,8 +60,11 @@ class ReceiveRequestViewController: UIViewController, SRCountdownTimerDelegate {
     var strRequestMessage = String()
     var strFlightNumber = String()
     var strNotes = String()
+    var parcelData =  [[String:AnyObject]]()
+    var arrParcel = [[String:AnyObject]]()
     
-    
+    @IBOutlet weak var tblParcelImage: UITableView!
+
     //-------------------------------------------------------------
     // MARK: - Base Methods
     //-------------------------------------------------------------
@@ -65,6 +74,29 @@ class ReceiveRequestViewController: UIViewController, SRCountdownTimerDelegate {
         super.viewDidLoad()
 
         CountDownView()
+
+
+        if let arrParcelData = parcelData[0]["ParcelInfo"] as? [[String:AnyObject]]
+        {
+            arrParcel = arrParcelData
+        }
+
+        if let imageUrl = parcelData[0]["ParcelImage"] as? String
+        {
+//            imgParcelImage.sd_addActivityIndicator()
+            imgParcelImage.sd_setShowActivityIndicatorView(true)
+            imgParcelImage.sd_setImage(with: URL(string: imageUrl), placeholderImage: nil) { (image, error, cacheType, url) in
+                self.imgParcelImage.sd_removeActivityIndicator()
+            }
+        }
+
+        imgToFromAddress.tintColor = UIColor(hex: "86C834")
+
+        constraintHeightTable.constant = CGFloat(60 * arrParcel.count)
+        if(constraintHeightTable.constant > 150)
+        {
+            constraintHeightTable.constant = 150
+        }
         
         btnReject.layer.cornerRadius = 5
         btnReject.layer.masksToBounds = true
@@ -77,6 +109,14 @@ class ReceiveRequestViewController: UIViewController, SRCountdownTimerDelegate {
         
         boolTimeEnd = false
         isAccept = false
+
+        lblPaymrntType.textColor = ThemeYellowColor
+
+        imgParcelImage.layer.borderWidth = 1.0
+        imgParcelImage.layer.borderColor = UIColor.gray.cgColor
+        imgParcelImage.layer.cornerRadius = 10
+        imgParcelImage.layer.masksToBounds = true
+
         
 //        self.playSound()
         
@@ -89,10 +129,26 @@ class ReceiveRequestViewController: UIViewController, SRCountdownTimerDelegate {
         super.viewWillAppear(true)
         setLocalization()
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        viewLocationDetails.layer.cornerRadius = 8.0
+        viewLocationDetails.layer.borderWidth = 1.0
+        viewLocationDetails.layer.borderColor = UIColor.clear.cgColor
+        viewLocationDetails.layer.masksToBounds = true
+        viewLocationDetails.layer.shadowColor = UIColor.black.withAlphaComponent(0.80).cgColor
+        viewLocationDetails.layer.shadowOffset = CGSize(width: 1, height: 2.0)
+        viewLocationDetails.layer.shadowRadius = 5.0
+        viewLocationDetails.layer.shadowOpacity = 0.6
+        viewLocationDetails.layer.masksToBounds = false
+        viewLocationDetails.layer.shadowPath = UIBezierPath(roundedRect: viewLocationDetails.bounds, cornerRadius: viewLocationDetails.layer.cornerRadius).cgPath
+
+    }
     
     func setLocalization(){
-        lblReceiveRequest.text = "Receive Request".localized
-        lblMessage.text = "New booking request arrived".localized
+//        lblReceiveRequest.text = "Receive Request".localized
+//        lblMessage.text = "New booking request arrived".localized
 //        lblGrandTotal.text = "Grand Total is".localized
         lblPickUpLocationInfo.text = "Pick up location".localized
         lblDropoffLocationInfo.text = "Drop off location".localized
@@ -108,7 +164,7 @@ class ReceiveRequestViewController: UIViewController, SRCountdownTimerDelegate {
     
     func CountDownView() {
         
-        viewCountdownTimer.labelFont = UIFont(name: "HelveticaNeue-Light", size: 30.0)
+        viewCountdownTimer.labelFont = UIFont(name: "HelveticaNeue-Light", size: 15.0)
         //                    self.timerView.timerFinishingText = "End"
         viewCountdownTimer.lineWidth = 4
         viewCountdownTimer.lineColor = UIColor.black
@@ -141,10 +197,10 @@ class ReceiveRequestViewController: UIViewController, SRCountdownTimerDelegate {
 //            if strGrandTotal != "0" {
 //                lblGrandTotal.text = "Grand Total : \(strGrandTotal) \(currency)"
 //            } else if strEstimateFare != "0" {
-                lblGrandTotal.text = "\("Estimate Fare".localized) : \(strEstimateFare) \(currency)"
+//                lblGrandTotal.text = "\("Estimate Fare".localized) : \(strEstimateFare) \(currency)"
 //            }
         
-            lblMessage.text = strRequestMessage
+//            lblMessage.text = strRequestMessage
             lblPickupLocation.text = strPickupLocation
             lblDropoffLocation.text = strDropoffLocation
             
@@ -264,6 +320,59 @@ class ReceiveRequestViewController: UIViewController, SRCountdownTimerDelegate {
     }
     // ------------------------------------------------------------
     
+
+    
+
+}
+
+
+extension ReceiveRequestViewController : UITableViewDataSource
+{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrParcel.count
+    }   
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ParcelTypeTableViewCell", for: indexPath) as? ParcelTypeTableViewCell
+
+        let dictData = arrParcel[indexPath.row] //as? [String:AnyObject]
+
+        var strParcelWeight : String!
+        if let strParcelWeight1 = dictData["ParcelWeight"] as? String
+        {
+            if(strParcelWeight1.trimmingCharacters(in: .whitespacesAndNewlines).count != 0)
+            {
+                strParcelWeight = strParcelWeight1
+            }
+        }
+
+        if(strParcelWeight != nil)
+        {
+            cell?.lblParcelType.text = "Parcel Type = \(dictData["ParcelType"] as? String ?? "")\n\(dictData["ParcelSize"] as? String ?? "")\n\(strParcelWeight ?? "0") Lbs"
+
+        }
+        else
+        {
+            cell?.lblParcelType.text = "Parcel Type = \(dictData["ParcelType"] as? String ?? "")\n\(dictData["ParcelSize"] as? String ?? "")"
+        }
+
+
+
+        cell?.lblParcelNumberTitle.text = "Parcel \(indexPath.row)"
+        if let price = dictData["ParcelPrice"] as? String
+        {
+            cell?.lblPrice.text = price
+        }
+        else if let price = dictData["ParcelPrice"] as? Int
+        {
+            cell?.lblPrice.text = "\(currency) \(price)"
+        }
+
+//        cell?.lblPrice.text = dictData["ParcelPrice"] as? String
+
+        return cell ?? UITableViewCell()
+
+    }
 
     
 

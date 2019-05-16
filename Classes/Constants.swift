@@ -23,7 +23,7 @@ let navigationBarHeightIphoneX = 84
 var utility = Utilities()
 
 let kHtmlReplaceString   :   String  =   "<[^>]+>"
-let currency : String = "TZS"
+let currency : String = "$"
 let dictanceType : String = "km"
 
 let kIsSocketEmited : String = "IsEmited"

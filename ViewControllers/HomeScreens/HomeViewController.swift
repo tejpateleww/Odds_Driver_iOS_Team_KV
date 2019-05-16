@@ -861,6 +861,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                 let next = self.storyboard?.instantiateViewController(withIdentifier: "ReceiveRequestViewController") as! ReceiveRequestViewController
                 next.delegate = self
                 next.strGrandTotal = "0"
+
+
+                if let dictData = data as? [[String:AnyObject]]
+                {
+                    next.parcelData = dictData
+                }
+
                 if let grandTotal = ((data as NSArray).object(at: 0) as! NSDictionary).object(forKey: "EstimateFare") as? String {
                     if grandTotal == "" {
                         next.strEstimateFare = "0"
@@ -5158,9 +5165,9 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         webserviceForGetTaxiModelPricing("" as AnyObject) { (result, status) in
             if(status)
             {
-                if ((result as AnyObject)["model_cat1"] != nil)
+                if ((result as AnyObject)["model_cat2"] != nil)
                 {
-                    SingletonsForMeter.sharedInstance.arrCarModels = (result["model_cat1"] as? AnyObject as! [[String:AnyObject]])
+                    SingletonsForMeter.sharedInstance.arrCarModels = (result["model_cat2"] as? AnyObject as! [[String:AnyObject]])
                 }
                 else
                 {
