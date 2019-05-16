@@ -31,6 +31,7 @@ class Singletons: NSObject {
     var deviceToken = String()
     var setPasscode = String()
     var strSetCar = String()
+    var confirmationType = String()
     var passengerType = String()
     var pasengerFlightNumber = String()
     var passengerNote = String()

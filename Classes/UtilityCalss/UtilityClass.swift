@@ -67,8 +67,7 @@ class UtilityClass: NSObject {
             imageView.layer.cornerRadius = imageView.frame.size.width/2
             imageView.layer.masksToBounds = true
         }
-        
-        
+      
     }
     
     // Alert
