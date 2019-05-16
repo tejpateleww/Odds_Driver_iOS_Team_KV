@@ -139,7 +139,6 @@ struct RegistrationFinalKeys {
     static let kEmail = "Email"                          // Done
     
     static let kCompanyID = "CompanyId" // Done
-    // ------------------------------------------------------------
     static let kKeyDOB = "DOB"
 
     static let kMobileNo = "MobileNo"// Done

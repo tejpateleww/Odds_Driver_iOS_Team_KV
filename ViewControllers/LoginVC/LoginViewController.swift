@@ -101,12 +101,12 @@
 //            else {
 //                UtilityClass.showAlert(appName.kAPPName, message: "Sorry! Not connected to internet".localized, vc: self)
 //            }
-//        if(Singletons.sharedInstance.isDriverLoggedIN)
-//        {
-////            let next = self.storyboard?.instantiateViewController(withIdentifier: "CustomSideMenuViewController") as! CustomSideMenuViewController
-////            self.navigationController?.pushViewController(next, animated: false)
-//            (UIApplication.shared.delegate as! AppDelegate).GoToHome()
-//        }
+        if(Singletons.sharedInstance.isDriverLoggedIN)
+        {
+//            let next = self.storyboard?.instantiateViewController(withIdentifier: "CustomSideMenuViewController") as! CustomSideMenuViewController
+//            self.navigationController?.pushViewController(next, animated: false)
+            (UIApplication.shared.delegate as! AppDelegate).GoToHome()
+        }
 //            webserviceOfAppSetting()
     //
         }
@@ -130,13 +130,13 @@
         }
         
         if UIDevice.current.name == "Bhavesh iPhone" || UIDevice.current.name == "Excellent Web's iPhone 5s" || UIDevice.current.name == "Rahul's iPhone" ||  UIDevice.current.name == "iOS2’s iPad" ||  UIDevice.current.name == "Excellent iPhone 7" || UIDevice.current.name ==  "Mayur's iPhone X" || UIDevice.current.name ==  "EWW iPhone" || UIDevice.current.name ==  "Excellent Web's iPad black"  {
-            txtMobile.text = "1234567890" // "bhavesh@excellentwebworld.info"
-            txtPassword.text = "12345678"
+            txtMobile.text = "1122334455" // "bhavesh@excellentwebworld.info"
+            txtPassword.text = "123456"
         }
         
         #if targetEnvironment(simulator)
-        txtPassword.text = "12345678"
-        txtMobile.text = "1234567890" // "bhavesh@excellentwebworld.info"
+        txtPassword.text = "123456"
+        txtMobile.text = "1122334455" // "bhavesh@excellentwebworld.info"
         #endif
         
 //        txtMobile.text = "1111111111"

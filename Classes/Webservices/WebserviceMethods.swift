@@ -86,7 +86,7 @@ func webserviceForRegistrationForDriver(_ dictParams: AnyObject, image1: UIImage
 {
     let url = Registration
     sendImage(dictParams as! [String : AnyObject], image1: image1, image2: image2, image3: image3, image4: image4, image5: image5, image6: image6, nsURL: url, completion: completion)
-  
+    
 }
 
 
@@ -340,8 +340,8 @@ func webserviceForGetdistanceFromBackend(_ dictParams: AnyObject, completion: @e
     let url =  "http://54.206.55.185/web/Drvier_Api/FindDistance"//GetDistanceFromBackend
     postData(dictParams, nsURL: url, completion: completion)
     
-//    let url = GetDistanceFromBackend + (dictParams as! String)
-//    getData("" as AnyObject, nsURL: url, completion: completion)
+    //    let url = GetDistanceFromBackend + (dictParams as! String)
+    //    getData("" as AnyObject, nsURL: url, completion: completion)
 }
 
 //-------------------------------------------------------------
@@ -538,8 +538,8 @@ func webserviceForGetFareWithKm(_ dictParams: AnyObject, completion: @escaping(_
 {
     let url = getFareEstimateKm
     postData(dictParams, nsURL: url, completion: completion)
-
-//    getData("" as AnyObject, nsURL: url, completion: completion)
+    
+    //    getData("" as AnyObject, nsURL: url, completion: completion)
 }
 
 //-------------------------------------------------------------

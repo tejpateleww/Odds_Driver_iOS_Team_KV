@@ -9,7 +9,7 @@
 import UIKit
 
 class SignatureViewController: UIViewController, YPSignatureDelegate {
-    
+
     @IBOutlet weak var signatureView: YPDrawSignatureView!
     var onDismiss : (() -> ())?
     var parcelSignatureImage = UIImage()
@@ -19,6 +19,7 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
 
         signatureView.delegate = self
     }
+    
     func didStart(_ view: YPDrawSignatureView) {
         
     }
@@ -44,5 +45,3 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
         }
     }
 }
-    
-

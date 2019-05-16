@@ -177,7 +177,7 @@ class BaseViewController: UIViewController {
                         UtilityClass.showAlert("", message: (result as! NSDictionary).object(forKey: GetResponseMessageKey()) as! String, vc: self)
             
                         UIApplication.shared.isIdleTimerDisabled = false
-                        let socket = (UIApplication.shared.delegate as! AppDelegate).Socktmanager
+                        let socket = (UIApplication.shared.delegate as! AppDelegate).SocketManager
                         socket.disconnect()
 
                     }
@@ -187,7 +187,7 @@ class BaseViewController: UIViewController {
                         self.btnDuty.isSelected = true
                         Singletons.sharedInstance.driverDuty = "1"
 
-                        let socket = (UIApplication.shared.delegate as! AppDelegate).Socktmanager
+                        let socket = (UIApplication.shared.delegate as! AppDelegate).SocketManager
                         socket.connect()
                         UIApplication.shared.isIdleTimerDisabled = true
 

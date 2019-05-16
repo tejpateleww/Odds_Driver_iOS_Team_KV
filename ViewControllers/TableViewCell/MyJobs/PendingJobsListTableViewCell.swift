@@ -19,8 +19,8 @@ class PendingJobsListTableViewCell: UITableViewCell {
         // Initialization code
         tblParcel.delegate = self
         tblParcel.dataSource = self
-//        self.tblHeightConstraint?.constant = (129 * 3)
-
+        self.tblHeightConstraint.constant = (129 * 3)
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,7 +37,7 @@ class PendingJobsListTableViewCell: UITableViewCell {
     
     // First View height is 81
     @IBOutlet weak var tblParcel: UITableView!
-    @IBOutlet weak var tblHeightConstraint: NSLayoutConstraint?
+    @IBOutlet weak var tblHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var lblBookingId: UILabel!
     

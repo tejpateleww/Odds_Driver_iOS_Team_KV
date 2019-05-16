@@ -199,7 +199,7 @@ func parameterWithImage(_ dictParams: [String:AnyObject], images: [String : UIIm
         for (key, value) in images{
             if let imageData = value.jpegData(compressionQuality: 0.6)
             {
-                multipartFormData.append(imageData, withName: key, fileName: "image.jpeg", mimeType: "image/jpeg")
+                multipartFormData.append(imageData, withName: key, fileName: key, mimeType: "image/jpeg")
             }
         }
         
@@ -211,7 +211,7 @@ func parameterWithImage(_ dictParams: [String:AnyObject], images: [String : UIIm
                 
                 for string in array {
                     if let stringData = string.data(using: .utf8) {
-                        multipartFormData.append(stringData, withName: key+"[]")
+                        multipartFormData.append(stringData, withName: key)
                     }
                 }
             } else {

@@ -341,7 +341,7 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="2805" y="1909.8591549295775"/>
+            <point key="canvasLocation" x="2466" y="1616"/>
         </scene>
         <!--Update Profile Personel DetailsVC-->
         <scene sceneID="b6w-vP-LO0">
@@ -447,15 +447,6 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIS-Dh-7tZ">
                                                                 <rect key="frame" x="0.0" y="62" width="335" height="42"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ROS-zt-YcS">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="45"/>
-                                                                        <color key="tintColor" red="1" green="0.63921568630000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="45" id="WVy-pI-3PC"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
-                                                                    </textField>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbE-8V-j46">
                                                                         <rect key="frame" x="0.0" y="47" width="335" height="1"/>
                                                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -464,6 +455,15 @@
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="rUg-97-IQH"/>
                                                                         </constraints>
                                                                     </view>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ROS-zt-YcS">
+                                                                        <rect key="frame" x="0.0" y="-3" width="335" height="45"/>
+                                                                        <color key="tintColor" red="1" green="0.63921568630000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="45" id="WVy-pI-3PC"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -1575,7 +1575,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </objects>
-            <point key="canvasLocation" x="2146.875" y="1909.8591549295775"/>
+            <point key="canvasLocation" x="1689" y="1448"/>
         </scene>
         <!--Update Driver Vehicle Types View Controller-->
         <scene sceneID="ISE-IC-bdy">
@@ -1705,7 +1705,7 @@ You must be 21 years of age or over.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mt4-gf-FIz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2753" y="2642"/>
+            <point key="canvasLocation" x="2192" y="2402"/>
         </scene>
         <!--Update Driver Vehicles View Controller-->
         <scene sceneID="RGi-Dx-wn9">
@@ -2354,7 +2354,7 @@ You must be 21 years of age or over.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4i7-hy-4fP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1897.5" y="2641.9014084507044"/>
+            <point key="canvasLocation" x="1433" y="2403"/>
         </scene>
         <!--CarAndTaxiesVC-->
         <scene sceneID="d1y-6Y-lsb">

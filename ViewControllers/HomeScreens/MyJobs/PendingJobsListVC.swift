@@ -286,8 +286,7 @@ class PendingJobsListVC: UIViewController, UITableViewDataSource, UITableViewDel
             if (status)
             {
                 //                print(result)
-                
-                self.aryData = ((result as! NSDictionary).object(forKey: "history") as! NSArray)
+               self.aryData = ((result as! NSDictionary).object(forKey: "history") as! NSArray)
                 self.getPendingJobs()
                 
                 //                if(self.aryPendingJobs.count == 0)
@@ -350,7 +349,6 @@ class PendingJobsListVC: UIViewController, UITableViewDataSource, UITableViewDel
             
             if strHistoryType == "onGoing" {
                 self.aryPendingJobs.add(dataOfAry)
-                
             }
         }
     }
