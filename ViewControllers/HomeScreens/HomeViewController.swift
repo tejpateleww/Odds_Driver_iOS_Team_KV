@@ -51,8 +51,10 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
     //-------------------------------------------------------------
     //button
     @IBOutlet weak var btnDirection: UIButton!
+    @IBOutlet var btnReturnParcel: UIButton!
     @IBOutlet weak var btnCurrentlocation: UIButton!
     @IBOutlet weak var btnStartTrip: UIButton!
+    
     //view
     @IBOutlet weak var BottomButtonView: UIView!
     @IBOutlet var subMapView: UIView!
@@ -139,7 +141,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
     var lastLocation: CLLocation!
     var startDate: Date!
     var traveledDistance: Double = 0
-    
+    var isParcelReturn:Int = 0
     
     lazy var geocoder = CLGeocoder()
     
@@ -185,6 +187,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         
         Utilities.setCornerRadiusButton(button: btnCompleteTrip, borderColor: ThemeYellowColor, bgColor: ThemeYellowColor, textColor: UIColor.white)
         Utilities.setCornerRadiusButton(button: btnDirection, borderColor: ThemeYellowColor, bgColor: UIColor.white, textColor: ThemeYellowColor)
+        
+        Utilities.setCornerRadiusButton(button: btnReturnParcel, borderColor: ThemeYellowColor, bgColor: UIColor.white, textColor: ThemeYellowColor)
         
         Utilities.setCornerRadiusButton(button: btnWaiting, borderColor: ThemeYellowColor, bgColor: ThemeYellowColor, textColor: UIColor.white)
         
@@ -356,6 +360,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         btnDirectionFourBTN.setTitle("Direction".localized, for: .normal)
         lblPickUpLocation.text = "Current Location".localized
         btnCompleteTrip.setTitle("Complete Trip".localized, for: .normal)
+        btnReturnParcel.setTitle("Return Parcel", for: .normal)
         btnDirection.setTitle("Direction".localized, for: .normal)
     }
     
@@ -2613,6 +2618,12 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         txtField.leftView = paddingView
     }
     
+    @IBAction func btnReturnParcel(_ sender: Any) {
+            self.isParcelReturn = 1
+            self.completeTripButtonAction()
+    }
+    
+    
     @IBAction func btnCompleteTrip(_ sender: UIButton)
     {
         if Connectivity.isConnectedToInternet() == false {
@@ -2717,16 +2728,25 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
     (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController?.present(next, animated: true, completion: nil)
     
     next.onDismiss = {
-        self.submittedParcelImage = next.parcelSignatureImage
-        self.completeTripButtonAction()
-        next.dismiss(animated: true)
+        if next.IsNeedToOpenCamera == false {
+            self.submittedParcelImage = next.parcelSignatureImage
+            self.completeTripButtonAction()
+            next.dismiss(animated: true)
+        } else if next.IsNeedToOpenCamera == true {
+            next.dismiss(animated: true, completion: {
+                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+                    self.perform(#selector(self.PickingImageFromCamera), with: nil, afterDelay: 1.0)
+//                    self.PickingImageFromCamera()
+                } else {
+                    Utilities.showToastMSG(MSG: "Your device doesn't have Camera.")
+                }
+            })
+        }
     
     }
-    
-    
-    
-    }
-    func PickingImageFromCamera()
+  }
+  
+    @objc func PickingImageFromCamera()
     {
         let picker = UIImagePickerController()
         Utilities.hideActivityIndicator()
@@ -2734,9 +2754,9 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         picker.allowsEditing = true
         picker.sourceType = .camera
         picker.cameraCaptureMode = .photo
-    
         present(picker, animated: true, completion: nil)
     }
+    
     var submittedParcelImage = UIImage()
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[.editedImage] as? UIImage{
@@ -2745,11 +2765,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         if let pickedImage = info[.originalImage] as? UIImage{
             submittedParcelImage = pickedImage
         }
+        
         dismiss(animated: true, completion: {self.completeTripButtonAction()})
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: {self.completeTripButtonAction()})
-    
     }
 
     func completeTripButtonAction()
@@ -2882,6 +2902,10 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         dictOFParam["TollFee"] = tollfee as AnyObject
         dictOFParam["WaitingTime"] = App_Delegate.WaitingTime as AnyObject
         dictOFParam["Pending"] = Singletons.sharedInstance.isPending as AnyObject
+        if self.isParcelReturn == 1 {
+            dictOFParam["ParcelReturn"] = 1 as AnyObject
+        }
+        
         let pickupCordinate = "\(Singletons.sharedInstance.startedTripLatitude),\(Singletons.sharedInstance.startedTripLongitude)"
         let destinationCordinate = "\(self.defaultLocation.coordinate.latitude),\(self.defaultLocation.coordinate.longitude)"
         if(App_Delegate.DistanceKiloMeter == "")
@@ -3071,7 +3095,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         self.StartTripView.isHidden = true
         self.btnStartTrip.isHidden = true
         self.sumOfFinalDistance = 0
-        
+        self.isParcelReturn = 0
         //        self.constrainLocationViewBottom.constant = 0
         
     }
@@ -3585,7 +3609,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                                 
                                 let destinationMarker = GMSMarker(position: self.destinationCoordinate)
                                 destinationMarker.map = self.mapView
-                                destinationMarker.icon = UIImage.init(named: "iconMapPin")
+                                destinationMarker.icon = UIImage.init(named: "map-pin")
                                 destinationMarker.title = destinationAddress
                                 
                                 var aryDistance = [Double]()
@@ -4469,10 +4493,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
     
     func webserviceCallForCompleteTrip(dictOFParam : AnyObject)
     {
+        Utilities.showActivityIndicator()
         let dictOfImages: [String: UIImage] = ["DeliveredParcelImage" : submittedParcelImage]
 
         webserviceForCompletedTripSuccessfully(dictOFParam as AnyObject, dictOfImages) { (result, status) in
-            
+            Utilities.hideActivityIndicator()
             if (status) {
                 
                 self.dictCompleteTripData = (result as! NSDictionary)
@@ -4610,9 +4635,10 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
 
     func webserviceCallForAdvanceCompleteTrip(dictOFParam : AnyObject)
     {
+        Utilities.showActivityIndicator()
         let dictOfImages: [String: UIImage] = ["DeliveredParcelImage" : submittedParcelImage]
         webserviceForCompletedAdvanceTripSuccessfully(dictOFParam as AnyObject, dictOfImages ) { (result, status) in
-            
+            Utilities.hideActivityIndicator()
             if (status) {
                 
                 self.dictCompleteTripData = (result as! NSDictionary)

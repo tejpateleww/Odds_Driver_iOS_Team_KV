@@ -72,7 +72,7 @@ class ReceiveRequestViewController: UIViewController, SRCountdownTimerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.imgParcelImage.isHidden = true
         CountDownView()
 
 
@@ -87,6 +87,9 @@ class ReceiveRequestViewController: UIViewController, SRCountdownTimerDelegate {
             imgParcelImage.sd_setShowActivityIndicatorView(true)
             imgParcelImage.sd_setImage(with: URL(string: imageUrl), placeholderImage: nil) { (image, error, cacheType, url) in
                 self.imgParcelImage.sd_removeActivityIndicator()
+                if image != nil {
+                    self.imgParcelImage.isHidden = false
+                }
             }
         }
 

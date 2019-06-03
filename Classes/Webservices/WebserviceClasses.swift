@@ -227,6 +227,7 @@ func parameterWithImage(_ dictParams: [String:AnyObject], images: [String : UIIm
                 
                 if let JSON = response.result.value {
                     
+                    
                     if ((JSON as AnyObject).object(forKey: "status") as! Bool) == true
                     {
                         completion(JSON as AnyObject, true)

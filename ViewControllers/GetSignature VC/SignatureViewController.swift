@@ -8,11 +8,15 @@
 
 import UIKit
 
+
+
 class SignatureViewController: UIViewController, YPSignatureDelegate {
 
     @IBOutlet weak var signatureView: YPDrawSignatureView!
     var onDismiss : (() -> ())?
     var parcelSignatureImage = UIImage()
+    
+    var IsNeedToOpenCamera:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,4 +48,12 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
             UtilityClass.showAlert("", message: "Signatures are required", vc: self)
         }
     }
+    
+    @IBAction func btnUploadPicture(_ sender: Any) {
+        self.IsNeedToOpenCamera  = true
+        if let onDismiss = onDismiss{
+            onDismiss()
+        }
+    }
+    
 }
