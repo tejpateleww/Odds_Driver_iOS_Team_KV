@@ -46,6 +46,13 @@ class DriverRegistrationViewController: UIViewController, UIScrollViewDelegate /
     @IBOutlet weak var lblFore: UILabel!
     @IBOutlet weak var lblFifth: UILabel!
    
+    @IBOutlet var btnFirst: UIButton!
+    @IBOutlet var btnSecond: UIButton!
+    @IBOutlet var btnThird: UIButton!
+    @IBOutlet var btnFourth: UIButton!
+    @IBOutlet var btnFifth: UIButton!
+    
+    
     
 //    @IBOutlet var imgDriver: UIImageView!
 //    @IBOutlet var imgMail: UIImageView!
@@ -90,6 +97,13 @@ class DriverRegistrationViewController: UIViewController, UIScrollViewDelegate /
 
             if pageNO == 0
             {
+                self.btnFirst.isSelected  =  true
+                self.btnSecond.isSelected = false
+                self.btnThird.isSelected = false
+                self.btnFourth.isSelected = false
+                self.btnFifth.isSelected = false
+                
+                /*
                 self.setCornertoView(View: viewOne, BGColor: ThemeYellowColor, borderColor: ThemeYellowColor, textcolor: UIColor.white, label: lblone)
                 self.setCornertoView(View: viewTwo, BGColor: UIColor.white, borderColor: themeGrayTextColor, textcolor: themeGrayTextColor, label: lblTwo)
                 self.setCornertoView(View: viewThree, BGColor: UIColor.white, borderColor: themeGrayTextColor, textcolor: themeGrayTextColor, label: lblThree)
@@ -99,10 +113,18 @@ class DriverRegistrationViewController: UIViewController, UIScrollViewDelegate /
                 viewTwoThreeLine.backgroundColor = themeGrayTextColor
                 viewThreeForeLine.backgroundColor = themeGrayTextColor
                 viewFourFifthLine.backgroundColor = themeGrayTextColor
+        */
             }
             
             if pageNO == 1
             {
+                
+                self.btnFirst.isSelected  =  true
+                self.btnSecond.isSelected = true
+                self.btnThird.isSelected = false
+                self.btnFourth.isSelected = false
+                self.btnFifth.isSelected = false
+                /*
                 self.setCornertoView(View: viewOne, BGColor: ThemeYellowColor, borderColor: ThemeYellowColor, textcolor: UIColor.white, label: lblone)
                 self.setCornertoView(View: viewTwo, BGColor: ThemeYellowColor, borderColor: ThemeYellowColor, textcolor: UIColor.white, label: lblTwo)
                 self.setCornertoView(View: viewThree, BGColor: UIColor.white, borderColor: themeGrayTextColor, textcolor: themeGrayTextColor, label: lblThree)
@@ -112,9 +134,16 @@ class DriverRegistrationViewController: UIViewController, UIScrollViewDelegate /
                 viewTwoThreeLine.backgroundColor = themeGrayTextColor
                 viewThreeForeLine.backgroundColor = themeGrayTextColor
                 viewFourFifthLine.backgroundColor = themeGrayTextColor
+                */
             }
             else if pageNO == 2
             {
+                self.btnFirst.isSelected  =  true
+                self.btnSecond.isSelected = true
+                self.btnThird.isSelected = true
+                self.btnFourth.isSelected = false
+                self.btnFifth.isSelected = false
+                /*
                 self.setCornertoView(View: viewOne, BGColor: ThemeYellowColor, borderColor: ThemeYellowColor, textcolor: UIColor.white, label: lblone)
                 self.setCornertoView(View: viewTwo, BGColor: ThemeYellowColor, borderColor: ThemeYellowColor, textcolor: UIColor.white, label: lblTwo)
                 self.setCornertoView(View: viewThree, BGColor: ThemeYellowColor, borderColor: ThemeYellowColor, textcolor: UIColor.white, label: lblThree)
@@ -124,9 +153,16 @@ class DriverRegistrationViewController: UIViewController, UIScrollViewDelegate /
                 viewTwoThreeLine.backgroundColor = ThemeYellowColor
                 viewThreeForeLine.backgroundColor = themeGrayTextColor
                 viewFourFifthLine.backgroundColor = themeGrayTextColor
+                */
             }
             else if pageNO == 3
             {
+                self.btnFirst.isSelected  =  true
+                self.btnSecond.isSelected = true
+                self.btnThird.isSelected = true
+                self.btnFourth.isSelected = true
+                self.btnFifth.isSelected = false
+                /*
                 self.setCornertoView(View: viewOne, BGColor: ThemeYellowColor, borderColor: ThemeYellowColor, textcolor: UIColor.white, label: lblone)
                 self.setCornertoView(View: viewTwo, BGColor: ThemeYellowColor, borderColor: ThemeYellowColor, textcolor: UIColor.white, label: lblTwo)
                 self.setCornertoView(View: viewThree, BGColor: ThemeYellowColor, borderColor: ThemeYellowColor, textcolor: UIColor.white, label: lblThree)
@@ -136,9 +172,16 @@ class DriverRegistrationViewController: UIViewController, UIScrollViewDelegate /
                 viewTwoThreeLine.backgroundColor = ThemeYellowColor
                 viewThreeForeLine.backgroundColor = ThemeYellowColor
                 viewFourFifthLine.backgroundColor = themeGrayTextColor
+                */
             }
             else if pageNO == 4
             {
+                self.btnFirst.isSelected  =  true
+                self.btnSecond.isSelected = true
+                self.btnThird.isSelected = true
+                self.btnFourth.isSelected = true
+                self.btnFifth.isSelected = true
+                /*
                 self.setCornertoView(View: viewOne, BGColor: ThemeYellowColor, borderColor: ThemeYellowColor, textcolor: UIColor.white, label: lblone)
                 self.setCornertoView(View: viewTwo, BGColor: ThemeYellowColor, borderColor: ThemeYellowColor, textcolor: UIColor.white, label: lblTwo)
                 self.setCornertoView(View: viewThree, BGColor: ThemeYellowColor, borderColor: ThemeYellowColor, textcolor: UIColor.white, label: lblThree)
@@ -148,6 +191,7 @@ class DriverRegistrationViewController: UIViewController, UIScrollViewDelegate /
                 viewTwoThreeLine.backgroundColor = ThemeYellowColor
                 viewThreeForeLine.backgroundColor = ThemeYellowColor
                 viewFourFifthLine.backgroundColor = ThemeYellowColor
+                */
             }
 //            else if pageNO == 5
 //            {
@@ -195,11 +239,18 @@ class DriverRegistrationViewController: UIViewController, UIScrollViewDelegate /
             
             if let driverVC = self.navigationController?.viewControllers.last as? DriverRegistrationViewController
             {
+                self.btnFirst.isSelected  =  true
+                self.btnSecond.isSelected = false
+                self.btnThird.isSelected = false
+                self.btnFourth.isSelected = false
+                self.btnFifth.isSelected = false
+                /*
                 self.setCornertoView(View: driverVC.viewOne, BGColor: ThemeYellowColor, borderColor: ThemeYellowColor, textcolor: UIColor.white, label: driverVC.lblone)
                 self.setCornertoView(View: driverVC.viewTwo, BGColor: UIColor.white, borderColor: themeGrayTextColor, textcolor: themeGrayTextColor, label: driverVC.lblTwo)
                 self.setCornertoView(View: driverVC.viewThree, BGColor: UIColor.white, borderColor: themeGrayTextColor, textcolor: themeGrayTextColor, label: driverVC.lblThree)
                 self.setCornertoView(View: driverVC.viewFore, BGColor: UIColor.white, borderColor: themeGrayTextColor, textcolor: themeGrayTextColor, label: driverVC.lblFore)
                 self.setCornertoView(View: driverVC.viewFifth, BGColor: UIColor.white, borderColor: themeGrayTextColor, textcolor: themeGrayTextColor, label: driverVC.lblFifth)
+                */
             }
 //            driverVC.viewOne.backgroundColor = ThemeYellowColor
 //            driverVC.lblone.text = "01"
@@ -241,6 +292,14 @@ class DriverRegistrationViewController: UIViewController, UIScrollViewDelegate /
 //        self.viewFifth.layer.cornerRadius = viewFifth.frame.size.width / 2
 //        self.viewFifth.clipsToBounds = true
 
+        
+        self.btnFirst.isSelected  =  true
+        self.btnSecond.isSelected = false
+        self.btnThird.isSelected = false
+        self.btnFourth.isSelected = false
+        self.btnFifth.isSelected = false
+        
+        /*
         lblone.text = "01"
         lblTwo.text = "02"
         lblThree.text = "03"
@@ -252,6 +311,7 @@ class DriverRegistrationViewController: UIViewController, UIScrollViewDelegate /
         self.setCornertoView(View: viewThree, BGColor: UIColor.white, borderColor: themeGrayTextColor, textcolor: themeGrayTextColor, label: lblThree)
         self.setCornertoView(View: viewFore, BGColor: UIColor.white, borderColor: themeGrayTextColor, textcolor: themeGrayTextColor, label: lblFore)
         self.setCornertoView(View: viewFifth, BGColor: UIColor.white, borderColor: themeGrayTextColor, textcolor: themeGrayTextColor, label: lblFifth)
+        */
 
         if DeviceType.IS_IPHONE_4_OR_LESS || DeviceType.IS_IPAD {
             constraintHeightOfPagingView.constant = 50
@@ -432,7 +492,7 @@ class DriverRegistrationViewController: UIViewController, UIScrollViewDelegate /
             
             if pageNO == 1
             {
-                let EmailVC = driverVC.children[pageNO - 1] as! DriverEmailViewController
+                let EmailVC = driverVC.children[(pageNO > 0) ? (pageNO - 1) : 0 ] as! DriverEmailViewController
                 EmailVC.txtMobile.text = UserDefaults.standard.value(forKey: RegistrationFinalKeys.kMobileNo) as? String
                 EmailVC.txtEmail.text = UserDefaults.standard.value(forKey: RegistrationFinalKeys.kEmail) as? String
                 EmailVC.txtPassword.text = UserDefaults.standard.value(forKey: RegistrationFinalKeys.kPassword) as? String
@@ -440,7 +500,7 @@ class DriverRegistrationViewController: UIViewController, UIScrollViewDelegate /
             }
             else if pageNO == 2
             {
-                let personalVC = driverVC.children[pageNO - 1] as! DriverPersonelDetailsViewController
+                let personalVC = driverVC.children[(pageNO > 0) ? (pageNO - 1) : 0] as! DriverPersonelDetailsViewController
                 let picData = UserDefaults.standard.value(forKey: RegistrationFinalKeys.kDriverImage)
                 let image = UIImage(data:picData as! Data,scale:1.0)
                 
@@ -481,18 +541,18 @@ class DriverRegistrationViewController: UIViewController, UIScrollViewDelegate /
             else if pageNO == 3
             {
                 
-                let BankVC = driverVC.children[pageNO - 1] as! DriverBankDetailsViewController
+                let BankVC = driverVC.children[(pageNO > 0) ? (pageNO - 1) : 0] as! DriverBankDetailsViewController
 
                 BankVC.txtAccountHolderName.text = UserDefaults.standard.value(forKey: RegistrationFinalKeys.kbankHolderName) as? String
                 BankVC.txtBankName.text = UserDefaults.standard.value(forKey: RegistrationFinalKeys.kBankName) as? String
                 BankVC.txtBankBranch.text = UserDefaults.standard.value(forKey: RegistrationFinalKeys.kBSB) as? String
-                BankVC.txtAccountHolderName.text = UserDefaults.standard.value(forKey: RegistrationFinalKeys.kbankHolderName) as? String
+                BankVC.txtAccountNumber.text = UserDefaults.standard.value(forKey: RegistrationFinalKeys.kBankAccountNo) as? String
                 
             }
             else if pageNO == 4
             {
 
-                let VehicleVC = driverVC.children[pageNO - 1] as! DriverSelectVehicleTypesViewController
+                let VehicleVC = driverVC.children[(pageNO > 0) ? (pageNO - 1) : 0] as! DriverSelectVehicleTypesViewController
                 
                 
                 //        txtVehicleRegistrationNumber = vehicle Plate Number = VehicleRegistrationNo
@@ -510,13 +570,9 @@ class DriverRegistrationViewController: UIViewController, UIScrollViewDelegate /
                 
 
             }
-            
-         
-
-           
-            let page = self.view.frame.size.width * CGFloat(pageNO - 1)
+            let page = self.view.frame.size.width * CGFloat((pageNO > 0) ? (pageNO - 1) : 0)
             self.scrollObj.setContentOffset(CGPoint(x: page, y: 0), animated: true)
-            UserDefaults.standard.set(pageNO - 1, forKey: savedDataForRegistration.kPageNumber)
+            UserDefaults.standard.set((pageNO > 0) ? (pageNO - 1) : 0, forKey: savedDataForRegistration.kPageNumber)
             
             if pageNO == 0
             {
@@ -533,7 +589,7 @@ class DriverRegistrationViewController: UIViewController, UIScrollViewDelegate /
             }
             else
             {
-                UserDefaults.standard.set(pageNO - 1, forKey: savedDataForRegistration.kPageNumber)
+                UserDefaults.standard.set((pageNO > 0) ? (pageNO - 1) : 0, forKey: savedDataForRegistration.kPageNumber)
             }
             self.viewDidLayoutSubviews()
             //                = UserDefaults.standard.object(forKey: savedDataForRegistration.kPageNumber) as! Int

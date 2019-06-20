@@ -30,10 +30,13 @@ class ReceiveRequestViewController: UIViewController, SRCountdownTimerDelegate {
     @IBOutlet weak var lblPickupLocation: MarqueeLabel!
     @IBOutlet weak var lblDropoffLocationInfo: UILabel!
     @IBOutlet weak var lblDropoffLocation: MarqueeLabel!
+    @IBOutlet var txtApartmentNumber: UITextField!
+    @IBOutlet var viewAppartment: UIView!
     
     @IBOutlet weak var imgToFromAddress: UIImageView!
     @IBOutlet weak var constraintHeightTable: NSLayoutConstraint!
     @IBOutlet weak var lblPaymrntType: UILabel!
+    
     //    @IBOutlet weak var lblFlightNumber: UILabel!
     //    @IBOutlet weak var lblNotes: UILabel!
     
@@ -56,6 +59,7 @@ class ReceiveRequestViewController: UIViewController, SRCountdownTimerDelegate {
     var strPickupLocation = String()
     var strDropoffLocation = String()
     var strGrandTotal = String()
+    var strApartmentNumber = String()
     var strEstimateFare = String()
     var strRequestMessage = String()
     var strFlightNumber = String()
@@ -206,7 +210,14 @@ class ReceiveRequestViewController: UIViewController, SRCountdownTimerDelegate {
 //            lblMessage.text = strRequestMessage
             lblPickupLocation.text = strPickupLocation
             lblDropoffLocation.text = strDropoffLocation
-            
+        
+        if strApartmentNumber != "" {
+            self.txtApartmentNumber.text = strApartmentNumber
+            self.viewAppartment.isHidden = false
+        } else {
+            self.txtApartmentNumber.text  = ""
+            self.viewAppartment.isHidden = true
+        }
 //            if strFlightNumber.count == 0 {
 //                stackViewFlightNumber.isHidden = true
 //            }

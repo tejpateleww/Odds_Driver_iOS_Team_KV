@@ -85,6 +85,7 @@ class DriverEmailViewController: UIViewController, UIScrollViewDelegate, NVActiv
         self.title = "App Name".localized
 
     }
+    
     func setLocalization()
     {
         txtMobile.placeholder = "Mobile Number".localized
@@ -92,7 +93,7 @@ class DriverEmailViewController: UIViewController, UIScrollViewDelegate, NVActiv
         txtPassword.placeholder = "Password".localized
         txtConPassword.placeholder = "Confirm Password".localized
         btnNext.setTitle("Send OTP".localized, for: .normal)
-        txtOTP.placeholder = "Enter Mobile OTP".localized
+        txtOTP.placeholder = "Enter Verification Code".localized
         //lblPleaseCheckYourEmail.text = "".localized
 //        lblPleaseCheckYourEmail.text = "Resend OTP".localized
         btnResentOtp.setTitle("Resend OTP".localized, for: .normal)
@@ -131,13 +132,13 @@ class DriverEmailViewController: UIViewController, UIScrollViewDelegate, NVActiv
         }
         else
         {
-
-            if(checkValidation())
+            let Validator = self.checkValidation()
+            if Validator.0
             {
                 webserviceForGetOTPCode()
+            } else {
+                UtilityClass.showAlert("App Name".localized, message: Validator.1, vc: self)
             }
-
-
         }
     }
     
@@ -145,8 +146,9 @@ class DriverEmailViewController: UIViewController, UIScrollViewDelegate, NVActiv
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        
-        navigationController?.pushViewController(vc, animated: true)
+        let NavController = UINavigationController(rootViewController: vc)
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = NavController
+//        navigationController?.pushViewController(vc, animated: true)
         
     }
     
@@ -156,53 +158,68 @@ class DriverEmailViewController: UIViewController, UIScrollViewDelegate, NVActiv
         //        segmentController.selectItemAt(index: Int(pageNo), animated: true)
     }
     
-    func checkValidation() -> Bool {
+    func checkValidation() -> (Bool, String) {
+        var ValidationMessage:String = ""
+        var IsValid:Bool = true
         
         let isEmailAddressValid = isValidEmailAddress(emailID: txtEmail.text!)
-        
-        if txtMobile.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0
+        if txtEmail.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0
         {
-            UtilityClass.showAlert("App Name".localized, message: "Please enter mobile number".localized, vc: self)
-            return false
-        }
-        else if txtMobile.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count != 10
-        {
-            UtilityClass.showAlert("App Name".localized, message: "Please enter valid mobile number".localized, vc: self)
-            return false
-        }
-        
-        else if txtEmail.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0
-        {
-            UtilityClass.showAlert("App Name".localized, message: "Please enter email".localized, vc: self)
-            return false
+            IsValid = false
+            ValidationMessage = "Please enter email".localized
+            
+//            UtilityClass.showAlert("App Name".localized, message: "Please enter email".localized, vc: self)
+//            return false
         }
         else if (!isEmailAddressValid)
         {
-            UtilityClass.showAlert("App Name".localized, message: "Please enter a valid email".localized, vc: self)
-            
-            return false
+            IsValid = false
+            ValidationMessage = "Please enter a valid email".localized
+//            UtilityClass.showAlert("App Name".localized, message: "Please enter a valid email".localized, vc: self)
+//            return false
+        } else if txtMobile.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0
+        {
+            IsValid = false
+            ValidationMessage = "Please enter mobile number".localized
+//            UtilityClass.showAlert("App Name".localized, message: "Please enter mobile number".localized, vc: self)
+//            return false
+        }
+        else if (txtMobile.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count)! < 10
+        {
+            IsValid = false
+            ValidationMessage = "Please enter valid mobile number".localized
+//            UtilityClass.showAlert("App Name".localized, message: "Please enter valid mobile number".localized, vc: self)
+//            return false
         }
         else if txtPassword.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0
         {
-            UtilityClass.showAlert("App Name".localized, message: "Please enter password".localized, vc: self)
-            return false
+            IsValid = false
+            ValidationMessage = "Please enter password".localized
+//            UtilityClass.showAlert("App Name".localized, message: "Please enter password".localized, vc: self)
+//            return false
         } else if (txtPassword.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count)! < 8
         {
-            UtilityClass.showAlert("App Name".localized, message: "Password must contain at least 8 characters.".localized, vc: self)
-            return false
+            IsValid = false
+            ValidationMessage = "Password must contain at least 8 characters.".localized
+//            UtilityClass.showAlert("App Name".localized, message: "Password must contain at least 8 characters.".localized, vc: self)
+//            return false
         }
         else if txtConPassword.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0
         {
-            UtilityClass.showAlert("App Name".localized, message: "Please enter confirm password".localized, vc: self)
-            return false
+            IsValid = false
+            ValidationMessage = "Please enter confirm password".localized
+//            UtilityClass.showAlert("App Name".localized, message: "Please enter confirm password".localized, vc: self)
+//            return false
         }
         else if txtConPassword.text! != txtPassword.text
         {
-            UtilityClass.showAlert("App Name".localized, message: "Password and confirm password must be same".localized, vc: self)
-            return false
+            IsValid = false
+            ValidationMessage = "Password and confirm password must be same".localized
+//            UtilityClass.showAlert("App Name".localized, message: "Password and confirm password must be same".localized, vc: self)
+//            return false
         }
         
-        return true
+        return (IsValid,ValidationMessage)
     }
     
     func isValidEmailAddress(emailID: String) -> Bool
@@ -275,7 +292,7 @@ class DriverEmailViewController: UIViewController, UIScrollViewDelegate, NVActiv
                     { (done) in
                         
                     }
-                    self.userDefault.set(self.txtEmail.text, forKey: savedDataForRegistration.kKeyEmail)
+//                    self.userDefault.set(self.txtEmail.text, forKey: savedDataForRegistration.kKeyEmail)
                     self.userDefault.set(self.txtEmail.text, forKey: RegistrationFinalKeys.kEmail)
                     self.userDefault.set(self.txtPassword.text, forKey: RegistrationFinalKeys.kPassword)
                     self.userDefault.set(self.txtMobile.text, forKey: RegistrationFinalKeys.kMobileNo)

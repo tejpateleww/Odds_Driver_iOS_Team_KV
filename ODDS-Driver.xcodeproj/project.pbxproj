@@ -157,6 +157,8 @@
 		00E92A74202AE2C100A399E2 /* WebserviceMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E929C7202AE2C000A399E2 /* WebserviceMethods.swift */; };
 		00EB9E4F1F90D6C1008DB2DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EB9E4E1F90D6C1008DB2DE /* CoreLocation.framework */; };
 		1110D3BD2075FD1700CC8C1F /* TripToDestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110D3BC2075FD1700CC8C1F /* TripToDestinationViewController.swift */; };
+		18BB89D422AE3BF70049C981 /* UpCommingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB89D322AE3BF70049C981 /* UpCommingTableViewCell.swift */; };
+		18BB89D622AE3C6D0049C981 /* ParcelTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB89D522AE3C6D0049C981 /* ParcelTblCell.swift */; };
 		2101CD0E216F2CBA007B9680 /* ThemeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101CD0D216F2CBA007B9680 /* ThemeButton.swift */; };
 		212FA5B320D7BF530057CE58 /* ShareRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212FA5B220D7BF530057CE58 /* ShareRideViewController.swift */; };
 		2174C3BB216E143D000533CE /* InviteDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2174C3B9216E0889000533CE /* InviteDriverViewController.swift */; };
@@ -403,6 +405,8 @@
 		00EB9E4E1F90D6C1008DB2DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		00FAEEE31F9F770E00D5F5C4 /* TZSegmentedControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TZSegmentedControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1110D3BC2075FD1700CC8C1F /* TripToDestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripToDestinationViewController.swift; sourceTree = "<group>"; };
+		18BB89D322AE3BF70049C981 /* UpCommingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpCommingTableViewCell.swift; sourceTree = "<group>"; };
+		18BB89D522AE3C6D0049C981 /* ParcelTblCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParcelTblCell.swift; sourceTree = "<group>"; };
 		2101CD0D216F2CBA007B9680 /* ThemeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButton.swift; sourceTree = "<group>"; };
 		212FA5B220D7BF530057CE58 /* ShareRideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRideViewController.swift; sourceTree = "<group>"; };
 		2174C3B9216E0889000533CE /* InviteDriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteDriverViewController.swift; sourceTree = "<group>"; };
@@ -821,6 +825,8 @@
 				00E92930202AE2BF00A399E2 /* PastJobsListTableViewCell.swift */,
 				00E92931202AE2BF00A399E2 /* PendingJobsListTableViewCell.swift */,
 				645BF90722674DA4006D4D8E /* PendingParcelsTableViewCell.swift */,
+				18BB89D322AE3BF70049C981 /* UpCommingTableViewCell.swift */,
+				18BB89D522AE3C6D0049C981 /* ParcelTblCell.swift */,
 			);
 			path = MyJobs;
 			sourceTree = "<group>";
@@ -1809,8 +1815,10 @@
 				3AFADCEC219E98CC0009E3D2 /* SDWebImageDownloaderOperation.m in Sources */,
 				3AFADCF9219E98CC0009E3D2 /* SVProgressHUD.m in Sources */,
 				00E92A74202AE2C100A399E2 /* WebserviceMethods.swift in Sources */,
+				18BB89D422AE3BF70049C981 /* UpCommingTableViewCell.swift in Sources */,
 				3AFADCDA219E98CC0009E3D2 /* HCSStarRatingView.m in Sources */,
 				63F23F77218890D300FB629F /* LegalWebView.swift in Sources */,
+				18BB89D622AE3C6D0049C981 /* ParcelTblCell.swift in Sources */,
 				3AF9136721C919A000E2C08A /* MyRatingViewCell.swift in Sources */,
 				00E92A6C202AE2C100A399E2 /* CustomMethods.swift in Sources */,
 				3AFADCF2219E98CC0009E3D2 /* UIImage+WebP.m in Sources */,

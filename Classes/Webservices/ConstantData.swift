@@ -74,6 +74,8 @@ struct WebserviceURLs {
     static let kTrackRunningTrip                        = "TrackRunningTrip/"
     static let kPrivateMeterBooking                     = "PrivateMeterBooking"
     
+    static let kPendingJobs                             = "PendingJobs/"
+    
 //    https://www.tantaxitanzania.com/Drvier_Api/FeedbackList/9
     static let kFeedbackList                     = "FeedbackList/"
 }

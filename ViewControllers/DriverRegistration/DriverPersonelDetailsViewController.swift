@@ -97,8 +97,6 @@ class DriverPersonelDetailsViewController: UIViewController, UIImagePickerContro
         showDatePicker()
         txtDOB.delegate = self
         txtPostCode.delegate = self
-
-
         
         strLatitude = 0
         strLongitude = 0
@@ -179,14 +177,19 @@ class DriverPersonelDetailsViewController: UIViewController, UIImagePickerContro
     
     func selectedMale()
     {
-        btnMale.setImage(UIImage(named: "iconRadioSelected"), for: .normal)
-        btnFemale.setImage(UIImage(named: "iconRadioUnSelected"), for: .normal)
+        self.btnMale.isSelected = true
+        self.btnFemale.isSelected = false
+//        btnMale.setImage(UIImage(named: "iconRadioSelected"), for: .normal)
+//        btnFemale.setImage(UIImage(named: "iconRadioUnSelected"), for: .normal)
 //        btnOthers.setImage(UIImage(named: "iconCheckMarkUnSelected"), for: .normal)
     }
+    
     func selectedFemale()
     {
-        btnMale.setImage(UIImage(named: "iconRadioUnSelected"), for: .normal)
-        btnFemale.setImage(UIImage(named: "iconRadioSelected"), for: .normal)
+        self.btnMale.isSelected = false
+        self.btnFemale.isSelected = true
+//        btnMale.setImage(UIImage(named: "iconRadioUnSelected"), for: .normal)
+//        btnFemale.setImage(UIImage(named: "iconRadioSelected"), for: .normal)
 //        btnOthers.setImage(UIImage(named: "iconCheckMarkUnSelected"), for: .normal)
     }
 //    func selectedOthers()
@@ -211,8 +214,12 @@ class DriverPersonelDetailsViewController: UIViewController, UIImagePickerContro
     {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        
-        navigationController?.pushViewController(vc, animated: true)
+        let NavController = UINavigationController(rootViewController: vc)
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = NavController
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+//
+//        navigationController?.pushViewController(vc, animated: true)
 //        present(vc, animated: true, completion: nil)
     }
     
@@ -323,9 +330,11 @@ class DriverPersonelDetailsViewController: UIViewController, UIImagePickerContro
             ValidatorMessage = "Please enter user name".localized
 //            sb.createWithAction(text: "Please enter user name".localized, actionTitle: "Dismiss".localized, action: { print("Button is push") })
         }
-//        else if txtDOB.text == "" {
+        else if txtDOB.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == ""{
+            isValidate = false
+            ValidatorMessage = "Enter Date of Birth"
 //            sb.createWithAction(text: "Enter Date of Birth", actionTitle: "Dismiss".localized, action: { print("Button is push") })
-//        }
+        }
         else if txtAddress.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
             isValidate = false
             ValidatorMessage = "Please enter address".localized
@@ -336,7 +345,7 @@ class DriverPersonelDetailsViewController: UIViewController, UIImagePickerContro
 //            sb.createWithAction(text: "Enter Post Code", actionTitle: "Dismiss".localized, action: { print("Button is push") })
 //        }
       
-        else if imgProfile.image == UIImage(named: "iconProfileLocation") {
+        else if imgProfile.image == UIImage(named: "iconUsers") {
             isValidate = false
             ValidatorMessage = "Choose Photo".localized
 //            sb.createWithAction(text: "Choose Photo".localized, actionTitle: "Dismiss".localized, action: { print("Button is push") })
@@ -380,19 +389,24 @@ class DriverPersonelDetailsViewController: UIViewController, UIImagePickerContro
         userDefault.set(strLongitude, forKey: RegistrationFinalKeys.kLng)
         userDefault.set(txtPostCode.text, forKey: RegistrationFinalKeys.kZipcode)
 
-        
-        if (btnMale.currentImage?.isEqual(UIImage(named: "iconRadioSelected")))! {
+        if self.btnMale.isSelected == true {
             userDefault.set("Male", forKey: RegistrationFinalKeys.kGender)
-        }
-        else if (btnFemale.currentImage?.isEqual(UIImage(named: "iconRadioSelected")))! {
+        } else if self.btnFemale.isSelected == true {
             userDefault.set("Female", forKey: RegistrationFinalKeys.kGender)
         }
-        else if (btnOthers.currentImage?.isEqual(UIImage(named: "iconRadioSelected")))! {
-            userDefault.set("Other", forKey: RegistrationFinalKeys.kGender)
-        }
-        else {
-            userDefault.set("Male", forKey: RegistrationFinalKeys.kGender)
-        }
+        
+//        if (btnMale.currentImage?.isEqual(UIImage(named: "iconRadioSelected")))! {
+//            userDefault.set("Male", forKey: RegistrationFinalKeys.kGender)
+//        }
+//        else if (btnFemale.currentImage?.isEqual(UIImage(named: "iconRadioSelected")))! {
+//            userDefault.set("Female", forKey: RegistrationFinalKeys.kGender)
+//        }
+//        else if (btnOthers.currentImage?.isEqual(UIImage(named: "iconRadioSelected")))! {
+//            userDefault.set("Other", forKey: RegistrationFinalKeys.kGender)
+//        }
+//        else {
+//            userDefault.set("Male", forKey: RegistrationFinalKeys.kGender)
+//        }
 
 
         navigateToNext()

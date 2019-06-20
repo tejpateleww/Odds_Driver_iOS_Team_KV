@@ -234,7 +234,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                 if manager.location != nil
                 {
                     manager.startUpdatingLocation()
-                    manager.desiredAccuracy = kCLLocationAccuracyBest
+//                    manager.desiredAccuracy = kCLLocationAccuracyBest
+                    manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
                     manager.activityType = .automotiveNavigation
                     manager.startMonitoringSignificantLocationChanges()
                     manager.allowsBackgroundLocationUpdates = true
@@ -906,6 +907,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                 if let RequestMessage = ((data as NSArray).object(at: 0) as! NSDictionary).object(forKey: GetResponseMessageKey()) as? String {
                     next.strRequestMessage = RequestMessage
                 }
+                
+                if let ApartmentNo = ((data as NSArray).object(at: 0) as! NSDictionary).object(forKey: "ApartmentNo") as? String {
+                    next.strApartmentNumber = ApartmentNo
+                }
+                
                 self.addLocalNotification()
                 (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController?.present(next, animated: true, completion: nil)
                 
@@ -962,6 +968,10 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
             
             if let DropoffLocation = ((data as NSArray).object(at: 0) as! NSDictionary).object(forKey: "DropoffLocation") as? String {
                 next.strDropoffLocation = DropoffLocation
+            }
+            
+            if let ApartmentNo = ((data as NSArray).object(at: 0) as! NSDictionary).object(forKey: "ApartmentNo") as? String {
+                next.strApartmentNumber = ApartmentNo
             }
             
             self.playSound(strName: "\(RingToneSound)")
@@ -2040,6 +2050,10 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
             
             if let DropoffLocation = ((data as NSArray).object(at: 0) as! NSDictionary).object(forKey: "DropoffLocation") as? String {
                 next.strDropoffLocation = DropoffLocation
+            }
+            
+            if let ApartmentNo = ((data as NSArray).object(at: 0) as! NSDictionary).object(forKey: "ApartmentNo") as? String {
+                next.strApartmentNumber = ApartmentNo
             }
             
             (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController?.present(next, animated: true, completion: nil)
