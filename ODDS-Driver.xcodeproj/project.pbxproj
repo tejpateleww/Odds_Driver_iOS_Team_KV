@@ -157,6 +157,8 @@
 		00E92A74202AE2C100A399E2 /* WebserviceMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E929C7202AE2C000A399E2 /* WebserviceMethods.swift */; };
 		00EB9E4F1F90D6C1008DB2DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EB9E4E1F90D6C1008DB2DE /* CoreLocation.framework */; };
 		1110D3BD2075FD1700CC8C1F /* TripToDestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110D3BC2075FD1700CC8C1F /* TripToDestinationViewController.swift */; };
+		186A926E22C0D04000E7C3ED /* CongratulationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A926D22C0D04000E7C3ED /* CongratulationsViewController.swift */; };
+		1889AEE022C2216600C67ADC /* MyRunningTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1889AEDF22C2216600C67ADC /* MyRunningTripsViewController.swift */; };
 		18BB89D422AE3BF70049C981 /* UpCommingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB89D322AE3BF70049C981 /* UpCommingTableViewCell.swift */; };
 		18BB89D622AE3C6D0049C981 /* ParcelTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB89D522AE3C6D0049C981 /* ParcelTblCell.swift */; };
 		2101CD0E216F2CBA007B9680 /* ThemeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101CD0D216F2CBA007B9680 /* ThemeButton.swift */; };
@@ -405,6 +407,8 @@
 		00EB9E4E1F90D6C1008DB2DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		00FAEEE31F9F770E00D5F5C4 /* TZSegmentedControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TZSegmentedControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1110D3BC2075FD1700CC8C1F /* TripToDestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripToDestinationViewController.swift; sourceTree = "<group>"; };
+		186A926D22C0D04000E7C3ED /* CongratulationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratulationsViewController.swift; sourceTree = "<group>"; };
+		1889AEDF22C2216600C67ADC /* MyRunningTripsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRunningTripsViewController.swift; sourceTree = "<group>"; };
 		18BB89D322AE3BF70049C981 /* UpCommingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpCommingTableViewCell.swift; sourceTree = "<group>"; };
 		18BB89D522AE3C6D0049C981 /* ParcelTblCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParcelTblCell.swift; sourceTree = "<group>"; };
 		2101CD0D216F2CBA007B9680 /* ThemeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButton.swift; sourceTree = "<group>"; };
@@ -648,6 +652,8 @@
 				00E928F3202AE2BF00A399E2 /* DummyData.swift */,
 				00E92927202AE2BF00A399E2 /* TabbarController.swift */,
 				63209118218ADA7E00A1241C /* MyFeedbackViewCell.swift */,
+				1889AEDF22C2216600C67ADC /* MyRunningTripsViewController.swift */,
+				186A926D22C0D04000E7C3ED /* CongratulationsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1877,6 +1883,7 @@
 				00E929F4202AE2C100A399E2 /* PastJobsListVC.swift in Sources */,
 				3AFADCDB219E98CC0009E3D2 /* iToast.m in Sources */,
 				00E92A28202AE2C100A399E2 /* SPUIColorExtenshion.swift in Sources */,
+				1889AEE022C2216600C67ADC /* MyRunningTripsViewController.swift in Sources */,
 				00E929E4202AE2C100A399E2 /* CarAndTaxiesTableViewCell.swift in Sources */,
 				3AFADCE2219E98CC0009E3D2 /* UIAlertController+Blocks.m in Sources */,
 				00E92A73202AE2C100A399E2 /* WebserviceClasses.swift in Sources */,
@@ -1986,6 +1993,7 @@
 				00E92A3A202AE2C100A399E2 /* SPSegmentControllCell.swift in Sources */,
 				00E92A50202AE2C100A399E2 /* Duration.swift in Sources */,
 				00E92A39202AE2C100A399E2 /* SPRoundButton.swift in Sources */,
+				186A926E22C0D04000E7C3ED /* CongratulationsViewController.swift in Sources */,
 				00E929E1202AE2C100A399E2 /* HeaderView.swift in Sources */,
 				00E92A58202AE2C100A399E2 /* TripInfoCompletedTripVC.swift in Sources */,
 				00E929EB202AE2C100A399E2 /* HailedFareViewController.swift in Sources */,

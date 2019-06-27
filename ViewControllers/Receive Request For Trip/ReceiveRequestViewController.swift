@@ -372,7 +372,7 @@ extension ReceiveRequestViewController : UITableViewDataSource
 
 
 
-        cell?.lblParcelNumberTitle.text = "Parcel \(indexPath.row)"
+        cell?.lblParcelNumberTitle.text = "Parcel \(indexPath.row + 1)"
         if let price = dictData["ParcelPrice"] as? String
         {
             cell?.lblPrice.text = price

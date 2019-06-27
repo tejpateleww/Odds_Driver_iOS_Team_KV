@@ -78,6 +78,9 @@ struct WebserviceURLs {
     
 //    https://www.tantaxitanzania.com/Drvier_Api/FeedbackList/9
     static let kFeedbackList                     = "FeedbackList/"
+    
+    static let kCurrentTrips                 = "CurrentTrips/"
+
 }
 
 struct OTPEmail {

@@ -35,9 +35,9 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
         //kiconMyJobs
         //kMyRating
         //kiconMyRating
-        aryItemNames = [kPassword,kTripToDestination,kInviteFriend,kSettings,kLogout]//kPaymentOption,
+        aryItemNames = [kPassword,kRunningTrip,kTripToDestination,kInviteFriend,kSettings,kLogout]//kPaymentOption,
         
-        aryItemIcons = [kiconPassword,kiconTripToDestination,kiconInviteFriend,kiconSettings,kIconLogout]//kiconPaymentOption,
+        aryItemIcons = [kiconPassword,kiconMyRunningTrip,kiconTripToDestination,kiconInviteFriend,kiconSettings,kIconLogout]//kiconPaymentOption,
 
         self.view.backgroundColor = ThemeYellowColor
         
@@ -160,7 +160,7 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
             let tintedImage = UIImage.init(named: aryItemIcons[indexPath.row])?.withRenderingMode(.alwaysTemplate)
             cellItemList.lblImage.image = tintedImage
             cellItemList.lblImage.tintColor = .white
-
+            
 
             return cellItemList
         }
@@ -289,8 +289,7 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
         {
             let homeVC = self.parent?.children.first?.children.first?.children.first as? HomeViewController
             let strCellItemTitle = aryItemNames[indexPath.row]
-            if strCellItemTitle == kPaymentOption
-            {
+            if strCellItemTitle == kPaymentOption {
 
                 if(Singletons.sharedInstance.CardsVCHaveAryData.count == 0)
                 {
@@ -319,31 +318,27 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
 ////                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
 ////                homeVC?.navigationController?.pushViewController(viewController, animated: true)
 //            }
-            else if strCellItemTitle == kPassword
-            {
+            else if strCellItemTitle == kPassword {
                 let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController
                 homeVC?.navigationController?.pushViewController(viewController, animated: true)
             }
-            else if strCellItemTitle == kInviteFriend
-            {
+            else if strCellItemTitle == kInviteFriend {
                 let viewController = self.storyboard?.instantiateViewController(withIdentifier: "InviteDriverViewController") as! InviteDriverViewController
                 homeVC?.navigationController?.pushViewController(viewController, animated: true)
             }
-            else if strCellItemTitle == kSettings
-            {
+            else if strCellItemTitle == kSettings {
                 let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SettingPasscodeVC") as! SettingPasscodeVC
                 homeVC?.navigationController?.pushViewController(viewController, animated: true)
-            }
-            else if strCellItemTitle == kTripToDestination
-            {
+            }else if strCellItemTitle == kTripToDestination {
                 let storyboard = UIStoryboard(name: "TripToDestination", bundle: nil)
                 let viewController = storyboard.instantiateViewController(withIdentifier: "TripToDestinationViewController") as! TripToDestinationViewController
                 homeVC?.navigationController?.pushViewController(viewController, animated: true)
-            }
-            else if strCellItemTitle == kLogout
-            {
+            }else if strCellItemTitle == kLogout {
                 (UIApplication.shared.delegate as! AppDelegate).GoToLogout()
 
+            }else if strCellItemTitle == kRunningTrip {
+                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "MyRunningTripsViewController") as! MyRunningTripsViewController
+                homeVC?.navigationController?.pushViewController(viewController, animated: true)
             }
 
             sideMenuController?.hideMenu()

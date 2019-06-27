@@ -136,13 +136,13 @@ class DispatchedJobsForMyJobsVC: ParentViewController, UITableViewDataSource, UI
 
                 let dictData = aryData.object(at: indexPath.row) as! NSDictionary
                 
-                cell.lblDriversNames.text = dictData.object(forKey: "PassengerName") as? String
+                cell.lblDriversNames.text = dictData.object(forKey: "ReceiverName") as? String
                 cell.lblDropLocationDescription.text = dictData.object(forKey: "PickupLocation") as? String // DropoffLocation
                 cell.lblDateAndTime.text = dictData.object(forKey: "CreatedDate") as? String
                 
                 cell.lblPickUpLocationDescription.text = dictData.object(forKey: "DropoffLocation") as? String  // PickupLocation
                 cell.lblPassengerEmail.text = dictData.object(forKey: "PassengerEmail") as? String
-                cell.lblPassengerNumber.text = dictData.object(forKey: "PassengerContact") as? String
+                cell.lblPassengerNumber.text = dictData.object(forKey: "ReceiverContactNo") as? String
                 
                 cell.lblPassengerFlightNo.text = dictData.object(forKey: "FlightNumber") as? String
                 cell.lblPassengerNotes.text = dictData.object(forKey: "Notes") as? String

@@ -367,8 +367,7 @@
                     
                     let profileData = Singletons.sharedInstance.dictDriverProfile
                     
-                    if let currentBalance = (profileData?.object(forKey: "profile") as! NSDictionary).object(forKey: "Balance") as? Double
-                    {
+                    if let currentBalance = (profileData?.object(forKey: "profile") as! NSDictionary).object(forKey: "Balance") as? Double {
                         Singletons.sharedInstance.strCurrentBalance = currentBalance
                     }
 

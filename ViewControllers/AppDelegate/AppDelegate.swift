@@ -390,6 +390,40 @@ let googlPlacesApiKey = "AIzaSyDcug87uBhFLMo1KlqyaO10shE-sNTBCmw"//"AIzaSyD1bcIT
 
     func GoToLogout() {
 
+        
+        let socket = (UIApplication.shared.delegate as! AppDelegate).SocketManager
+        
+        Utilities.removeUserDefaultsValue()
+        socket.off(socketApiKeys.kReceiveBookingRequest)
+        socket.off(socketApiKeys.kBookLaterDriverNotify)
+        
+        socket.off(socketApiKeys.kGetBookingDetailsAfterBookingRequestAccepted)
+        socket.off(socketApiKeys.kAdvancedBookingInfo)
+        
+        socket.off(socketApiKeys.kReceiveMoneyNotify)
+        
+        socket.off(socketApiKeys.kAriveAdvancedBookingRequest)
+        
+        socket.off(socketApiKeys.kDriverCancelTripNotification)
+        socket.off(socketApiKeys.kAdvancedBookingDriverCancelTripNotification)
+        
+        //Change
+        socket.off("SessionError")
+         socket.off(socketApiKeys.kStartTripTimeError)
+        socket.off(socketApiKeys.kAdvancedBookingPickupPassengerNotification)
+        
+        socket.off(socketApiKeys.kReceiveTipsToDriverForBookLater)
+        
+        socket.off(socketApiKeys.kReceiveTipsToDriver)
+        
+        socket.off(socketApiKeys.kAriveAdvancedBookingRequest)
+        
+        socket.disconnect()
+        Singletons.sharedInstance.isDriverLoggedIN = false
+        UserDefaults.standard.set(false, forKey: kIsSocketEmited)
+        
+        
+        
         for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
             print("\(key) = \(value) \n")
 

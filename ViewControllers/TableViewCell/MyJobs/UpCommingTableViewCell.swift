@@ -116,8 +116,9 @@ class UpCommingTableViewCell: UITableViewCell {
         ParcelTableView.delegate = self
         ParcelTableView.reloadData()
         ParcelTableView.layoutIfNeeded()
+        
         DispatchQueue.main.async {
-            self.tblHeightConstraint.constant = self.ParcelTableView.contentSize.height
+            self.tblHeightConstraint.constant = self.ParcelTableView.contentSize.height + 20
         }
     }
 }
@@ -133,6 +134,7 @@ extension UpCommingTableViewCell : UITableViewDataSource, UITableViewDelegate  {
         let ParcelCell = self.ParcelTableView.dequeueReusableCell(withIdentifier: "ParcelTblCell", for: indexPath) as! ParcelTblCell
         let parcelData = self.arrParcel[indexPath.row]
         ParcelCell.lblParcelSizeTitle.text = "PARCEL SIZE"
+        ParcelCell.selectionStyle = .none
         if let ParcelSize = parcelData["ParcelSize"] as? String {
             if(ParcelSize.trimmingCharacters(in: .whitespacesAndNewlines).count == 0)
             {
@@ -155,10 +157,11 @@ extension UpCommingTableViewCell : UITableViewDataSource, UITableViewDelegate  {
                 ParcelCell.lblParcelWeightValue.text = ": " + ParcelWeight
             }
         }
+        
         ParcelCell.lblParcelQueue.text = "PARCEL - " + "\(indexPath.row + 1)"
         ParcelCell.lblParcelPriceTitle.text = "PARCEL PRICE"
         if let ParcelPrice = parcelData["ParcelPrice"] as? String {
-            ParcelCell.lblParcelPriceValue.text = ": " + ParcelPrice
+            ParcelCell.lblParcelPriceValue.text = ": " + currency + ParcelPrice
         }
         
         ParcelCell.lblParcelTypeTitle.text = "PARCEL TYPE"

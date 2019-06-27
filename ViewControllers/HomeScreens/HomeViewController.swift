@@ -168,7 +168,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         BottomButtonView.isHidden = true
         StartTripView.isHidden = true
         btnStartTrip.isHidden = true
-//        (self.parent as? ContainerViewController)?.viewHomeMyJobsBTN.isHidden = false
+        //        (self.parent as? ContainerViewController)?.viewHomeMyJobsBTN.isHidden = false
         //        self.constrainLocationViewBottom.constant = 0//self.viewHomeMyJobsBTN.frame.height
         isAdvanceBooking = false
         Singletons.sharedInstance.isFirstTimeDidupdateLocation = true;
@@ -234,7 +234,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                 if manager.location != nil
                 {
                     manager.startUpdatingLocation()
-//                    manager.desiredAccuracy = kCLLocationAccuracyBest
+                    //                    manager.desiredAccuracy = kCLLocationAccuracyBest
                     manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
                     manager.activityType = .automotiveNavigation
                     manager.startMonitoringSignificantLocationChanges()
@@ -867,13 +867,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                 let next = self.storyboard?.instantiateViewController(withIdentifier: "ReceiveRequestViewController") as! ReceiveRequestViewController
                 next.delegate = self
                 next.strGrandTotal = "0"
-
-
+                
+                
                 if let dictData = data as? [[String:AnyObject]]
                 {
                     next.parcelData = dictData
                 }
-
+                
                 if let grandTotal = ((data as NSArray).object(at: 0) as! NSDictionary).object(forKey: "EstimateFare") as? String {
                     if grandTotal == "" {
                         next.strEstimateFare = "0"
@@ -1268,7 +1268,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                     }
                 }
             }
-                
+            
             
             Singletons.sharedInstance.isRequestAccepted = true
             UserDefaults.standard.set(Singletons.sharedInstance.isRequestAccepted, forKey: tripStatus.kisRequestAccepted)
@@ -1310,7 +1310,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                 self.btnStartTrip.isHidden = false
                 self.btnStartTrip.layoutIfNeeded()
                 self.BottomButtonView.layoutIfNeeded()
-//                (self.parent as? ContainerViewController)?.viewHomeMyJobsBTN.isHidden = true
+                //                (self.parent as? ContainerViewController)?.viewHomeMyJobsBTN.isHidden = true
                 //                self.viewLocationDetails.isHidden = true
                 //                self.constrainLocationViewBottom.constant = self.BottomButtonView.frame.size.height
             }
@@ -1423,7 +1423,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                 
                 if Singletons.sharedInstance.passengerType == "other" || Singletons.sharedInstance.passengerType == "others" {
                     
-                    let Fullname = BookingInfo.object(forKey: "PassengerName")
+                    let Fullname = BookingInfo.object(forKey: "ReceiverName")
                     
                     let FlightNumber = BookingInfo.object(forKey: "FlightNumber")
                     let PaymentType = BookingInfo.object(forKey: "PaymentType")
@@ -1434,14 +1434,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                         
                         if mobileNumber == "" {
                             
-                            if let contacoNo = BookingInfo.object(forKey: "PassengerContact") as? String {
+                            if let contacoNo = BookingInfo.object(forKey: "ReceiverContactNo") as? String {
                                 MobileNo = contacoNo
                             }
                             else {
                                 MobileNo = ""
                             }
-                        }
-                        else {
+                        }else {
                             MobileNo = mobileNumber
                         }
                     }
@@ -1483,7 +1482,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                 
                 if Singletons.sharedInstance.passengerType == "other" || Singletons.sharedInstance.passengerType == "others" {
                     
-                    let Fullname = BookingInfo.object(forKey: "PassengerName")
+                    let Fullname = BookingInfo.object(forKey: "ReceiverName")
                     
                     let FlightNumber = BookingInfo.object(forKey: "FlightNumber")
                     let PaymentType = BookingInfo.object(forKey: "PaymentType")
@@ -1494,7 +1493,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                         
                         if mobileNumber == "" {
                             
-                            if let contacoNo = BookingInfo.object(forKey: "PassengerContact") as? String {
+                            if let contacoNo = BookingInfo.object(forKey: "ReceiverContactNo") as? String {
                                 MobileNo = contacoNo
                             }
                             else {
@@ -1639,7 +1638,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         self.btnStartTrip.isHidden = false
         self.aryBookingData = data as NSArray
         Singletons.sharedInstance.aryPassengerInfo = data as NSArray
-//        (self.parent as? ContainerViewController)?.viewHomeMyJobsBTN.isHidden = true
+        //        (self.parent as? ContainerViewController)?.viewHomeMyJobsBTN.isHidden = true
         //                self.viewLocationDetails.isHidden = true
         //        self.constrainLocationViewBottom.constant = self.BottomButtonView.frame.size.height
         self.isAdvanceBooking = true
@@ -2217,7 +2216,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                     if let dictFirstObjectIsDict = aryCurrentData.object(at: 0) as? NSDictionary {
                         if let dictBookinInfoIsDictData = dictFirstObjectIsDict.object(forKey: "BookingInfo") as? NSArray {
                             if let passengerDataAdvance = dictBookinInfoIsDictData.object(at: 0) as? NSDictionary {
-                                if let nameOfPassenger = passengerDataAdvance.object(forKey: "PassengerName") as? String {
+                                if let nameOfPassenger = passengerDataAdvance.object(forKey: "ReceiverName") as? String {
                                     
                                     let alert = UIAlertController(title: "App Name".localized, message: "\(dictFirstObjectIsDict.object(forKey: GetResponseMessageKey()) as? String ?? "Trip has been canceled by passenger.".localized) \(nameOfPassenger)", preferredStyle: .alert)
                                     let OK = UIAlertAction(title: "OK", style: .default, handler: { ACTION in
@@ -2508,7 +2507,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         }
         if Singletons.sharedInstance.passengerType == "other" || Singletons.sharedInstance.passengerType == "others" {
             
-            if let contactNumber = BookingInfo.object(forKey: "PassengerContact") as? String {
+            if let contactNumber = BookingInfo.object(forKey: "ReceiverContactNo") as? String {
                 
                 self.strPassengerMobileNo = contactNumber
             }
@@ -2633,8 +2632,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
     }
     
     @IBAction func btnReturnParcel(_ sender: Any) {
-            self.isParcelReturn = 1
-            self.completeTripButtonAction()
+        self.isParcelReturn = 1
+        self.completeTripButtonAction()
     }
     
     
@@ -2718,7 +2717,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         
         
         // 9-July-2018
-         Singletons.sharedInstance.MeterStatus = meterStatus.kIsMeterStop
+        Singletons.sharedInstance.MeterStatus = meterStatus.kIsMeterStop
         if Singletons.sharedInstance.confirmationType == "image"{
             self.PickingImageFromCamera()
         }else{
@@ -2726,7 +2725,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         }
         
         
-       
+        
         
         //        }
         //        else
@@ -2734,32 +2733,32 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         //            UtilityClass.showAlert("Hold Trip Active", message: "Please stop holding trip", vc: self)
         //        }
     }
-     func presentSignatureVC() {
-    
-    Utilities.hideActivityIndicator()
-    
-    let next = self.storyboard?.instantiateViewController(withIdentifier: "SignatureViewController") as! SignatureViewController
-    (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController?.present(next, animated: true, completion: nil)
-    
-    next.onDismiss = {
-        if next.IsNeedToOpenCamera == false {
-            self.submittedParcelImage = next.parcelSignatureImage
-            self.completeTripButtonAction()
-            next.dismiss(animated: true)
-        } else if next.IsNeedToOpenCamera == true {
-            next.dismiss(animated: true, completion: {
-                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
-                    self.perform(#selector(self.PickingImageFromCamera), with: nil, afterDelay: 1.0)
-//                    self.PickingImageFromCamera()
-                } else {
-                    Utilities.showToastMSG(MSG: "Your device doesn't have Camera.")
-                }
-            })
+    func presentSignatureVC() {
+        
+        Utilities.hideActivityIndicator()
+        
+        let next = self.storyboard?.instantiateViewController(withIdentifier: "SignatureViewController") as! SignatureViewController
+        (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController?.present(next, animated: true, completion: nil)
+        
+        next.onDismiss = {
+            if next.IsNeedToOpenCamera == false {
+                self.submittedParcelImage = next.parcelSignatureImage
+                self.completeTripButtonAction()
+                next.dismiss(animated: true)
+            } else if next.IsNeedToOpenCamera == true {
+                next.dismiss(animated: true, completion: {
+                    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+                        self.perform(#selector(self.PickingImageFromCamera), with: nil, afterDelay: 1.0)
+                        //                    self.PickingImageFromCamera()
+                    } else {
+                        Utilities.showToastMSG(MSG: "Your device doesn't have Camera.")
+                    }
+                })
+            }
+            
         }
-    
     }
-  }
-  
+    
     @objc func PickingImageFromCamera()
     {
         let picker = UIImagePickerController()
@@ -2785,7 +2784,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: {self.completeTripButtonAction()})
     }
-
+    
     func completeTripButtonAction()
     {
         
@@ -3512,6 +3511,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         else if let moveToMeter = segue.destination as? MeterViewController {
             
             moveToMeter.isFromHome = true
+        }else if let vwCongratulations = segue.destination as? CongratulationsViewController {
+            var strTotalEarnAmount = ""
+            if let GrandTotal = (self.dictCompleteTripData.object(forKey: "details") as? NSDictionary)?.object(forKey: "GrandTotal") as? String {
+                strTotalEarnAmount = (GrandTotal != "" && GrandTotal != "0") ? "\(currency) \(GrandTotal)" : "\(currency) 0"
+            }
+            vwCongratulations.delegate = self
+            vwCongratulations.strTotalAmount = "Congratulations you just earned \("%.2f",strTotalEarnAmount)"
         }
     }
     
@@ -4509,7 +4515,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
     {
         Utilities.showActivityIndicator()
         let dictOfImages: [String: UIImage] = ["DeliveredParcelImage" : submittedParcelImage]
-
+        
         webserviceForCompletedTripSuccessfully(dictOFParam as AnyObject, dictOfImages) { (result, status) in
             Utilities.hideActivityIndicator()
             if (status) {
@@ -4526,7 +4532,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                 if let paymentType = (self.dictCompleteTripData.object(forKey: "details") as! NSDictionary).object(forKey: "PaymentType") as? String {
                     Singletons.sharedInstance.passengerPaymentType = paymentType
                 }
-             
+                
                 if Singletons.sharedInstance.passengerPaymentType == "cash" || Singletons.sharedInstance.passengerPaymentType == "Cash" {
                     
                     
@@ -4646,7 +4652,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
     // MARK: - Webservice Methods For Completeing Advance Booking
     //-------------------------------------------------------------
     
-
+    
     func webserviceCallForAdvanceCompleteTrip(dictOFParam : AnyObject)
     {
         Utilities.showActivityIndicator()
@@ -4773,7 +4779,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
             
             if (status) {
                 print(result)
-                
+               /*
                 let socket = (UIApplication.shared.delegate as! AppDelegate).SocketManager
                 
                 Utilities.removeUserDefaultsValue()
@@ -4793,8 +4799,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                 Singletons.sharedInstance.isDriverLoggedIN = false
                 UserDefaults.standard.set(false, forKey: kIsSocketEmited)
                 
+                */
                 Utilities.showAlertWithCompletion(AppNAME, message: "Your session has been expired, please try to login again.".localized, vc: ((UIApplication.shared.delegate as! AppDelegate).window?.rootViewController)!, completionHandler: { (status) in
-                    self.performSegue(withIdentifier: "SignOutFromHome", sender: (Any).self)
+                    
+                    (UIApplication.shared.delegate as! AppDelegate).GoToLogout()
+//                    self.performSegue(withIdentifier: "SignOutFromHome", sender: (Any).self)
                 })
                 
             }
@@ -5146,15 +5155,34 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         Utilities.hideActivityIndicator()
         App_Delegate.WaitingTime = "00:00:00"
         App_Delegate.WaitingTimeCount = 0
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "TripInfoCompletedTripVC") as! TripInfoCompletedTripVC
-        next.dictData = self.dictCompleteTripData
-        next.delegate = self
+        
+        var strTotalEarnAmount = ""
+        if let GrandTotal = (self.dictCompleteTripData.object(forKey: "details") as? NSDictionary)?.object(forKey: "GrandTotal") as? String {
+            strTotalEarnAmount = (GrandTotal != "" && GrandTotal != "0") ? "\(currency) \(GrandTotal)" : "\(currency) 0"
+        }
+        
+        /*
+        UtilityClass.showAlertWithCompletion("", message: "Congratulations you just earned \(strTotalEarnAmount)", vc: self) { (success) in
+            if Singletons.sharedInstance.passengerType == "other" || Singletons.sharedInstance.passengerType == "others" {
+                //            self.completeTripInfo()
+            }
+            else {
+                self.didRatingCompleted()
+            }
+            Singletons.sharedInstance.passengerType = ""
+        }
+        */
+        
+        self.performSegue(withIdentifier: "segueCongratulation", sender: self)
+        //        let next = self.storyboard?.instantiateViewController(withIdentifier: "TripInfoCompletedTripVC") as! TripInfoCompletedTripVC
+        //        next.dictData = self.dictCompleteTripData
+        //        next.delegate = self
         DispatchQueue.main.async {
             //              self.stopSound()
             self.btnCurrentLocation(self.btnCurrentlocation)
             
         }
-        (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController?.present(next, animated: true, completion: nil)
+        //        (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController?.present(next, animated: true, completion: nil)
         
     }
     
@@ -5180,13 +5208,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         return seconds < 10 ? "0\(seconds)" : "\(seconds)"
     }
     
-    @objc func updateTime()
-    {
+    @objc func updateTime() {
         
         
         //        print("Function: \(#function), line: \(#line), Waiting Time Count: \(App_Delegate.WaitingTimeCount)")
-        if(SingletonsForMeter.sharedInstance.isMeterOnHold == false)
-        {
+        if(SingletonsForMeter.sharedInstance.isMeterOnHold == false) {
             App_Delegate.WaitingTimeCount = App_Delegate.WaitingTimeCount + 1.0
         }
         //  print("Function: \(#function), line: \(#line), Waiting Time Count: \(App_Delegate.WaitingTimeCount)")
@@ -5293,9 +5319,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         //        print("The total is Home View \(SingletonsForMeter.sharedInstance.total)")
         //        print("The time is \(SingletonsForMeter.sharedInstance.waitingMinutes)")
         
-        
     }
-    
+   
 }
 
 
@@ -5308,3 +5333,8 @@ extension Bool {
     }
 }
 
+extension UIViewController {
+    func setFunc() -> Bool {
+        return true
+    }
+}

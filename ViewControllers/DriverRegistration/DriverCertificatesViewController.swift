@@ -628,7 +628,32 @@ class DriverCertificatesViewController: UIViewController,UIImagePickerController
    
         webserviceForRegistrationForDriver(dictData as AnyObject, image1: imgDriverLicence.image!, image2: imgAccreditationCertifi.image!, image3: imgCarRegistration.image!, image4: imgVehicleInsurience.image!, image5: imgDriver, image6: imgVehicle) { (result, status) in
             
-            
+            /*
+             
+             if ((result as! NSDictionary).object(forKey: "status") as! Int == 1)
+             {
+             Singletons.sharedInstance.dictDriverProfile = NSMutableDictionary(dictionary: (result as! NSDictionary).object(forKey: "driver") as! NSDictionary)
+             Singletons.sharedInstance.isDriverLoggedIN = true
+             Utilities.encodeDatafromDictionary(KEY: driverProfileKeys.kKeyDriverProfile, Param: Singletons.sharedInstance.dictDriverProfile)
+             //                                        UserDefaults.standard.set(Singletons.sharedInstance.dictDriverProfile, forKey: driverProfileKeys.kKeyDriverProfile)
+             UserDefaults.standard.set(true, forKey: driverProfileKeys.kKeyIsDriverLoggedIN)
+             
+             Singletons.sharedInstance.strDriverID = ((Singletons.sharedInstance.dictDriverProfile.object(forKey: "profile") as! NSDictionary).object(forKey: "Vehicle") as! NSDictionary).object(forKey: "DriverId") as! String
+             
+             Singletons.sharedInstance.driverDuty = ((Singletons.sharedInstance.dictDriverProfile.object(forKey: "profile") as! NSDictionary).object(forKey: "DriverDuty") as! String)
+             //                    Singletons.sharedInstance.showTickPayRegistrationSceeen =
+             
+             let profileData = Singletons.sharedInstance.dictDriverProfile
+             
+             if let currentBalance = (profileData?.object(forKey: "profile") as! NSDictionary).object(forKey: "Balance") as? Double {
+             Singletons.sharedInstance.strCurrentBalance = currentBalance
+             }
+             
+             (UIApplication.shared.delegate as! AppDelegate).GoToHome()
+             //                    let next = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuController") as! SideMenuController
+             //                    self.navigationController?.pushViewController(next, animated: true)
+             }
+             */
             // ------------------------------------------------------------
             
             if (status)

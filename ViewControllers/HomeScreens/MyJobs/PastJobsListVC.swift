@@ -455,7 +455,6 @@ class PastJobsListVC: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             
             
-            
             //            cell.lblBookingID.attributedText = formattedString
             if let Createdate = dictData[ "CreatedDate"] as? String {
                 cell.lblDateAndTime.text =  Createdate
@@ -485,9 +484,7 @@ class PastJobsListVC: UIViewController, UITableViewDataSource, UITableViewDelega
             //            }
             
             if let email = dictData["PassengerEmail"] as? String {
-                
                 cell.lblTripDistance.text = ": " + email
-                
             }
             
             if let PaymentType = dictData["PaymentType"] as? String {
@@ -547,7 +544,6 @@ class PastJobsListVC: UIViewController, UITableViewDataSource, UITableViewDelega
             
 
             
-            
             if let tripDistance = dictData["TripDistance"] as? String {
                 cell.lblDistance.text = ": " + tripDistance + " Km"
             }
@@ -596,12 +592,20 @@ class PastJobsListVC: UIViewController, UITableViewDataSource, UITableViewDelega
             if let grandTotal = dictData["GrandTotal"] as? String {
                 cell.lblGrandTotal.text = ": " + grandTotal
             }
+            
             if let status = dictData["Status"] as? String {
-                cell.lblTripStatus.text = ": " + status
+                
+                if let isParcelReturn = dictData["ParcelReturn"] as? String , !isParcelReturn.isEmpty {
+                    
+                    cell.lblTripStatus.text = (isParcelReturn == "1") ?  (": " + status.capitalized + " (Parcel Return)") : (": " + status.capitalized)
+                    
+                }else {
+                    cell.lblTripStatus.text = (": " + status.capitalized)
+                }
+                
             }
-            
-           
-            
+                
+        
             if let status = dictData["Status"] as? String {
                 if status == "canceled" || status == "Canceled" || status == "CANCELED" {
                     cell.vwPickupTIme.isHidden = true

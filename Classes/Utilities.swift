@@ -437,8 +437,7 @@ class Utilities: NSObject
         btnLeft.setImage(UIImage.init(named: leftImage), for: .normal)
         btnLeft.layer .setValue(controller, forKey: "controller")
         
-        if leftImage == kMenuIcon
-        {
+        if leftImage == kMenuIcon {
             btnLeft.addTarget(self, action: #selector(OpenMenuViewController(_:)), for: .touchUpInside)
         }
         else

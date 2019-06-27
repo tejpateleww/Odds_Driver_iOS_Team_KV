@@ -13,7 +13,7 @@ class DriverRegistrationViewController: UIViewController, UIScrollViewDelegate /
 {
 
     var percentIndicatorViewLabel = String()
-     var selectedIndex = Int()
+    var selectedIndex = Int()
     private let borderColor: UIColor = UIColor(hue: 1, saturation: 0, brightness: 1, alpha: 0.5)
     private let backgroundColor: UIColor = UIColor(hue: 1, saturation: 0, brightness: 1, alpha: 0.08)
     

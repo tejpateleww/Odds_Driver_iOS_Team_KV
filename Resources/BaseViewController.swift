@@ -21,9 +21,8 @@ class BaseViewController: UIViewController {
         self.btnDuty.setImage(UIImage.init(named: "iconSwitchOff"), for: .normal)
         self.btnDuty.setImage(UIImage.init(named: "iconSwitchOn"), for: .selected)
         self.btnDuty.addTarget(self, action:  #selector(self.webserviceForChangeDutyStatus), for: .touchUpInside)
-
-        if(Singletons.sharedInstance.driverDuty == "1")
-        {
+        self.btnDuty.isSelected = false
+        if(Singletons.sharedInstance.driverDuty == "1") {
             self.btnDuty.isSelected = true
         }
         // Do any additional setup after loading the view.
