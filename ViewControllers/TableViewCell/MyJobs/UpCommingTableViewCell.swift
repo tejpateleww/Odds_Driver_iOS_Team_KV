@@ -142,7 +142,7 @@ extension UpCommingTableViewCell : UITableViewDataSource, UITableViewDelegate  {
             }
             else
             {
-                ParcelCell.lblParcelSizeValue.text = ": " + ParcelSize
+                ParcelCell.lblParcelSizeValue.text = ": " + ParcelSize + " \(MeasurementSign)"
             }
         }
         
@@ -154,7 +154,7 @@ extension UpCommingTableViewCell : UITableViewDataSource, UITableViewDelegate  {
             }
             else
             {
-                ParcelCell.lblParcelWeightValue.text = ": " + ParcelWeight
+                ParcelCell.lblParcelWeightValue.text = ": " + ParcelWeight + " \(WeightSign)"
             }
         }
         

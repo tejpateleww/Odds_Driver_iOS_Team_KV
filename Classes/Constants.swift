@@ -24,6 +24,8 @@ var utility = Utilities()
 
 let kHtmlReplaceString   :   String  =   "<[^>]+>"
 let currency : String = "$"
+let MeasurementSign : String = "cm"
+let WeightSign : String = "Lbs"
 let dictanceType : String = "km"
 
 let kIsSocketEmited : String = "IsEmited"

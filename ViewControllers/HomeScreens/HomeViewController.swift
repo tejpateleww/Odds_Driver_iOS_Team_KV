@@ -3517,7 +3517,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                 strTotalEarnAmount = (GrandTotal != "" && GrandTotal != "0") ? "\(currency) \(GrandTotal)" : "\(currency) 0"
             }
             vwCongratulations.delegate = self
-            vwCongratulations.strTotalAmount = "Congratulations you just earned \("%.2f",strTotalEarnAmount)"
+            vwCongratulations.strTotalAmount = "Congratulations you just earned \( String(format: "%.2f", strTotalEarnAmount))"
         }
     }
     

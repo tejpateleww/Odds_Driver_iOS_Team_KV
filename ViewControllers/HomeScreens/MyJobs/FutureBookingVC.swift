@@ -334,7 +334,7 @@ class FutureBookingVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             
             if let parcelPrice = dictData["ParcelPrice"] as? String {
                 if let price = Double(parcelPrice) {
-                    cell.lblParcelPriceValue.text = ": " + String(format: "%.2f", price)
+                    cell.lblParcelPriceValue.text = ": \(currency)" + String(format: "%.2f", price)
                 }
             }
             if let id = dictData["Id"] as? Int {

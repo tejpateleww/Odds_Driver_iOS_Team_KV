@@ -349,7 +349,7 @@ class PendingJobsListVC: UIViewController, UITableViewDataSource, UITableViewDel
             
             if let parcelPrice = dictData["ParcelPrice"] as? String {
                 if let price = Double(parcelPrice) {
-                    cell.lblParcelPriceValue.text = ": " + String(format: "%.2f", price)
+                    cell.lblParcelPriceValue.text = ": \(currency)" + String(format: "%.2f", price)
                 }
             }
             

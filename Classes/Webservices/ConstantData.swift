@@ -19,8 +19,8 @@ struct WebSupport {
 
 struct WebserviceURLs {
     
-    static let kBaseURL                                 = "https://www.shipodds.com/web/Drvier_Api/" //https://www.tantaxitanzania.com/Drvier_Api/"//"https://pickngolk.info/web/Drvier_Api/" // "http://54.169.67.226/web/Drvier_Api/" //
-    static let kImageBaseURL                            = "https://www.shipodds.com/web/" // "http://54.169.67.226/web/" //
+    static let kBaseURL                                 =  "https://www.shipodds.com/Drvier_Api/" // "https://www.shipodds.com/web/Drvier_Api/" //https://www.tantaxitanzania.com/Drvier_Api/"//"https://pickngolk.info/web/Drvier_Api/" // "http://54.169.67.226/web/Drvier_Api/" //
+    static let kImageBaseURL                            =  "https://www.shipodds.com/" // "https://www.shipodds.com/web/" // "http://54.169.67.226/web/" //
     static let kOTPForDriverRegister                    = "OtpForRegister"
     static let kVehicalModelList                        = "TaxiModel/"
     static let kDriverRegister                          = "Register"
