@@ -263,8 +263,6 @@ class MyRunningTripsViewController: UIViewController, UITableViewDataSource, UIT
                 //                cell.lblBookingId.text = "\("Booking Id".localized) : \(BookingID)"
                 cell.lblBookingId.text = ": \(BookingID)"
             }
-            
-            
            
             //            cell.lblBookingID.attributedText = formattedString
             if let Createdate = dictData["CreatedDate"] as? String {
@@ -311,7 +309,6 @@ class MyRunningTripsViewController: UIViewController, UITableViewDataSource, UIT
                 cell.setParcelDetail()
             }
             
-            
             if let strParcelImage = dictData["ParcelImage"] as? String {
                 cell.imgParcelImage.sd_setShowActivityIndicatorView(true)
                 cell.imgParcelImage.sd_setIndicatorStyle(.gray)
@@ -331,7 +328,6 @@ class MyRunningTripsViewController: UIViewController, UITableViewDataSource, UIT
             if let passengerNo = dictData["ReceiverContactNo"] as? String, !passengerNo.isEmpty {
                 
                 cell.lblPassengerNo.text = ": " +  passengerNo
-                
             }
             
             if let parcelPrice = dictData["ParcelPrice"] as? String {
@@ -352,24 +348,27 @@ class MyRunningTripsViewController: UIViewController, UITableViewDataSource, UIT
             //            cell.lblDriverName.text = myString
             //
             //            bookinType = aryData[ indexPath.row]["BookingType"] as! String
-            //            cell.btnCancelRequest.setTitle("Cancel Request".localized, for: .normal)
-            //            cell.btnCancelRequest.addTarget(self, action: #selector(self.CancelRequest), for: .touchUpInside)
+//                        cell.btnCancelRequest.setTitle("Cancel Request".localized, for: .normal)
+//            cell.btnCancelRequest.addTarget(self, action: #selector(self.CancelRequest), for: .touchUpInside)
+            
+            cell.btnCancelRequest.tag = indexPath.row
+            cell.btnCancelRequest.addTarget(self, action: #selector(self.trackYourTrip(sender:)), for: .touchUpInside)
+            
+            
+            
             cell.btnCancelRequest.tag = indexPath.row
             cell.btnCancelRequest.layer.cornerRadius = 5
             cell.btnCancelRequest.layer.masksToBounds = true
             
             cell.viewDetails.isHidden = !expandedCellPaths.contains(indexPath)
         }
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
         /*
          if let cell = tableView.cellForRow(at: indexPath) as? FutureBookingTableViewCell {
-         
          
          cell.viewSecond.isHidden = !cell.viewSecond.isHidden
          if cell.viewSecond.isHidden {
@@ -393,10 +392,8 @@ class MyRunningTripsViewController: UIViewController, UITableViewDataSource, UIT
             }
             tableView.beginUpdates()
             tableView.endUpdates()
-            
         }
     }
-    
     
     @objc func btnActionForSelectRecord(sender: UIButton) {
         if Connectivity.isConnectedToInternet() == false {
@@ -405,9 +402,7 @@ class MyRunningTripsViewController: UIViewController, UITableViewDataSource, UIT
         }
         
         bookingID = String((sender.tag))
-        
         webserviceOfFutureAcceptDispatchJobRequest()
-        
     }
     
     //-------------------------------------------------------------
@@ -429,6 +424,22 @@ class MyRunningTripsViewController: UIViewController, UITableViewDataSource, UIT
         return strDate
     }
     
+    @objc func trackYourTrip(sender: UIButton) {
+        
+//        let dictData = aryData[indexPath.row] as! NSDictionary
+//        if let BookingID = dictData[ "Id"] as? String
+        
+        let currentData = aryData[sender.tag] as! NSDictionary
+        
+        let id:String = (currentData as NSDictionary).object(forKey: "Id")! as! String
+        
+        Singletons.sharedInstance.bookingId = id
+        
+        //                 Post notification
+        NotificationCenter.default.post(name: NotificationTrackRunningTrip, object: nil, userInfo: currentData as? [AnyHashable : Any])
+        
+        self.navigationController?.popViewController(animated: true)
+    }
     
     //-------------------------------------------------------------
     // MARK: - Webservice Methods
@@ -440,6 +451,8 @@ class MyRunningTripsViewController: UIViewController, UITableViewDataSource, UIT
         let id = Singletons.sharedInstance.strDriverID + "/" + Singletons.sharedInstance.deviceToken
         webserviceForCurrentRunningTrip(id as AnyObject) { (result, status) in
             
+            print(result)
+           
             if (status) {
                 //                print(result)
                 if let arrResult = (result as? NSDictionary)?.object(forKey: "BookingInfo") as? NSArray {
@@ -517,8 +530,6 @@ class MyRunningTripsViewController: UIViewController, UITableViewDataSource, UIT
         //        }
     }
     
-    
-    
     func webserviceOfFutureAcceptDispatchJobRequest() {
         
         drieverId = Singletons.sharedInstance.strDriverID
@@ -550,7 +561,6 @@ class MyRunningTripsViewController: UIViewController, UITableViewDataSource, UIT
             }
             else {
                 //                print(result)
-                
                 
                 if let res = result as? String {
                     UtilityClass.showAlert("App Name".localized, message: res, vc: self)

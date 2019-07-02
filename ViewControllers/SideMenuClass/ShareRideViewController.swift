@@ -172,7 +172,7 @@ class ShareRideViewController: ParentViewController, UITableViewDelegate, UITabl
         
         let currentData = aryShareRideListing[sender.tag]
         
-        let id:String = (currentData as! NSDictionary).object(forKey: "Id")! as! String
+        let id:String = (currentData as NSDictionary).object(forKey: "Id")! as! String
         
         Singletons.sharedInstance.bookingId = id
         
@@ -180,7 +180,6 @@ class ShareRideViewController: ParentViewController, UITableViewDelegate, UITabl
         NotificationCenter.default.post(name: NotificationTrackRunningTrip, object: nil)
         
         self.navigationController?.popViewController(animated: true)
-        
     }
     
     

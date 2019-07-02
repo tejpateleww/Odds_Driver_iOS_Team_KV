@@ -50,9 +50,12 @@ class Utilities: NSObject
             completionHandler(true)
         }))
         //vc will be the view controller on which you will present your alert as you cannot use self because this method is static.
-        vc.present(alert, animated: true, completion: nil)
         
+        (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController?.present(alert, animated: true, completion: nil)
+        
+//        vc.present(alert, animated: true, completion: nil)
     }
+    
     class func checkEmptyString(str: String?) -> String
     {
         var newString : String?

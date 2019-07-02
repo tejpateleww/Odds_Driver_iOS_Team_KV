@@ -161,6 +161,7 @@
 		1889AEE022C2216600C67ADC /* MyRunningTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1889AEDF22C2216600C67ADC /* MyRunningTripsViewController.swift */; };
 		18BB89D422AE3BF70049C981 /* UpCommingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB89D322AE3BF70049C981 /* UpCommingTableViewCell.swift */; };
 		18BB89D622AE3C6D0049C981 /* ParcelTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB89D522AE3C6D0049C981 /* ParcelTblCell.swift */; };
+		18E228CC22CB21F600284F6F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18E228CB22CB21F600284F6F /* GoogleService-Info.plist */; };
 		2101CD0E216F2CBA007B9680 /* ThemeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101CD0D216F2CBA007B9680 /* ThemeButton.swift */; };
 		212FA5B320D7BF530057CE58 /* ShareRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212FA5B220D7BF530057CE58 /* ShareRideViewController.swift */; };
 		2174C3BB216E143D000533CE /* InviteDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2174C3B9216E0889000533CE /* InviteDriverViewController.swift */; };
@@ -188,7 +189,6 @@
 		349C3B442272E2BB000D3DEF /* YPDrawSignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349C3B432272E2BB000D3DEF /* YPDrawSignatureView.swift */; };
 		349C3B472272E336000D3DEF /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349C3B462272E336000D3DEF /* SignatureViewController.swift */; };
 		3A5DDCA421BA588800F9B5A3 /* WaitForTipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5DDCA321BA588800F9B5A3 /* WaitForTipViewController.swift */; };
-		3A5F1BCC21CE0872000007AE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A5F1BCB21CE0872000007AE /* GoogleService-Info.plist */; };
 		3AC13C5621C8C80100DA3FE6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC13C5521C8C80000DA3FE6 /* Extensions.swift */; };
 		3AF9136721C919A000E2C08A /* MyRatingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF9136621C9199F00E2C08A /* MyRatingViewCell.swift */; };
 		3AFADC8E219E98970009E3D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFADC8D219E98970009E3D2 /* AppDelegate.swift */; };
@@ -265,8 +265,7 @@
 		00E928DB202AE2BE00A399E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00E928DE202AE2BF00A399E2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E928DF202AE2BF00A399E2 /* Main.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Main.strings; sourceTree = "<group>"; };
-		00E928E0202AE2BF00A399E2 /* TanTaxi-Driver-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TanTaxi-Driver-Bridging-Header.h"; sourceTree = "<group>"; };
-		00E928E1202AE2BF00A399E2 /* PickNGo-Driver.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "PickNGo-Driver.entitlements"; sourceTree = "<group>"; };
+		00E928E0202AE2BF00A399E2 /* ODDS-Driver-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ODDS-Driver-Bridging-Header.h"; sourceTree = "<group>"; };
 		00E928E6202AE2BF00A399E2 /* ComingSoonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComingSoonVC.swift; sourceTree = "<group>"; };
 		00E928E8202AE2BF00A399E2 /* DriverCertificatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverCertificatesViewController.swift; sourceTree = "<group>"; };
 		00E928E9202AE2BF00A399E2 /* DriverEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverEmailViewController.swift; sourceTree = "<group>"; };
@@ -411,6 +410,7 @@
 		1889AEDF22C2216600C67ADC /* MyRunningTripsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRunningTripsViewController.swift; sourceTree = "<group>"; };
 		18BB89D322AE3BF70049C981 /* UpCommingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpCommingTableViewCell.swift; sourceTree = "<group>"; };
 		18BB89D522AE3C6D0049C981 /* ParcelTblCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParcelTblCell.swift; sourceTree = "<group>"; };
+		18E228CB22CB21F600284F6F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2101CD0D216F2CBA007B9680 /* ThemeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButton.swift; sourceTree = "<group>"; };
 		212FA5B220D7BF530057CE58 /* ShareRideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRideViewController.swift; sourceTree = "<group>"; };
 		2174C3B9216E0889000533CE /* InviteDriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteDriverViewController.swift; sourceTree = "<group>"; };
@@ -441,7 +441,6 @@
 		349C3B432272E2BB000D3DEF /* YPDrawSignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPDrawSignatureView.swift; sourceTree = "<group>"; };
 		349C3B462272E336000D3DEF /* SignatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		3A5DDCA321BA588800F9B5A3 /* WaitForTipViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitForTipViewController.swift; sourceTree = "<group>"; };
-		3A5F1BCB21CE0872000007AE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3AC13C5521C8C80000DA3FE6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3AF9136621C9199F00E2C08A /* MyRatingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRatingViewCell.swift; sourceTree = "<group>"; };
 		3AFADC8D219E98970009E3D2 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -613,11 +612,10 @@
 		00E928DC202AE2BF00A399E2 /* Other Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3A5F1BCB21CE0872000007AE /* GoogleService-Info.plist */,
+				18E228CB22CB21F600284F6F /* GoogleService-Info.plist */,
 				00E928DE202AE2BF00A399E2 /* Info.plist */,
 				00E928DF202AE2BF00A399E2 /* Main.strings */,
-				00E928E0202AE2BF00A399E2 /* TanTaxi-Driver-Bridging-Header.h */,
-				00E928E1202AE2BF00A399E2 /* PickNGo-Driver.entitlements */,
+				00E928E0202AE2BF00A399E2 /* ODDS-Driver-Bridging-Header.h */,
 			);
 			path = "Other Resources";
 			sourceTree = "<group>";
@@ -1676,10 +1674,10 @@
 				21A65EDF216614630037E40E /* proxima-nova.otf in Resources */,
 				21A65EE0216614630037E40E /* proxima-nova-light-italic.otf in Resources */,
 				00E92A6F202AE2C100A399E2 /* ringTone.mp3 in Resources */,
+				18E228CC22CB21F600284F6F /* GoogleService-Info.plist in Resources */,
 				00E929F1202AE2C100A399E2 /* ExpandDispatchedJobsViewController.xib in Resources */,
 				EEFEA5B1221184F900D88655 /* Localizable.strings in Resources */,
 				00E929D0202AE2C100A399E2 /* Assets.xcassets in Resources */,
-				3A5F1BCC21CE0872000007AE /* GoogleService-Info.plist in Resources */,
 				21A5A2CB1FBC61960047E9AA /* Location.gpx in Resources */,
 				005CC1912037F9720090CAED /* PickNGo.mp3 in Resources */,
 				EEFEA5942211839600D88655 /* Main.storyboard in Resources */,
@@ -1709,7 +1707,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 14a43f19af433e25667bd2c0d03a5aa6e886a728 2340430a2873285f1c9628d9b46f95a0a23165a6305e01fc1529cbcacd067e65";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 14a43f19af433e25667bd2c0d03a5aa6e886a728 2340430a2873285f1c9628d9b46f95a0a23165a6305e01fc1529cbcacd067e65\n";
 		};
 		111FDDAFFE29F5B6D27ECC41 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2208,7 +2206,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENABLE_BATCH_MODE = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Other Resources/TanTaxi-Driver-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Other Resources/ODDS-Driver-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2232,7 +2230,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENABLE_BATCH_MODE = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Other Resources/TanTaxi-Driver-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Other Resources/ODDS-Driver-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
