@@ -9,7 +9,7 @@
 
 import UIKit
 
-class MyRunningTripsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MyRunningTripsViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     //-------------------------------------------------------------
     // MARK: - Outlets
@@ -75,7 +75,8 @@ class MyRunningTripsViewController: UIViewController, UITableViewDataSource, UIT
     
     func setLocalizable() {
         self.lblNodataFound.text = "No data found.".localized
-        self.title = "My Running Trip".localized
+//        self.title = "My Running Trip".localized
+        self.setNavBarWithMenuORBack(Title: "My Running Trip".localized, LetfBtn: kIconBack, IsNeedRightButton: false, isTranslucent: false)
     }
     
     override func loadView() {
@@ -296,8 +297,8 @@ class MyRunningTripsViewController: UIViewController, UITableViewDataSource, UIT
 //                if let distance = Double(tripDistance) {
 //                    cell.lblTripDistance.text = ": " + String(format: "%.2f KM", distance)
 //                }
-                cell.lblTripDistance.text = ": " + receiverName
-                cell.lblDriverName.text = ": " + receiverName
+               
+                cell.lblDriverName.text = receiverName
             }
             
             if let PaymentType = dictData["PaymentType"] as? String {

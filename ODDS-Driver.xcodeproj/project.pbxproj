@@ -230,6 +230,7 @@
 		63F23F752188690400FB629F /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F23F742188690400FB629F /* LegalViewController.swift */; };
 		63F23F77218890D300FB629F /* LegalWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F23F76218890D300FB629F /* LegalWebView.swift */; };
 		645BF90822674DA4006D4D8E /* PendingParcelsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645BF90722674DA4006D4D8E /* PendingParcelsTableViewCell.swift */; };
+		7A5390B322DDA8F8008DE825 /* client_991460684845-b6i1i2ke73141uj5u3deom342aa2p0e2.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A5390B222DDA8F8008DE825 /* client_991460684845-b6i1i2ke73141uj5u3deom342aa2p0e2.apps.googleusercontent.com.plist */; };
 		ADE943A3C88325458BC09C01 /* Pods_ODDS_Driver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F194C99D06F795219F0128F3 /* Pods_ODDS_Driver.framework */; };
 		EE226CD7228D6BA500CAED8A /* ParcelTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE226CD6228D6BA500CAED8A /* ParcelTypeTableViewCell.swift */; };
 		EE5FF5BA223A5DA5000FF171 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5FF5B9223A5DA5000FF171 /* BaseViewController.swift */; };
@@ -519,6 +520,7 @@
 		63F23F76218890D300FB629F /* LegalWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalWebView.swift; sourceTree = "<group>"; };
 		645BF90722674DA4006D4D8E /* PendingParcelsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingParcelsTableViewCell.swift; sourceTree = "<group>"; };
 		71E830EFF7C980BA0858A2D1 /* Pods_TenTexi_Driver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TenTexi_Driver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A5390B222DDA8F8008DE825 /* client_991460684845-b6i1i2ke73141uj5u3deom342aa2p0e2.apps.googleusercontent.com.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "client_991460684845-b6i1i2ke73141uj5u3deom342aa2p0e2.apps.googleusercontent.com.plist"; sourceTree = "<group>"; };
 		932475C955A0B6A950732388 /* Pods-TenTexi-Driver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TenTexi-Driver.release.xcconfig"; path = "Pods/Target Support Files/Pods-TenTexi-Driver/Pods-TenTexi-Driver.release.xcconfig"; sourceTree = "<group>"; };
 		9E0742A87EB9F6951940B1DC /* Pods-PickNGo-Driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PickNGo-Driver.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PickNGo-Driver/Pods-PickNGo-Driver.debug.xcconfig"; sourceTree = "<group>"; };
 		AFA70C7471345D085861AE3F /* Pods_TanTaxi_Driver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TanTaxi_Driver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -612,6 +614,7 @@
 		00E928DC202AE2BF00A399E2 /* Other Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7A5390B222DDA8F8008DE825 /* client_991460684845-b6i1i2ke73141uj5u3deom342aa2p0e2.apps.googleusercontent.com.plist */,
 				18E228CB22CB21F600284F6F /* GoogleService-Info.plist */,
 				00E928DE202AE2BF00A399E2 /* Info.plist */,
 				00E928DF202AE2BF00A399E2 /* Main.strings */,
@@ -1675,6 +1678,7 @@
 				21A65EE0216614630037E40E /* proxima-nova-light-italic.otf in Resources */,
 				00E92A6F202AE2C100A399E2 /* ringTone.mp3 in Resources */,
 				18E228CC22CB21F600284F6F /* GoogleService-Info.plist in Resources */,
+				7A5390B322DDA8F8008DE825 /* client_991460684845-b6i1i2ke73141uj5u3deom342aa2p0e2.apps.googleusercontent.com.plist in Resources */,
 				00E929F1202AE2C100A399E2 /* ExpandDispatchedJobsViewController.xib in Resources */,
 				EEFEA5B1221184F900D88655 /* Localizable.strings in Resources */,
 				00E929D0202AE2C100A399E2 /* Assets.xcassets in Resources */,

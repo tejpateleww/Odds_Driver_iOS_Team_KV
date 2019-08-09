@@ -525,6 +525,15 @@ class PastJobsListVC: UIViewController, UITableViewDataSource, UITableViewDelega
                 
             }
             
+            if let ApartmentNumber = dictData[ "ApartmentNo"] as? String , ApartmentNumber != "" {
+                cell.lblApartmentNumber.text =  ": \(ApartmentNumber)"  // Apartment Number
+                cell.AppartmentStack.isHidden = false
+                cell.ApartmentTopConstraint.constant = 24.0
+            } else {
+                cell.AppartmentStack.isHidden = true
+                cell.ApartmentTopConstraint.constant = 5.0
+            }
+            
             if let parcelPrice = dictData["ParcelPrice"] as? String {
                 if let price = Double(parcelPrice) {
                     cell.lblParcelPriceValue.text = ": \(currency)" + String(format: "%.2f", price)

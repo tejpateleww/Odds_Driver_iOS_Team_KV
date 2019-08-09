@@ -35,9 +35,9 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
         //kiconMyJobs
         //kMyRating
         //kiconMyRating
-        aryItemNames = [kPassword,kRunningTrip,kTripToDestination,kInviteFriend,kSettings,kLogout]//kPaymentOption,
+        aryItemNames = [kPassword,kRunningTrip,kTripToDestination,kInviteFriend,kLogout]//kPaymentOption,,kSettings
         
-        aryItemIcons = [kiconPassword,kiconMyRunningTrip,kiconTripToDestination,kiconInviteFriend,kiconSettings,kIconLogout]//kiconPaymentOption,
+        aryItemIcons = [kiconPassword,kiconMyRunningTrip,kiconTripToDestination,kiconInviteFriend,kIconLogout]//kiconPaymentOption,,kiconSettings
 
         self.view.backgroundColor = ThemeYellowColor
         
@@ -334,8 +334,11 @@ class  MenuController: UIViewController, UITableViewDataSource, UITableViewDeleg
                 let viewController = storyboard.instantiateViewController(withIdentifier: "TripToDestinationViewController") as! TripToDestinationViewController
                 homeVC?.navigationController?.pushViewController(viewController, animated: true)
             }else if strCellItemTitle == kLogout {
-                (UIApplication.shared.delegate as! AppDelegate).GoToLogout()
-
+                if Singletons.sharedInstance.bookingId != "" {
+                    UtilityClass.showAlert(appName.kAPPName, message: "Please complete trip first, you can't logout while trip is ongoing!", vc: self)
+                } else {
+                    (UIApplication.shared.delegate as! AppDelegate).GoToLogout()
+                }
             }else if strCellItemTitle == kRunningTrip {
                 let viewController = self.storyboard?.instantiateViewController(withIdentifier: "MyRunningTripsViewController") as! MyRunningTripsViewController
                 homeVC?.navigationController?.pushViewController(viewController, animated: true)

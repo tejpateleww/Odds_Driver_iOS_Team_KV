@@ -47,11 +47,11 @@ class UpdateProfileAccountVC: BaseViewController
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(true)
-        self.setNavBarWithMenuORBack(Title: "test", LetfBtn: kBackIcon, IsNeedRightButton: false, isTranslucent: false)
+        self.setNavBarWithMenuORBack(Title: "Account".localized, LetfBtn: kIconBack, IsNeedRightButton: false, isTranslucent: false)
         setLocalizable()
     }
     func setLocalizable(){
-        self.title = "Account".localized
+//        self.title = "Account".localized
         txtAccountHolderName.placeholder = "Name".localized
         txtBankName.placeholder = "Bank Name".localized
         txtBSB.placeholder = "Bsb".localized

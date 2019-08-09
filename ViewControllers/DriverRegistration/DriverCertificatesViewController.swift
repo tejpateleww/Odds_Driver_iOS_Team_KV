@@ -361,6 +361,17 @@ class DriverCertificatesViewController: UIViewController,UIImagePickerController
         let pickedImage  = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         let selector = WWCalendarTimeSelector.instantiate()
         
+        selector.optionButtonFontColorDone = ThemeYellowColor
+        selector.optionSelectorPanelBackgroundColor = ThemeYellowColor
+        selector.optionCalendarBackgroundColorTodayHighlight = ThemeYellowColor
+        selector.optionTopPanelBackgroundColor = ThemeYellowColor
+        selector.optionClockBackgroundColorMinuteHighlightNeedle = ThemeYellowColor
+        selector.optionClockBackgroundColorHourHighlight = ThemeYellowColor
+        selector.optionClockBackgroundColorAMPMHighlight = ThemeYellowColor
+        selector.optionCalendarBackgroundColorPastDatesHighlight = ThemeYellowColor
+        selector.optionCalendarBackgroundColorFutureDatesHighlight = ThemeYellowColor
+        selector.optionClockBackgroundColorMinuteHighlight = ThemeYellowColor
+        
         // 2. You can then set delegate, and any customization options
         //        selector.delegate = self
         selector.optionTopPanelTitle = "Please add expiry date".localized
@@ -673,7 +684,10 @@ class DriverCertificatesViewController: UIViewController,UIImagePickerController
                     let profileData = Singletons.sharedInstance.dictDriverProfile
                     
                     Singletons.sharedInstance.strDriverID = (profileData?.object(forKey: "profile") as! NSDictionary).object(forKey: "Id") as! String
-                    
+                    Singletons.sharedInstance.driverDuty = ((Singletons.sharedInstance.dictDriverProfile.object(forKey: "profile") as! NSDictionary).object(forKey: "DriverDuty") as! String)
+                    if let currentBalance = (profileData?.object(forKey: "profile") as! NSDictionary).object(forKey: "Balance") as? Double {
+                        Singletons.sharedInstance.strCurrentBalance = currentBalance
+                    }
 //                    let next = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuController") as! SideMenuController
 //                    self.navigationController?.pushViewController(next, animated: true)
                     

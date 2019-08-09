@@ -35,7 +35,10 @@ class UpCommingTableViewCell: UITableViewCell {
     @IBOutlet weak var lblDropoffAddress: UILabel!
     @IBOutlet weak var lblPickupAddress: UILabel!
     @IBOutlet weak var lblDateAndTime: UILabel!
+    @IBOutlet var AppartmentStack: UIStackView!
     
+    @IBOutlet var ApartmentTopConstraint: NSLayoutConstraint!
+    @IBOutlet var lblApartmentNumber: UILabel!
     @IBOutlet weak var btnCancelRequest: ThemeButton!
     
     @IBOutlet weak var btnAcceptRequest: UIButton!
@@ -122,6 +125,8 @@ class UpCommingTableViewCell: UITableViewCell {
         }
     }
 }
+
+
 //MARK:- UITableView Datasource & Delegate Methods
 
 extension UpCommingTableViewCell : UITableViewDataSource, UITableViewDelegate  {

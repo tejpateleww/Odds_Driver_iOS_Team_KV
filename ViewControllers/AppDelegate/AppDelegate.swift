@@ -18,8 +18,12 @@ import SocketIO
 import Firebase
 
 
-let googlApiKey = "AIzaSyDcug87uBhFLMo1KlqyaO10shE-sNTBCmw"//"AIzaSyD1bcITZ_nUkP-ke6xgaP5RIC--tXQU3I4" //"AIzaSyBpHWct2Dal71hBjPis6R1CU0OHZNfMgCw"         // AIzaSyB08IH_NbumyQIAUCxbpgPCuZtFzIT5WQo
-let googlPlacesApiKey = "AIzaSyDcug87uBhFLMo1KlqyaO10shE-sNTBCmw"//"AIzaSyD1bcITZ_nUkP-ke6xgaP5RIC--tXQU3I4" // "AIzaSyCKEP5WGD7n5QWtCopu0QXOzM9Qec4vAfE"   //   AIzaSyBBQGfB0ca6oApMpqqemhx8-UV-gFls_Zk
+let googlApiKey = "AIzaSyBSiy-hEQwWF_-zkU4M7Efmm-nT6pVBRD4"
+//"AIzaSyD1bcITZ_nUkP-ke6xgaP5RIC--tXQU3I4"
+//"AIzaSyDcug87uBhFLMo1KlqyaO10shE-sNTBCmw"//"AIzaSyD1bcITZ_nUkP-ke6xgaP5RIC--tXQU3I4" //"AIzaSyBpHWct2Dal71hBjPis6R1CU0OHZNfMgCw"         // AIzaSyB08IH_NbumyQIAUCxbpgPCuZtFzIT5WQo
+let googlPlacesApiKey = "AIzaSyBSiy-hEQwWF_-zkU4M7Efmm-nT6pVBRD4"
+//"AIzaSyD1bcITZ_nUkP-ke6xgaP5RIC--tXQU3I4"
+//"AIzaSyDcug87uBhFLMo1KlqyaO10shE-sNTBCmw"//"AIzaSyD1bcITZ_nUkP-ke6xgaP5RIC--tXQU3I4" // "AIzaSyCKEP5WGD7n5QWtCopu0QXOzM9Qec4vAfE"   //   AIzaSyBBQGfB0ca6oApMpqqemhx8-UV-gFls_Zk
 @UIApplicationMain class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, UNUserNotificationCenterDelegate,MessagingDelegate
 {
     
@@ -91,7 +95,7 @@ let googlPlacesApiKey = "AIzaSyDcug87uBhFLMo1KlqyaO10shE-sNTBCmw"//"AIzaSyD1bcIT
             Singletons.sharedInstance.setPasscode = UserDefaults.standard.object(forKey: "Passcode") as! String
         }
         
-        
+        UIApplication.shared.isIdleTimerDisabled = true
         // Push Notification Code
         registerForPushNotification()
         
@@ -313,9 +317,17 @@ let googlPlacesApiKey = "AIzaSyDcug87uBhFLMo1KlqyaO10shE-sNTBCmw"//"AIzaSyD1bcIT
                 for aViewController in viewControllers {
                     if aViewController is SideMenuController {
                         
+                        if let Navcontroller = aViewController.children[0] as? UINavigationController {
+                            if let container = Navcontroller.children[0] as? ContainerViewController {
+                                if let homepage = container.children[0] as? HomeViewController {
+                                    print(homepage)
+                                    homepage.webserviceOFSignOut()
+                                }
+                            }
+                        }
                         //                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                        let homeVC = aViewController.children[0].children[0] as? HomeViewController
-                        homeVC?.webserviceOFSignOut()
+//                        let homeVC = aViewController.children[0].children[0] as? HomeViewController
+//                        homeVC?.webserviceOFSignOut()
                         //                        }))
                         //                        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
                     }

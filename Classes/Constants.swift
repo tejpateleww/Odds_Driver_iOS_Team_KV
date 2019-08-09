@@ -79,14 +79,12 @@ let CustomeFontProximaNovaSemibold : String = "ProximaNova-Semibold"
 let CustomeFontProximaNovaSThin : String = "ProximaNovaS-Thin"
 let CustomeFontProximaNovaTThin : String = "ProximaNovaT-Thin"
 
-let kGooglePlaceClientAPIKey : String = "AIzaSyCSwJSvFn2je-EXNxjUEUrU06_L7flz4qw" //"AIzaSyAW9o_4ULlYZ9AF_Cxuqn2mPav4XKJJwGI"
-let kGoogleServiceAPIKey : String = "AIzaSyClUkKxzVBjw1wb4h9AfbsHGenepqcYwUA"
+let kGooglePlaceClientAPIKey : String = "AIzaSyBSiy-hEQwWF_-zkU4M7Efmm-nT6pVBRD4" //   "AIzaSyD1bcITZ_nUkP-ke6xgaP5RIC--tXQU3I4" // "AIzaSyCSwJSvFn2je-EXNxjUEUrU06_L7flz4qw" //"AIzaSyAW9o_4ULlYZ9AF_Cxuqn2mPav4XKJJwGI"
+let kGoogleServiceAPIKey : String = "AIzaSyBSiy-hEQwWF_-zkU4M7Efmm-nT6pVBRD4" // "AIzaSyD1bcITZ_nUkP-ke6xgaP5RIC--tXQU3I4" // "AIzaSyClUkKxzVBjw1wb4h9AfbsHGenepqcYwUA"
 
 
-
-
-let kGoogleClientID : String = "47834603870-2q7f5911uemff0t4rfv4mvl8g22jc1ef.apps.googleusercontent.com"
-let kGoogleReversedClientID : String = "com.googleusercontent.apps.47834603870-2q7f5911uemff0t4rfv4mvl8g22jc1ef"
+let kGoogleClientID : String =   "991460684845-b6i1i2ke73141uj5u3deom342aa2p0e2.apps.googleusercontent.com" // "47834603870-2q7f5911uemff0t4rfv4mvl8g22jc1ef.apps.googleusercontent.com"
+let kGoogleReversedClientID : String =  "com.googleusercontent.apps.991460684845-b6i1i2ke73141uj5u3deom342aa2p0e2" //  "com.googleusercontent.apps.47834603870-2q7f5911uemff0t4rfv4mvl8g22jc1ef"
 
 let kTwitterConsumerAPIKey : String = "hP1bMN8z87nRv7JQpMdluArGy"
 let kTwitterConsumerSecretKey : String = "hhSbpPG8pC80B0F3ocsJ5YAZLKrEHweemsY1WHPmidbaBnULny"
@@ -136,7 +134,7 @@ let kiconPaymentOption : String = "iconPaymentOptions"
 let kiconWallet : String = "iconWalletInactive"
 let kiconPassword : String = "iconLock"
 let kiconTripToDestination : String = "iconTriptoDestination"
-let kiconMyRunningTrip = "iconTriptoDestination"
+let kiconMyRunningTrip = "icon_runningTrip"
 let kiconMyRating : String = "iconRatingInactive"
 let kiconInviteFriend : String = "iconInviteFriend"
 let kiconSettings : String = "iconSettingUnSelect"

@@ -342,10 +342,11 @@ class UpdateProfilePersonelDetailsVC: BaseViewController,UIImagePickerController
             //aryCompanyIDS = UserDefaults.standard.object(forKey: OTPCodeStruct.kCompanyList) as! [[String : AnyObject]]
 
             
-        txtMobile.text          = profile.object(forKey: "ZipCode") as? String
+        txtMobile.text          = profile.object(forKey: "MobileNo") as? String
         txtFullName.text        = profile.object(forKey: "Fullname") as? String
         lblName.text  = profile.object(forKey: "Fullname") as? String
         lblEmail.text  = profile.object(forKey: "MobileNo") as? String
+        
         txtDOB.text             = profile.object(forKey: "DOB") as? String
         txtAddress.text         = profile.object(forKey: "Address") as? String
         txtPostCode.text        = profile.object(forKey: "ZipCode") as? String

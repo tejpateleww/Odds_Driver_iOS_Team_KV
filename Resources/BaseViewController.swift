@@ -145,6 +145,12 @@ class BaseViewController: UIViewController {
 
     @objc func webserviceForChangeDutyStatus()
     {
+        if Singletons.sharedInstance.bookingId != "" {
+            if let DriverDuty = Singletons.sharedInstance.driverDuty, DriverDuty == "1" {
+            UtilityClass.showAlert("App Name".localized, message: "Please first complete your trip then after you can do shift duty off.", vc: self)
+            return
+            }
+        }
         let profile = NSMutableDictionary(dictionary: (Singletons.sharedInstance.dictDriverProfile as NSDictionary).object(forKey: "profile") as! NSDictionary)
         let vehicle = profile.object(forKey: "Vehicle") as! NSDictionary
 

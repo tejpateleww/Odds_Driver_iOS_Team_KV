@@ -294,9 +294,20 @@ class PendingJobsListVC: UIViewController, UITableViewDataSource, UITableViewDel
             if let PickupLocation = dictData[ "PickupLocation"] as? String {
                 cell.lblPickupAddress.text = ": " + PickupLocation // PickupLocation
             }
+            
             if let DropOffAddress = dictData[ "DropoffLocation"] as? String {
                 cell.lblDropoffAddress.text =  ": " + DropOffAddress  // DropoffLocation
             }
+            
+            if let ApartmentNumber = dictData[ "ApartmentNo"] as? String, ApartmentNumber != "" {
+                cell.lblApartmentNumber.text =  ": \(ApartmentNumber)"  // Apartment Number
+                cell.AppartmentStack.isHidden = false
+                cell.ApartmentTopConstraint.constant = 24.0
+            } else {
+                cell.AppartmentStack.isHidden = true
+                cell.ApartmentTopConstraint.constant = 5.0
+            }
+            
             if let pickupTime = dictData[ "PickupDateTime"] as? String {
                 if pickupTime == "" {
                     cell.lblPickUpTime.text = "Date and Time not available"
