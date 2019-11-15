@@ -137,7 +137,7 @@ class FutureBookingVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        /*
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FutureBookingTableViewCell") as! FutureBookingTableViewCell
         
@@ -237,16 +237,138 @@ class FutureBookingVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         //            return cell2
         //        }
         
+        */
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UpCommingTableViewCell") as! UpCommingTableViewCell
+        
+        if aryData.count > 0 {
+            //            let currentData = (aryData.object(at: indexPath.row) as! [String:AnyObject])
+            
+            cell.selectionStyle = .none
+            
+            cell.lblPickupAddressTitle.text = "PICK UP LOCATION".localized
+            cell.lblDropoffAddressTitle.text = "DROP OFF LOCATION".localized
+            cell.lblPickUpTimeTitle.text = "PICKUP DATE".localized
+            cell.lblTripDistanceTitle.text = "TRIP DISTANCE".localized
+            cell.lblPaymentTypeTitle.text = "PAYMENT TYPE".localized
+            
+            cell.btnCancelRequest.setTitle("Track Your Trip".localized, for: .normal)
+            cell.btnCancelRequest.titleLabel?.font = UIFont.bold(ofSize: 8.0)
+            
+            //            cell.viewCell.layer.cornerRadius = 10
+            //            cell.viewCell.clipsToBounds = true
+            
+            let dictData = aryData[indexPath.row] as! NSDictionary
+            
+            if let BookingID = dictData[ "Id"] as? String {
+//                cell.lblBookingId.text = "\("Booking Id".localized) : \(BookingID)"
+                 cell.lblBookingId.text = ": \(BookingID)"
+            }
+            
+            
+            
+            //            cell.lblBookingID.attributedText = formattedString
+            if let Createdate = dictData[ "CreatedDate"] as? String {
+                cell.lblDateAndTime.text =  Createdate
+            }
+            
+            //            if let Notes = dictData["Notes"] as? String {
+            //                cell.lblNotes.text = Notes
+            //            }
+            
+            if let PickupLocation = dictData[ "PickupLocation"] as? String {
+                cell.lblPickupAddress.text = ": " + PickupLocation // PickupLocation
+            }
+            if let DropOffAddress = dictData[ "DropoffLocation"] as? String {
+                cell.lblDropoffAddress.text =  ": " + DropOffAddress  // DropoffLocation
+            }
+            if let pickupTime = dictData[ "PickupDateTime"] as? String {
+                if pickupTime == "" {
+                    cell.lblPickUpTime.text = "Date and Time not available"
+                }
+                else {
+                    cell.lblPickUpTime.text = ": " +  pickupTime
+                    //                        setTimeStampToDate(timeStamp: pickupTime)
+                }
+            }
+//            if let vehicleType = dictData["Model"] as? String {
+//                cell.lblVehicleType.text = ": " + vehicleType
+//            }
+            
+            if let tripDistance = dictData["TripDistance"] as? String {
+                if let distance = Double(tripDistance) {
+                    cell.lblTripDistance.text = ": " + String(format: "%.2f KM", distance)
+                }
+            }
+            
+            if let PaymentType = dictData["PaymentType"] as? String {
+                cell.lblPaymentType.text = ": " + PaymentType
+            }
+            
+            if let ParcelArray = dictData["parcel_info"] as? [[String:Any]] {
+                cell.arrParcel = ParcelArray
+                cell.setParcelDetail()
+            }
+            
+            
+            if let strParcelImage = dictData["ParcelImage"] as? String {
+                cell.imgParcelImage.sd_setShowActivityIndicatorView(true)
+                cell.imgParcelImage.sd_setIndicatorStyle(.gray)
+                cell.imgParcelImage?.sd_setImage(with: URL(string: strParcelImage), completed: { (image, error, cacheType, url) in
+                    cell.imgParcelImage.sd_removeActivityIndicator()
+                    cell.imgParcelImage.contentMode = .scaleAspectFit
+                })
+            }
+            
+            cell.ViewDeliveredParcelImage.isHidden = true
+            
+            
+            if let passengerName = dictData["PassengerName"] as? String {
+                 cell.lblDriverName.text =  passengerName
+            }
+            
+            if let passengerNo = dictData["PassengerContact"] as? String {
+                cell.lblPassengerNo.text = ": " +  passengerNo
+                
+            }
+            
+            if let parcelPrice = dictData["ParcelPrice"] as? String {
+                if let price = Double(parcelPrice) {
+                    cell.lblParcelPriceValue.text = ": \(currency)" + String(format: "%.2f", price)
+                }
+            }
+            if let id = dictData["Id"] as? Int {
+                 cell.btnAcceptRequest.tag = id
+                 cell.btnAcceptRequest.addTarget(self, action: #selector(self.btnActionForSelectRecord(sender:)), for: .touchUpInside)
+            }else if let id = dictData["Id"] as? String {
+                cell.btnAcceptRequest.tag = Int(id) ?? 0
+                cell.btnAcceptRequest.addTarget(self, action: #selector(self.btnActionForSelectRecord(sender:)), for: .touchUpInside)
+            }
+//            cell.btnAcceptRequest.tag = Int(dictData ["Id"] as! String)!)!
+           
+//            let myString = aryData[ indexPath.row] as! Dictionary ["DriverName"] as? String
+//            cell.lblDriverName.text = myString
+//
+//            bookinType = aryData[ indexPath.row]["BookingType"] as! String
+//            cell.btnCancelRequest.setTitle("Cancel Request".localized, for: .normal)
+//            cell.btnCancelRequest.addTarget(self, action: #selector(self.CancelRequest), for: .touchUpInside)
+            cell.btnCancelRequest.tag = indexPath.row
+            cell.btnCancelRequest.layer.cornerRadius = 5
+            cell.btnCancelRequest.layer.masksToBounds = true
+            
+            cell.viewDetails.isHidden = !expandedCellPaths.contains(indexPath)
+        }
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //
-        //        if aryData.count != 0 {
-        //
-        //            if indexPath.section == 0 {
-        //
+       
+        /*
         if let cell = tableView.cellForRow(at: indexPath) as? FutureBookingTableViewCell {
+            
+            
             cell.viewSecond.isHidden = !cell.viewSecond.isHidden
             if cell.viewSecond.isHidden {
                 expandedCellPaths.remove(indexPath)
@@ -257,9 +379,20 @@ class FutureBookingVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             tableView.endUpdates()
             //            tableView.deselectRow(at: indexPath, animated: true)
         }
-        //            }
-        //        }
         
+        */
+       
+        if let cell = tableView.cellForRow(at: indexPath) as? UpCommingTableViewCell {
+            cell.viewDetails.isHidden = !cell.viewDetails.isHidden
+            if cell.viewDetails.isHidden {
+                expandedCellPaths.remove(indexPath)
+            } else {
+                expandedCellPaths.insert(indexPath)
+            }
+            tableView.beginUpdates()
+            tableView.endUpdates()
+            
+        }
     }
     
     

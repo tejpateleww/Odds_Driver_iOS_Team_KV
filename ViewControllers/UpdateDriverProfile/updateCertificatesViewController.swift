@@ -444,6 +444,16 @@ class updateCertificatesViewController: UIViewController, UIImagePickerControlle
     @objc func OpenDateTimePicker() {
         // Your code with delays
         let selector = WWCalendarTimeSelector.instantiate()
+        selector.optionButtonFontColorDone = ThemeYellowColor
+        selector.optionSelectorPanelBackgroundColor = ThemeYellowColor
+        selector.optionCalendarBackgroundColorTodayHighlight = ThemeYellowColor
+        selector.optionTopPanelBackgroundColor = ThemeYellowColor
+        selector.optionClockBackgroundColorMinuteHighlightNeedle = ThemeYellowColor
+        selector.optionClockBackgroundColorHourHighlight = ThemeYellowColor
+        selector.optionClockBackgroundColorAMPMHighlight = ThemeYellowColor
+        selector.optionCalendarBackgroundColorPastDatesHighlight = ThemeYellowColor
+        selector.optionCalendarBackgroundColorFutureDatesHighlight = ThemeYellowColor
+        selector.optionClockBackgroundColorMinuteHighlight = ThemeYellowColor
         // 2. You can then set delegate, and any customization options
         //        selector.delegate = self
         selector.optionTopPanelTitle = "Please add expiry date".localized

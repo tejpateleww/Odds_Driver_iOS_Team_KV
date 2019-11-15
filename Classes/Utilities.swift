@@ -50,9 +50,12 @@ class Utilities: NSObject
             completionHandler(true)
         }))
         //vc will be the view controller on which you will present your alert as you cannot use self because this method is static.
-        vc.present(alert, animated: true, completion: nil)
         
+        (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController?.present(alert, animated: true, completion: nil)
+        
+//        vc.present(alert, animated: true, completion: nil)
     }
+    
     class func checkEmptyString(str: String?) -> String
     {
         var newString : String?
@@ -437,8 +440,7 @@ class Utilities: NSObject
         btnLeft.setImage(UIImage.init(named: leftImage), for: .normal)
         btnLeft.layer .setValue(controller, forKey: "controller")
         
-        if leftImage == kMenuIcon
-        {
+        if leftImage == kMenuIcon {
             btnLeft.addTarget(self, action: #selector(OpenMenuViewController(_:)), for: .touchUpInside)
         }
         else

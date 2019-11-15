@@ -162,7 +162,7 @@ class TripToDestinationViewController: BaseViewController, GMSAutocompleteViewCo
         
         let acController = GMSAutocompleteViewController()
         acController.delegate = self
-        
+        acController.autocompleteBounds = Singletons.sharedInstance.NearByRegion
         present(acController, animated: true, completion: nil)
         
     }

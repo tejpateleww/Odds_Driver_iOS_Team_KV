@@ -75,11 +75,14 @@ class DriverOTPViewController: UIViewController {
        
     }
     @IBAction func btnLogin(_ sender: Any) {
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        let NavController = UINavigationController(rootViewController: vc)
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = NavController
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         
-        navigationController?.pushViewController(vc, animated: true)
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     

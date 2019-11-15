@@ -175,6 +175,15 @@ class UtilityClass: NSObject {
         
        
     }
+    
+    class func isPhotoLibraryAvailable() -> Bool {
+        return UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary)
+    }
+    
+    class func isCameraAvailable() -> Bool {
+        return UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera)
+    }
+    
    /*
     func convertAnyToString(dictData: [String:AnyObject], paramString: String) -> String {
         

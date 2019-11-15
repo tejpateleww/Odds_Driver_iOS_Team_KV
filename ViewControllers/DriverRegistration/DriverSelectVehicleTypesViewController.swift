@@ -93,9 +93,7 @@ class DriverSelectVehicleTypesViewController: UIViewController,getVehicleIdAndNa
         
 //        imgVehicle.layer.cornerRadius = imgVehicle.frame.size.width / 2
 //        imgVehicle.layer.masksToBounds = true
-        
-        
-        
+
 //         CarAndTexis()
         
         viewCarsAndTexis.isHidden = true
@@ -156,6 +154,11 @@ class DriverSelectVehicleTypesViewController: UIViewController,getVehicleIdAndNa
             let carType: String = UserDefaults.standard.object(forKey: RegistrationFinalKeys.kCarThreeTypeName) as! String
             txtCarType.text = carType
         }
+        if UserDefaults.standard.object(forKey: RegistrationFinalKeys.kVehicleClass) != nil
+        {
+            let carTypes: String = UserDefaults.standard.object(forKey: RegistrationFinalKeys.kVehicleClass) as! String
+            VehicleCarIds = carTypes
+        }
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool
@@ -199,6 +202,8 @@ class DriverSelectVehicleTypesViewController: UIViewController,getVehicleIdAndNa
     
     @IBOutlet weak var viewbtnCarsAndTexis: UIView!
     @IBOutlet weak var viewbtnDeliveryService: UIView!
+    
+    var VehicleCarIds:String = ""
     
     //-------------------------------------------------------------
     // MARK: - Actions
@@ -357,25 +362,25 @@ class DriverSelectVehicleTypesViewController: UIViewController,getVehicleIdAndNa
 //            sb.createWithAction(text: "Please enter vehicle model".localized, actionTitle: "Dismiss".localized, action: { print("Button is push") })
 //            sb.show()
         }
-        else if txtVehicleMake.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
-            isValidate = false
-            validatorMessage = "Please enter vehicle make".localized
-//            sb.createWithAction(text: "Please enter vehicle make".localized, actionTitle: "Dismiss".localized, action: { print("Button is push") })
-//            sb.show()
-        }
+//        else if txtVehicleMake.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
+//            isValidate = false
+//            validatorMessage = "Please enter vehicle make".localized
+////            sb.createWithAction(text: "Please enter vehicle make".localized, actionTitle: "Dismiss".localized, action: { print("Button is push") })
+////            sb.show()
+//        }
         else if txtCarType.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" {
             isValidate = false
             validatorMessage = "Please select vehicle type".localized
 //            sb.createWithAction(text: "Please select vehicle type".localized, actionTitle: "Dismiss".localized, action: { print("Button is push") })
 //            sb.show()
         }
-        else if txtNumberPassenger.selectedItem == nil ||  txtNumberPassenger.selectedItem == "" || txtNumberPassenger.selectedItem == "Number Of Passenger".localized
-        {
-            isValidate = false
-            validatorMessage = "Please enter no of passenger".localized
-//            sb.createWithAction(text: "Please enter no of passenger".localized, actionTitle: "Dismiss".localized, action: { print("Button is push") })
-//            sb.show()
-        }
+//        else if txtNumberPassenger.selectedItem == nil ||  txtNumberPassenger.selectedItem == "" || txtNumberPassenger.selectedItem == "Number Of Passenger".localized
+//        {
+//            isValidate = false
+//            validatorMessage = "Please enter no of passenger".localized
+////            sb.createWithAction(text: "Please enter no of passenger".localized, actionTitle: "Dismiss".localized, action: { print("Button is push") })
+////            sb.show()
+//        }
         else if imgVehicle.image == UIImage(named: "iconCARPlaceholder") || imgVehicle.image == nil //UIImage.init(named: "")
         {
             isValidate = false
@@ -602,10 +607,10 @@ class DriverSelectVehicleTypesViewController: UIViewController,getVehicleIdAndNa
 //        txtNumberPassenger = number of passenger = NoOfPassenger
         
         let vehicleRegistrationNumber = txtVehicleRegistrationNumber.text
-        let VehiclaCompanyModelName = txtCompany.text // CompanyModel
-        let vehicleClasscarType = txtCarType.text
-        let VehiclaMakeCompanyModel = txtVehicleMake.text
-        let vehiclePassenger = txtNumberPassenger.selectedItem
+//        let VehiclaCompanyModelName = txtCompany.text // CompanyModel
+//        let vehicleClasscarType = txtCarType.text
+        let VehiclaMakeCompanyModel = txtCompany.text // CompanyModel
+//        let vehiclePassenger = txtNumberPassenger.selectedItem
         
         if imgVehicle.image != nil
         {
@@ -618,9 +623,9 @@ class DriverSelectVehicleTypesViewController: UIViewController,getVehicleIdAndNa
         
         userDefault.set(vehicleRegistrationNumber, forKey: RegistrationFinalKeys.kVehicleRegistrationNo)
         userDefault.set(VehiclaMakeCompanyModel, forKey: RegistrationFinalKeys.kCompanyModel)
-        userDefault.set(vehicleClasscarType, forKey: RegistrationFinalKeys.kVehicleClass)
-        userDefault.set(VehiclaCompanyModelName, forKey: RegistrationFinalKeys.kVehicleModelName)
-        userDefault.set(vehiclePassenger, forKey: RegistrationFinalKeys.kNumberOfPasssenger)
+        userDefault.set(VehicleCarIds, forKey: RegistrationFinalKeys.kVehicleClass)
+//        userDefault.set(VehiclaCompanyModelName, forKey: RegistrationFinalKeys.kVehicleModelName)
+//        userDefault.set(vehiclePassenger, forKey: RegistrationFinalKeys.kNumberOfPasssenger)
        
     }
     

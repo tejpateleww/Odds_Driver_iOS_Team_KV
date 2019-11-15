@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class Singletons: NSObject {
     
@@ -57,6 +58,7 @@ class Singletons: NSObject {
     var latitude : Double!
     var longitude : Double!
     var distanceTravelledThroughMeter = Double()
+    var NearByRegion:GMSCoordinateBounds!   //this nearByRegion Detail to get near by locations in suggestions
     
     var isDriverLoggedIN : Bool!
     var isPasscodeON = Bool()

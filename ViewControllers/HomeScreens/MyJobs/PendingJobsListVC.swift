@@ -129,7 +129,7 @@ class PendingJobsListVC: UIViewController, UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
+        /*
         let cell = tableView.dequeueReusableCell(withIdentifier: "PendingJobsListTableViewCell") as! PendingJobsListTableViewCell
         //        let cell2 = tableView.dequeueReusableCell(withIdentifier: "NoDataFound") as! PendingJobsListTableViewCell
         
@@ -252,13 +252,185 @@ class PendingJobsListVC: UIViewController, UITableViewDataSource, UITableViewDel
         }
         
         return cell
+        */
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UpCommingTableViewCell") as! UpCommingTableViewCell
+        
+        if aryPendingJobs.count > 0 {
+            //            let currentData = (aryData.object(at: indexPath.row) as! [String:AnyObject])
+            
+            cell.selectionStyle = .none
+            
+            cell.lblPickupAddressTitle.text = "PICK UP LOCATION".localized
+            cell.lblDropoffAddressTitle.text = "DROP OFF LOCATION".localized
+            cell.lblPickUpTimeTitle.text = "PICKUP DATE".localized
+            cell.lblTripDistanceTitle.text = "PASSENGER EMAIL".localized
+            cell.lblPaymentTypeTitle.text = "PAYMENT TYPE".localized
+            
+            cell.btnCancelRequest.setTitle("On The Way".localized, for: .normal)
+            cell.btnCancelRequest.titleLabel?.font = UIFont.bold(ofSize: 8.0)
+            
+            //            cell.viewCell.layer.cornerRadius = 10
+            //            cell.viewCell.clipsToBounds = true
+            
+//            let dictData = aryData[indexPath.row] as! NSDictionary
+             let dictData = aryPendingJobs.object(at: indexPath.row) as! NSDictionary
+            if let BookingID = dictData[ "Id"] as? String {
+                //                cell.lblBookingId.text = "\("Booking Id".localized) : \(BookingID)"
+                cell.lblBookingId.text = ": \(BookingID)"
+            }
+            
+            
+            
+            //            cell.lblBookingID.attributedText = formattedString
+            if let Createdate = dictData[ "CreatedDate"] as? String {
+                cell.lblDateAndTime.text =  Createdate
+            }
+            
+            //            if let Notes = dictData["Notes"] as? String {
+            //                cell.lblNotes.text = Notes
+            //            }
+            
+            if let PickupLocation = dictData[ "PickupLocation"] as? String {
+                cell.lblPickupAddress.text = ": " + PickupLocation // PickupLocation
+            }
+            
+            if let DropOffAddress = dictData[ "DropoffLocation"] as? String {
+                cell.lblDropoffAddress.text =  ": " + DropOffAddress  // DropoffLocation
+            }
+            
+            if let ApartmentNumber = dictData[ "ApartmentNo"] as? String, ApartmentNumber != "" {
+                cell.lblApartmentNumber.text =  ": \(ApartmentNumber)"  // Apartment Number
+                cell.AppartmentStack.isHidden = false
+                cell.ApartmentTopConstraint.constant = 24.0
+            } else {
+                cell.AppartmentStack.isHidden = true
+                cell.ApartmentTopConstraint.constant = 5.0
+            }
+            
+            if let pickupTime = dictData[ "PickupDateTime"] as? String {
+                if pickupTime == "" {
+                    cell.lblPickUpTime.text = "Date and Time not available"
+                }
+                else {
+                    cell.lblPickUpTime.text = ": " +  pickupTime
+                    //                        setTimeStampToDate(timeStamp: pickupTime)
+                }
+            }
+            //            if let vehicleType = dictData["Model"] as? String {
+            //                cell.lblVehicleType.text = ": " + vehicleType
+            //            }
+            
+            if let email = dictData["PassengerEmail"] as? String {
+             
+                    cell.lblTripDistance.text = ": " + email
+             
+            }
+            
+            if let PaymentType = dictData["PaymentType"] as? String {
+                cell.lblPaymentType.text = ": " + PaymentType
+            }
+            
+            if let ParcelArray = dictData["parcel_info"] as? [[String:Any]] {
+                cell.arrParcel = ParcelArray
+                cell.setParcelDetail()
+            }
+            
+            
+            if let strParcelImage = dictData["ParcelImage"] as? String {
+                cell.imgParcelImage.sd_setShowActivityIndicatorView(true)
+                cell.imgParcelImage.sd_setIndicatorStyle(.gray)
+                cell.imgParcelImage?.sd_setImage(with: URL(string: strParcelImage), completed: { (image, error, cacheType, url) in
+                    cell.imgParcelImage.sd_removeActivityIndicator()
+                    cell.imgParcelImage.contentMode = .scaleAspectFit
+                })
+            }
+            
+            cell.ViewDeliveredParcelImage.isHidden = true
+            
+            
+            if let passengerName = dictData["PassengerName"] as? String {
+                cell.lblDriverName.text =  passengerName
+            }
+            
+            if let passengerNo = dictData["PassengerContact"] as? String {
+                cell.lblPassengerNo.text = ": " +  passengerNo
+                
+            }
+            
+            if let parcelPrice = dictData["ParcelPrice"] as? String {
+                if let price = Double(parcelPrice) {
+                    cell.lblParcelPriceValue.text = ": \(currency)" + String(format: "%.2f", price)
+                }
+            }
+            
+            if let note = dictData["Notes"] as? String {
+                cell.vwStackNote.isHidden = note.isEmpty
+                cell.lblNotes.text = ": " +  note
+                
+            }
+            
+            let strStatus = dictData.object(forKey: "Status") as! String
+            Singletons.sharedInstance.DriverTripCurrentStatus = strStatus
+            let strBookingStatus = dictData.object(forKey: "BookingType") as! String
+            let strOntheWay = dictData.object(forKey: "OnTheWay") as? String
+            if strBookingStatus == "Book Now" {
+                cell.btnCancelRequest.isHidden = true
+            }else
+            {
+                
+                if strStatus == kAcceptTripStatus && strOntheWay! == "1"
+                {
+                    cell.btnCancelRequest.isHidden = true
+                }
+                else //if strStatus == kAcceptTripStatus && strOntheWay! == 0 //|| strStatus == kPendingTripStatus //kPendingJob
+                {
+                    cell.btnCancelRequest.isHidden = false
+                    cell.btnCancelRequest.tag = Int((dictData.object(forKey: "Id") as? String)!)!
+                    cell.btnCancelRequest.addTarget(self, action: #selector(self.strtTrip(sender:)), for: .touchUpInside)
+                }
+                //            else
+                //            {
+                //                cell.btnStartTrip.isHidden = true
+                //            }
+            }
+
+            
+            /*
+            if let id = dictData["Id"] as? Int {
+                cell.btnAcceptRequest.tag = id
+                cell.btnAcceptRequest.addTarget(self, action: #selector(self.btnActionForSelectRecord(sender:)), for: .touchUpInside)
+            }else if let id = dictData["Id"] as? String {
+                cell.btnAcceptRequest.tag = Int(id) ?? 0
+                cell.btnAcceptRequest.addTarget(self, action: #selector(self.btnActionForSelectRecord(sender:)), for: .touchUpInside)
+            }
+            */
+            
+            
+            //            cell.btnAcceptRequest.tag = Int(dictData ["Id"] as! String)!)!
+            
+            //            let myString = aryData[ indexPath.row] as! Dictionary ["DriverName"] as? String
+            //            cell.lblDriverName.text = myString
+            //
+            //            bookinType = aryData[ indexPath.row]["BookingType"] as! String
+            //            cell.btnCancelRequest.setTitle("Cancel Request".localized, for: .normal)
+            //            cell.btnCancelRequest.addTarget(self, action: #selector(self.CancelRequest), for: .touchUpInside)
+//            cell.btnCancelRequest.tag = indexPath.row
+            cell.btnCancelRequest.layer.cornerRadius = 5
+            cell.btnCancelRequest.layer.masksToBounds = true
+            
+            cell.viewDetails.isHidden = !expandedCellPaths.contains(indexPath)
+        }
+        
+        return cell
+        
     }
     
     
     var expandedCellPaths = Set<IndexPath>()
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        /*
         if let cell = tableView.cellForRow(at: indexPath) as? PendingJobsListTableViewCell {
             cell.viewAllDetails.isHidden = !cell.viewAllDetails.isHidden
             if cell.viewAllDetails.isHidden {
@@ -269,7 +441,18 @@ class PendingJobsListVC: UIViewController, UITableViewDataSource, UITableViewDel
             tableView.beginUpdates()
             tableView.endUpdates()
         }
-        
+        */
+        if let cell = tableView.cellForRow(at: indexPath) as? UpCommingTableViewCell {
+            cell.viewDetails.isHidden = !cell.viewDetails.isHidden
+            if cell.viewDetails.isHidden {
+                expandedCellPaths.remove(indexPath)
+            } else {
+                expandedCellPaths.insert(indexPath)
+            }
+            tableView.beginUpdates()
+            tableView.endUpdates()
+            
+        }
     }
     
     
@@ -281,8 +464,8 @@ class PendingJobsListVC: UIViewController, UITableViewDataSource, UITableViewDel
         
         let driverID = Singletons.sharedInstance.strDriverID
         
-        webserviceForBookingHistry(driverID as AnyObject) { (result, status) in
-
+        webserviceForPendingJobs(driverID as AnyObject) { (result, status) in
+            
             if (status)
             {
                 //                print(result)
@@ -389,8 +572,17 @@ class PendingJobsListVC: UIViewController, UITableViewDataSource, UITableViewDel
         //                self.tabBarController?.selectedIndex = 0
         
         
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "MyJobsViewController") as? MyJobsViewController
-        viewController?.callSocket()
+       
+        if let myJobVC = self.parent as? MyJobsViewController {
+            if let containerVC = myJobVC.parent as? ContainerViewController {
+                containerVC.scrollToPage(page: 0, animated: true)
+            }
+            myJobVC.callSocket()
+        }else {
+             let viewController = self.storyboard?.instantiateViewController(withIdentifier: "MyJobsViewController") as? MyJobsViewController
+             viewController?.callSocket()
+        }
+       
         Singletons.sharedInstance.isRequestAccepted = true
         self.webserviceofPendingJobs()
         

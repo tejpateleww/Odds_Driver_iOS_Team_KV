@@ -38,6 +38,8 @@ let MyDispatchJob = WebserviceURLs.kMyDispatchJob
 let FutureBooking = WebserviceURLs.kFutureBooking
 let BookingHistory = WebserviceURLs.kBookingHistory
 
+let PendingJobs = WebserviceURLs.kPendingJobs
+
 let CurrentBooking = WebserviceURLs.kCurrentBooking
 
 let AddNewCard = WebserviceURLs.kAddNewCard
@@ -77,6 +79,7 @@ let TrackRunningTrip = WebserviceURLs.kTrackRunningTrip
 
 let PrivateMeterBooking = WebserviceURLs.kPrivateMeterBooking
 
+let CurrentTrips = WebserviceURLs.kCurrentTrips
 
 //-------------------------------------------------------------
 // MARK: - Webservice For Registration
@@ -271,12 +274,21 @@ func webserviceForFutureAcceptDispatchJobRequest(_ dictParams: AnyObject, comple
     getDataOfHistory("" as AnyObject, nsURL: url, completion: completion)
 }
 
+
+//-------------------------------------------------------------
+// MARK: - Webservice For Current trips job
+//-------------------------------------------------------------
+
+func webserviceForCurrentRunningTrip(_ dictParams: AnyObject, completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void) {
+    let url = CurrentTrips + (dictParams as! String)
+    getDataOfHistory("" as AnyObject, nsURL: url, completion: completion)
+}
+
 //-------------------------------------------------------------
 // MARK: - Webservice For Company List
 //-------------------------------------------------------------
 
-func webserviceForCompanyList(_ dictParams: AnyObject, completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void)
-{
+func webserviceForCompanyList(_ dictParams: AnyObject, completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void) {
     let url = Company
     getData("" as AnyObject, nsURL: url, completion: completion)
 }
@@ -285,9 +297,16 @@ func webserviceForCompanyList(_ dictParams: AnyObject, completion: @escaping(_ r
 // MARK: - Webservice For Booking History
 //-------------------------------------------------------------
 
-func webserviceForBookingHistry(_ dictParams: AnyObject, completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void)
-{
+func webserviceForBookingHistry(_ dictParams: AnyObject, completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void) {
     let url = BookingHistory + (dictParams as! String)
+    getDataOfHistory("" as AnyObject, nsURL: url, completion: completion)
+}
+
+
+
+func webserviceForPendingJobs(_ dictParams: AnyObject, completion: @escaping(_ result: AnyObject, _ success: Bool) -> Void)
+{
+    let url = PendingJobs + (dictParams as! String)
     getDataOfHistory("" as AnyObject, nsURL: url, completion: completion)
 }
 

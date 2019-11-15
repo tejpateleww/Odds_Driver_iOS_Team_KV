@@ -74,6 +74,9 @@ class PastJobsListTableViewCell: UITableViewCell {
     @IBOutlet weak var lblSubTotalDesc: UILabel!
     @IBOutlet weak var lblGrandTotalDesc: UILabel!
     @IBOutlet weak var lblPaymentType: UILabel!
+    
+    @IBOutlet var AppartmentStack: UIStackView!
+    @IBOutlet var ApartmentTopConstraint: NSLayoutConstraint!
  //   @IBOutlet weak var lblFlightNumber: UILabel!
  //   @IBOutlet weak var lblNotes: UILabel!
 //    @IBOutlet weak var lblNotesTitle: UILabel!

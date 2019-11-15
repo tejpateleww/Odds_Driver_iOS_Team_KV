@@ -19,8 +19,8 @@ struct WebSupport {
 
 struct WebserviceURLs {
     
-    static let kBaseURL                                 = "https://www.shipodds.com/web/Drvier_Api/" //https://www.tantaxitanzania.com/Drvier_Api/"//"https://pickngolk.info/web/Drvier_Api/" // "http://54.169.67.226/web/Drvier_Api/" //
-    static let kImageBaseURL                            = "https://www.shipodds.com/web/" // "http://54.169.67.226/web/" //
+    static let kBaseURL                                 =  "https://www.shipodds.com/Drvier_Api/" // "https://www.shipodds.com/web/Drvier_Api/" //https://www.tantaxitanzania.com/Drvier_Api/"//"https://pickngolk.info/web/Drvier_Api/" // "http://54.169.67.226/web/Drvier_Api/" //
+    static let kImageBaseURL                            =  "https://www.shipodds.com/" // "https://www.shipodds.com/web/" // "http://54.169.67.226/web/" //
     static let kOTPForDriverRegister                    = "OtpForRegister"
     static let kVehicalModelList                        = "TaxiModel/"
     static let kDriverRegister                          = "Register"
@@ -74,8 +74,13 @@ struct WebserviceURLs {
     static let kTrackRunningTrip                        = "TrackRunningTrip/"
     static let kPrivateMeterBooking                     = "PrivateMeterBooking"
     
+    static let kPendingJobs                             = "PendingJobs/"
+    
 //    https://www.tantaxitanzania.com/Drvier_Api/FeedbackList/9
     static let kFeedbackList                     = "FeedbackList/"
+    
+    static let kCurrentTrips                 = "CurrentTrips/"
+
 }
 
 struct OTPEmail {
@@ -243,9 +248,11 @@ struct socketApiKeys {
 }
 
 struct appName {
-    static let kAPPName = "App Name".localized
+    static let kAPPName = "ODDS Driver"
+//        "App Name".localized
 //    "TanTaxi Driver"
-    static let kAPPUrl = "https://itunes.apple.com/us/app/TanTaxi Driver/id1445179587?ls=1&mt=8"
+    static let kAPPUrl = "https://itunes.apple.com"
+//    "https://itunes.apple.com/us/app/TanTaxi Driver/id1445179587?ls=1&mt=8"
     
 }
 

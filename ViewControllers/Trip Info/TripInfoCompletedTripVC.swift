@@ -62,7 +62,7 @@ class TripInfoCompletedTripVC: UIViewController {
     @IBOutlet var lblWaitingCost: UILabel!
     @IBOutlet var lblWaitingTime: UILabel!
     @IBOutlet var lblPromoCode: UILabel!
-      @IBOutlet var lblTax: UILabel!
+    @IBOutlet var lblTax: UILabel!
     @IBOutlet var lblTotlaAmount: UILabel!
     @IBOutlet var lblTripStatus: UILabel!
     @IBOutlet weak var lblTipAmount: UILabel!
@@ -267,7 +267,7 @@ class TripInfoCompletedTripVC: UIViewController {
  */
         
         if let TripFare = dictData.object(forKey: "TripFare") as? String {
-            lblTripFare.text = "\(String(format: "%.2f", Double(TripFare)!)) \(currency)"
+            lblTripFare.text = "\(currency) \(String(format: "%.2f", Double(TripFare)!))"
         }
         
         if let TripDistance = dictData.object(forKey: "TripDistance") as? String {
@@ -275,7 +275,7 @@ class TripInfoCompletedTripVC: UIViewController {
         }
         
         if let DistanceFare = dictData.object(forKey: "DistanceFare") as? String {
-            lblDistanceFare.text = "\(String(format: "%.2f", Double(DistanceFare)!)) \(currency)"
+            lblDistanceFare.text = "\(currency) \(String(format: "%.2f", Double(DistanceFare)!))"
         }
         
         if let WaitingTime = dictData.object(forKey: "WaitingTime") as? String {
@@ -284,28 +284,28 @@ class TripInfoCompletedTripVC: UIViewController {
         }
         
         if let WaitingCost = dictData.object(forKey: "WaitingTimeCost") as? String {
-            lblWaitingCost.text = "\(WaitingCost) \(currency)"
+            lblWaitingCost.text = "\(currency) \(WaitingCost)"
 //            "\(String(format: "%.2f", Double(WaitingCost)!)) \(currency)"
         }
         
         if let Tip = dictData.object(forKey: "TollFee") as? String {
-            lblTipAmount.text = (Tip != "" && Tip != "0") ? "\(String(format: "%.2f", Double(Tip)!)) \(currency)" : "0 \(currency)"
+            lblTipAmount.text = (Tip != "" && Tip != "0") ? "\(currency) \(String(format: "%.2f", Double(Tip)!))" : "\(currency) 0"
         }
         
         if let BookingFee = dictData.object(forKey: "BookingCharge") as? String {
-            lblBookingFee.text = (BookingFee != "" && BookingFee != "0") ? "\(String(format: "%.2f", Double(BookingFee)!)) \(currency)" : "0 \(currency)"
+            lblBookingFee.text = (BookingFee != "" && BookingFee != "0") ? "\(currency) \(String(format: "%.2f", Double(BookingFee)!))" : " \(currency) 0"
         }
         
         if let discount = dictData.object(forKey: "Discount") as? String {
-            lblPromoCode.text = (discount != "" && discount != "0") ? "\(String(format: "%.2f", Double(discount)!)) \(currency)" : "0 \(currency)"
+            lblPromoCode.text = (discount != "" && discount != "0") ? "\(currency) \(String(format: "%.2f", Double(discount)!))" : "\(currency) 0"
         }
         
         if let Tax = dictData.object(forKey: "Tax") as? String {
-            lblTax.text = (Tax != "" && Tax != "0") ? "\(Tax) \(currency)" : "0 \(currency)"
+            lblTax.text = (Tax != "" && Tax != "0") ? "\(currency) \(Tax)" : "\(currency) 0"
         }
         
         if let GrandTotal = dictData.object(forKey: "GrandTotal") as? String {
-            lblTotlaAmount.text = (GrandTotal != "" && GrandTotal != "0") ? "\(GrandTotal) \(currency)" : "0 \(currency)"
+            lblTotlaAmount.text = (GrandTotal != "" && GrandTotal != "0") ? "\(currency) \(GrandTotal)" : "\(currency) 0"
         }
         
     }
@@ -324,12 +324,10 @@ class TripInfoCompletedTripVC: UIViewController {
     
     @IBAction func btnOK(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
-        if Singletons.sharedInstance.passengerType == "other" || Singletons.sharedInstance.passengerType == "others"
-        {
+        if Singletons.sharedInstance.passengerType == "other" || Singletons.sharedInstance.passengerType == "others" {
 //            self.completeTripInfo()
         }
-        else
-        {
+        else {
             self.delegate.didRatingCompleted()
         }
         Singletons.sharedInstance.passengerType = ""

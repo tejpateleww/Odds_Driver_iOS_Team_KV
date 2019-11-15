@@ -293,7 +293,6 @@ class MyJobsViewController: BaseViewController
                         PastJOB.webserviceOfPastbookingpagination(index: 1)
                     }
                 }
-                
         }, completion: nil)
     }
     

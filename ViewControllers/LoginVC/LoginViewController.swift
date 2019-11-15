@@ -60,7 +60,7 @@
                 lblLaungageName.text = "EN"
             }
         }
-        self.txtMobile.placeholder = "Mobile Number".localized
+        self.txtMobile.placeholder = "Email / Mobile Number".localized
         self.txtPassword.placeholder = "Password".localized
         self.btnForgotPassWord.setTitle("Forgot Password".localized, for: .normal)
         self.btnSignIn.setTitle("Sign In".localized, for: .normal)
@@ -129,7 +129,7 @@
             }
         }
         
-        if UIDevice.current.name == "Bhavesh iPhone" || UIDevice.current.name == "Excellent Web's iPhone 5s" || UIDevice.current.name == "Rahul's iPhone" ||  UIDevice.current.name == "iOS2’s iPad" ||  UIDevice.current.name == "Excellent iPhone 7" || UIDevice.current.name ==  "Mayur's iPhone X" || UIDevice.current.name ==  "EWW iPhone" || UIDevice.current.name ==  "Excellent Web's iPad black"  {
+        if UIDevice.current.name == "Bhavesh iPhone" || UIDevice.current.name == "Excellent Web's iPhone 5s" || UIDevice.current.name == "Rahul's iPhone" ||  UIDevice.current.name == "iOS2’s iPad" ||  UIDevice.current.name == "Excellent iPhone 7" || UIDevice.current.name ==  "Mayur's iPhone X" || UIDevice.current.name ==  "EWW iPhone" || UIDevice.current.name ==  "Excellent Web's iPad black" || UIDevice.current.name == "iPad red" {
             txtMobile.text = "1122334455" // "bhavesh@excellentwebworld.info"
             txtPassword.text = "123456"
         }
@@ -367,8 +367,7 @@
                     
                     let profileData = Singletons.sharedInstance.dictDriverProfile
                     
-                    if let currentBalance = (profileData?.object(forKey: "profile") as! NSDictionary).object(forKey: "Balance") as? Double
-                    {
+                    if let currentBalance = (profileData?.object(forKey: "profile") as! NSDictionary).object(forKey: "Balance") as? Double {
                         Singletons.sharedInstance.strCurrentBalance = currentBalance
                     }
 
@@ -558,16 +557,16 @@
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == txtMobile {
-            let resultText: String? = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
-            
-            if resultText!.count >= 11 {
-                return false
-            }
-            else {
-                return true
-            }
-        }
+//        if textField == txtMobile {
+//            let resultText: String? = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
+//
+//            if resultText!.count >= 11 {
+//                return false
+//            }
+//            else {
+//                return true
+//            }
+//        }
         return true
     }
     //-------------------------------------------------------------
@@ -584,7 +583,7 @@
         
         if txtMobile.text!.count == 0
         {
-            UtilityClass.showAlert("App Name".localized, message: "Please enter mobile number".localized, vc: self)
+            UtilityClass.showAlert("App Name".localized, message: "Please enter email or mobile number".localized, vc: self)
             return false
         }
 //        else if txtMobile.text!.count != 10 {

@@ -160,7 +160,7 @@ class MyRatingViewController : BaseViewController,UITableViewDataSource, UITable
 
         cell.imgProfile.sd_setImage(with: URL(string: strURL), completed: nil)
 
-        cell.lblPassengerName.text = data.object(forKey: "PassengerName") as? String
+        cell.lblPassengerName.text = data.object(forKey: "ReceiverName") as? String
         //
         //
         ////

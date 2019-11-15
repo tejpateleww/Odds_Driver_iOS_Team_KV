@@ -30,13 +30,14 @@ func postData(_ dictParams: AnyObject, nsURL: String, completion: @escaping (_ r
 {
     let url = BaseURL + nsURL
 
-    print("The webservice call is \(url) and the params are \(dictParams)")
-    
+   
     if Connectivity.isConnectedToInternet() == false {
          completion("Sorry! Not connected to internet".localized as AnyObject, false)
         return
     }
-    
+    print("\n")
+    print("The webservice call is\(url) and the params are \n \(dictParams)")
+    print("\n")
     
     DispatchQueue.main.async{
         UtilityClass.showACProgressHUD()
@@ -94,8 +95,11 @@ func getData(_ dictParams: AnyObject, nsURL: String,  completion: @escaping (_ r
 //            let activityData = ActivityData()
 //        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
 //    }
+    
+    print("\n")
+    print("The webservice call is \(url) and the params are \n \(dictParams)")
+    print("\n")
 
-    print("The webservice call is \(url) and the params are \(dictParams)")
     
     Alamofire.request(url, method: .get, parameters: dictParams as? [String : AnyObject], encoding: URLEncoding.default, headers: header)
         .validate()
@@ -146,9 +150,9 @@ func getDataOfHistory(_ dictParams: AnyObject, nsURL: String,  completion: @esca
     DispatchQueue.main.async {
         UtilityClass.showACProgressHUD()
     }
-   
-    print("The webservice call is\(url) and the params are \(dictParams)")
-    
+    print("\n")
+    print("The webservice call is\(url) and the params are \n \(dictParams)")
+    print("\n")
     Alamofire.request(url, method: .get, parameters: dictParams as? [String : AnyObject], encoding: URLEncoding.default, headers: header)
         .validate()
         .responseJSON
@@ -195,6 +199,10 @@ func parameterWithImage(_ dictParams: [String:AnyObject], images: [String : UIIm
     
     UtilityClass.showACProgressHUD()
     
+    print("\n")
+    print("The webservice call is\(url) and the params are \n \(dictParams)")
+    print("\n")
+    
     Alamofire.upload(multipartFormData: { (multipartFormData) in
         for (key, value) in images{
             if let imageData = value.jpegData(compressionQuality: 0.6)
@@ -226,6 +234,7 @@ func parameterWithImage(_ dictParams: [String:AnyObject], images: [String : UIIm
                 response in
                 
                 if let JSON = response.result.value {
+                    
                     
                     if ((JSON as AnyObject).object(forKey: "status") as! Bool) == true
                     {
@@ -274,6 +283,10 @@ func sendImage(_ dictParams: [String:AnyObject], image1: UIImage, image2: UIImag
         completion("Sorry! Not connected to internet".localized as AnyObject, false)
         return
     }
+    
+    print("\n")
+    print("The webservice call is\(url) and the params are \n \(dictParams)")
+    print("\n")
     
 //    print("The webservice call is\(url) and the params are \(dictParams)")
 
@@ -385,6 +398,10 @@ func DeiverInfo(_ dictParams: [String:AnyObject], image1: UIImage, nsURL: String
         return
     }
     
+    print("\n")
+    print("The webservice call is\(url) and the params are \n \(dictParams)")
+    print("\n")
+    
 //    let headers: HTTPHeaders = ["key": "TicktocApp123*"]
     //    let aryImagesName = ["DriverLicence","CarRegistration","AccreditationCertificate","VehicleInsuranceCertificate"]
     
@@ -480,6 +497,9 @@ func sendUpdateDriverDocument(_ dictParams: [String:AnyObject], image: UIImage, 
 
     UtilityClass.showACProgressHUD()
     
+    print("\n")
+    print("The webservice call is\(url) and the params are \n \(dictParams)")
+    print("\n")
     
     Alamofire.upload(multipartFormData: { (multipartFormData) in
         
@@ -563,7 +583,7 @@ func getDataGoogle(_ dictParams: AnyObject, nsURL: String,  completion: @escapin
     //        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
     //    }
     
-    print("The webservice call is\(url) and the params are \(dictParams)")
+    print("The webservice call is\(url) and the params are \n \(dictParams)")
     
     Alamofire.request(url, method: .get, parameters: dictParams as? [String : AnyObject], encoding: URLEncoding.default, headers: header)
         .validate()

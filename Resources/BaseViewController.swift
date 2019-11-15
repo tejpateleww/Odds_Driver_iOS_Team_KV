@@ -21,9 +21,8 @@ class BaseViewController: UIViewController {
         self.btnDuty.setImage(UIImage.init(named: "iconSwitchOff"), for: .normal)
         self.btnDuty.setImage(UIImage.init(named: "iconSwitchOn"), for: .selected)
         self.btnDuty.addTarget(self, action:  #selector(self.webserviceForChangeDutyStatus), for: .touchUpInside)
-
-        if(Singletons.sharedInstance.driverDuty == "1")
-        {
+        self.btnDuty.isSelected = false
+        if(Singletons.sharedInstance.driverDuty == "1") {
             self.btnDuty.isSelected = true
         }
         // Do any additional setup after loading the view.
@@ -146,6 +145,12 @@ class BaseViewController: UIViewController {
 
     @objc func webserviceForChangeDutyStatus()
     {
+        if Singletons.sharedInstance.bookingId != "" {
+            if let DriverDuty = Singletons.sharedInstance.driverDuty, DriverDuty == "1" {
+            UtilityClass.showAlert("App Name".localized, message: "Please first complete your trip then after you can do shift duty off.", vc: self)
+            return
+            }
+        }
         let profile = NSMutableDictionary(dictionary: (Singletons.sharedInstance.dictDriverProfile as NSDictionary).object(forKey: "profile") as! NSDictionary)
         let vehicle = profile.object(forKey: "Vehicle") as! NSDictionary
 

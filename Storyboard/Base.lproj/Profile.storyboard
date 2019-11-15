@@ -2000,7 +2000,7 @@ You must be 21 years of age or over.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73d-Vx-uig">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="440.5"/>
                                                 <subviews>
-                                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconCARPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Ukz-MO-OCt">
+                                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconCARPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Ukz-MO-OCt">
                                                         <rect key="frame" x="20" y="20" width="280" height="110"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="110" id="mmu-52-Nxo"/>
@@ -2124,7 +2124,7 @@ You must be 21 years of age or over.</string>
                                                                 <rect key="frame" x="0.0" y="104" width="290" height="42"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Truck Service" placeholder="Truck Service" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NU2-lS-aTs">
-                                                                        <rect key="frame" x="43" y="0.0" width="247" height="40"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="290" height="40"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="40" id="xcI-H0-QPR"/>
                                                                         </constraints>
@@ -2146,10 +2146,10 @@ You must be 21 years of age or over.</string>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </textField>
-                                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSj-ah-ro1">
-                                                                        <rect key="frame" x="0.0" y="4.5" width="33" height="33"/>
+                                                                    <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSj-ah-ro1">
+                                                                        <rect key="frame" x="0.0" y="4.5" width="0.0" height="33"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" constant="33" id="7UF-vQ-9j7"/>
+                                                                            <constraint firstAttribute="width" id="7UF-vQ-9j7"/>
                                                                             <constraint firstAttribute="height" constant="33" id="JWr-aC-2UQ"/>
                                                                         </constraints>
                                                                         <inset key="imageEdgeInsets" minX="5" minY="2" maxX="5" maxY="5"/>
@@ -2173,7 +2173,7 @@ You must be 21 years of age or over.</string>
                                                                     <constraint firstAttribute="bottom" secondItem="bcK-Eg-Y2v" secondAttribute="bottom" id="FsZ-Li-B1k"/>
                                                                     <constraint firstItem="NU2-lS-aTs" firstAttribute="top" secondItem="eqY-Eg-zho" secondAttribute="top" id="O2R-aa-yCL"/>
                                                                     <constraint firstAttribute="trailing" secondItem="NU2-lS-aTs" secondAttribute="trailing" id="TMk-ST-O9c"/>
-                                                                    <constraint firstItem="NU2-lS-aTs" firstAttribute="leading" secondItem="tSj-ah-ro1" secondAttribute="trailing" constant="10" id="lwX-qK-dpo"/>
+                                                                    <constraint firstItem="NU2-lS-aTs" firstAttribute="leading" secondItem="tSj-ah-ro1" secondAttribute="trailing" id="lwX-qK-dpo"/>
                                                                     <constraint firstItem="tSj-ah-ro1" firstAttribute="leading" secondItem="eqY-Eg-zho" secondAttribute="leading" id="zD1-u3-Mri"/>
                                                                     <constraint firstItem="bcK-Eg-Y2v" firstAttribute="leading" secondItem="eqY-Eg-zho" secondAttribute="leading" id="zZV-lU-eGP"/>
                                                                 </constraints>
@@ -2534,7 +2534,7 @@ lhCYEJoQoxCoEK4QthC4ELoQvBC+EMMQyyI3IjkiPiJMIlAiVyJcImkibCJ5In4ihiKJIo4iliKZIqsi
 riKzAAAAAAAAAgEAAAAAAAAAWQAAAAAAAAAAAAAAAAAAIrU
 </mutableData>
         </image>
-        <image name="iocnVehicleOptions" width="42" height="42"/>
+        <image name="iocnVehicleOptions" width="42.5" height="42.5"/>
         <image name="navHairLine" width="414" height="1"/>
     </resources>
 </document>
