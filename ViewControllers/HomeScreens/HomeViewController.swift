@@ -145,6 +145,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
     var startDate: Date!
     var traveledDistance: Double = 0
     var isParcelReturn:Int = 0
+
+    var strTripQRCode = String()
     
     lazy var geocoder = CLGeocoder()
     
@@ -1422,17 +1424,26 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         
         let DropOffLat = BookingInfo.object(forKey: "PickupLat") as! String
         let DropOffLon = BookingInfo.object(forKey: "PickupLng") as! String
+
+
+        if let strQRCode = BookingInfo["TripQRCode"] as? String
+        {
+            if(strQRCode.trimmingCharacters(in: .whitespacesAndNewlines).count != 0){
+                self.strTripQRCode = "\(baseURL)\(strQRCode)"
+
+            }
+        }
         
         //        self.lblLocationOnMap.text = BookingInfo.object(forKey: "PickupLocation") as? String
         self.strPickupLocation = BookingInfo.object(forKey: "PickupLocation") as! String
         self.strDropoffLocation = BookingInfo.object(forKey: "DropoffLocation") as! String
         self.strPassengerName = PassengerInfo.object(forKey: "Fullname") as! String
         
-        var imgURL = String()
-        
+//        var imgURL = String()
+
         self.strPassengerMobileNo = PassengerInfo.object(forKey: "MobileNo") as! String
-        imgURL = PassengerInfo.object(forKey: "Image") as! String
-        
+//        imgURL = PassengerInfo.object(forKey: "Image") as! String
+
         let PickupLat = self.defaultLocation.coordinate.latitude
         let PickupLng = self.defaultLocation.coordinate.longitude
         
@@ -2330,12 +2341,14 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                 if self.driverMarker != nil {
                     self.driverMarker.title = ""
                 }
-                
+
                 Singletons.sharedInstance.isRequestAccepted = false
                 Singletons.sharedInstance.isTripContinue = false
                 UserDefaults.standard.set(Singletons.sharedInstance.isTripContinue, forKey: tripStatus.kisTripContinue)
                 UserDefaults.standard.set(Singletons.sharedInstance.isRequestAccepted, forKey: tripStatus.kisRequestAccepted)
                 self.setCarAfterTrip()
+
+                self.didRatingIsSubmitSuccessfully()
             }
             
         })
@@ -2577,6 +2590,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                 //needToCheck
                 UtilityClass.showAlert("App Name".localized, message: "Trip has been cancelled.".localized, vc: self )
                 self.resetMapView()
+
+                self.didRatingIsSubmitSuccessfully()
                 if let resDict = result as? NSDictionary {
                     //                    UtilityClass.showAlert(appName.kAPPName, message: resDict.object(forKey: "message") as! String, vc: self)
                 }
@@ -2966,8 +2981,10 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
             }
         }
        
-        if Singletons.sharedInstance.confirmationType == "image"{
+        if Singletons.sharedInstance.confirmationType.lowercased() == "image"{
             self.PickingImageFromCamera()
+        }else if Singletons.sharedInstance.confirmationType.lowercased() == "qrcode"{
+
         }else{
             self.presentSignatureVC()
         }
