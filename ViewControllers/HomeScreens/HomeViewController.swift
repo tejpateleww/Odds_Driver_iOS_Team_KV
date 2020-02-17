@@ -855,6 +855,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
             self.getNotificationforReceiveTip()
             self.getNotificationforReceiveTipForBookLater()
             self.onAdvancedBookingPickupPassengerNotification() // AdvancedBookingPickupPassengerNotification
+            self.socketPickupPassengerByDriver()
+            self.socketkAdvancedBookingPickupPassenger()
         }
     }
     
@@ -1371,6 +1373,34 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
             //            }
         })
     }
+    
+    func socketPickupPassengerByDriver() {
+        
+        self.socket.on(socketApiKeys.kPickupPassengerByDriver, callback: { (data, ack) in
+            print("socketPickupPassengerByDriver() : \(data)")
+            
+            if "\((data.first as! [String:Any])["Status"]!)" == "0" {
+                let msg = "\((data.first as! [String:Any])["message"]!)"
+                UtilityClass.showAlert("", message: msg, vc: self)
+            } else {
+                self.btnStartTripAction()
+            }
+        })
+    }
+    
+    func socketkAdvancedBookingPickupPassenger() {
+        
+        self.socket.on(socketApiKeys.kAdvancedBookingPickupPassenger, callback: { (data, ack) in
+            print("socketkAdvancedBookingPickupPassenger() : \(data)")
+            if "\((data.first as! [String:Any])["Status"]!)" == "0" {
+                let msg = "\((data.first as! [String:Any])["message"]!)"
+                UtilityClass.showAlert("", message: msg, vc: self)
+            } else {
+                self.btnStartTripAction()
+            }
+        })
+    }
+    
     
     func zoomoutCamera(PickupLat: CLLocationDegrees, PickupLng: CLLocationDegrees, DropOffLat : String, DropOffLon: String)
     {
@@ -2445,6 +2475,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
             return
         }
         
+        
+        
         Singletons.sharedInstance.isBookNowOrBookLater = true
         Singletons.sharedInstance.firstRequestIsAccepted = false
         
@@ -2515,7 +2547,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
             }
             else {
                 self.startTrip()
-                self.btnStartTripAction()
+//                self.btnStartTripAction()
             }
         }
     }
@@ -2669,7 +2701,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
         
         let myJSON = [socketApiKeys.kBookingId : Singletons.sharedInstance.bookingId,  profileKeys.kDriverId : driverID] as [String : Any]
         socket.emit(socketApiKeys.kPickupPassengerByDriver, with: [myJSON])
-        
     }
     
     @IBAction func btnShowPassengerInfo(_ sender: UIButton) {
@@ -4567,7 +4598,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate,ARCarMovem
                 }
                 
                 
-                Singletons.sharedInstance.strCurrentBalance = Double(resultData.object(forKey: "balance") as! String)!
+                Singletons.sharedInstance.strCurrentBalance = Double("\(resultData.object(forKey: "balance")!)")!
                 var rating = String()
                 if let ratingTemp = resultData.object(forKey: "rating") as? String
                 {
